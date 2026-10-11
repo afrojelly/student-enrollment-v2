@@ -143,31 +143,31 @@ IF the data file does not exist, the application creates it automatically in the
 - CLI: terminal base student enrolment system 
 - GUI: Tkinter grapich interface 
 
-student-enrollment-interface-cmp1-07-group2/
-│
-├── cli/
-│   ├── admin.py
-│   ├── change_password.py
-│   ├── database.py
-│   ├── login.py
-│   ├── registration.py
-│   ├── student.py
-│   ├── students.data
-│   ├── subject_enrolment.py
-│   ├── subject.py
-│   ├── uni_app_main.py
-│   └── uni_system.py
-│
-├── gui/
-│   ├── __init__.py
-│   ├── app_main_gui.py
-│   ├── registration_gui.py
-│   ├── login_gui.py
-│   ├── change_password_gui.py
-│   └── subject_gui.py
-│
-├── .gitignore
-└── README.md
+student-enrollment-interface-cmp1-07-group2/  
+│  
+├── cli/  
+│   ├── admin.py  
+│   ├── change_password.py  
+│   ├── database.py  
+│   ├── login.py  
+│   ├── registration.py  
+│   ├── student.py  
+│   ├── students.data  
+│   ├── subject_enrolment.py  
+│   ├── subject.py  
+│   ├── uni_app_main.py  
+│   └── uni_system.py  
+│  
+├── gui/  
+│   ├── __init__.py    
+│   ├── app_main_gui.py  
+│   ├── registration_gui.py  
+│   ├── login_gui.py  
+│   ├── change_password_gui.py  
+│   └── subject_gui.py  
+│  
+├── .gitignore  
+└── README.md  
 
 
 ## Team
