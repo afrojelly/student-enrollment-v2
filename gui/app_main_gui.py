@@ -9,10 +9,10 @@ class UniAppGUI:
 
     #GUI colour in the background of the window, enhancing the visual appeal and providing a consistent look and feel for the application.
         self.bgColor = "#101827"#background colour.
-        self.panelColor= "#1C2A40"
+        self.panelColor= "#1C2A40" #로그인 pannel이나 기타 pannel에 사용
         self.buttoncolor = "#3778D6"
-        self.exitButtonColor = "#556276"
-        self.buttonFG = "#010101" 
+        self.exitButtonColor = "#556276" #exit 버튼은 다른색으로 했어요! 
+        self.buttonFG = "#010101"  #button 내부글자 colour 
         self.buttonActive = "#475D7A"
         self.textColor = "#E2E8F0"
         self.subTextColor = "#A0AEC0"
