@@ -1,4 +1,5 @@
 **/__pycache__/
 *.pyc
+tools/
 
 #uni_app_main에서 run해주세요
