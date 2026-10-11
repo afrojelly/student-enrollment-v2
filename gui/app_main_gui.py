@@ -16,9 +16,18 @@ class UniAppGUI:
         self.buttonActive = "#475D7A"
         self.textColor = "#E2E8F0"
         self.subTextColor = "#A0AEC0"
+    #GUI Font setting 
+        self.mainTitleFont = ("Arial", 25, "bold")
+        self.subTitleFont = ("Arial", 20)
+        self.buttonFont = ("Arial", 18, "bold")
+        self.messageFont = ("Arial", 14)  #error message
 
         self.root.configure(bg=self.bgColor)
         self.mainMenu()
+
+        #mainTitle: 25
+        #subTitle:20
+        #button: 20
 
     def clearWindow(self):
         for widget in self.root.winfo_children():
@@ -31,7 +40,7 @@ class UniAppGUI:
         self.mainMenuTitle = tk.Label( #main title of the main menu, welcoming users to the University Enrollment System. The title is styled with a larger font size and bold weight to make it stand out.
                 self.root, 
                 text="Welcome to the University Enrollment System", 
-                font=("Arial", 30, "bold"),
+                font=self.mainTitleFont,
                 bg=self.bgColor,
                 fg=self.textColor
             )
@@ -40,7 +49,7 @@ class UniAppGUI:
         self.mainMenuSubtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
                 self.root,
                 text="Please choose an option below to access the system",
-                font=("Arial", 20),
+                font=self.subTitleFont,
                 bg=self.bgColor,
                 fg=self.subTextColor
             )
@@ -50,7 +59,7 @@ class UniAppGUI:
         self.adminButton = tk.Button(
             self.root, 
             text="Admin", 
-            font=("Arial", 20),
+            font=self.buttonFont,
             width = 40,
             bg=self.buttoncolor,
             fg=self.buttonFG,
@@ -62,7 +71,7 @@ class UniAppGUI:
         self.studentButton = tk.Button(
             self.root,
             text="Student",
-            font=("Arial", 20),
+            font=self.buttonFont,
             width=40,
             bg=self.buttoncolor,
             fg=self.buttonFG,
@@ -74,7 +83,7 @@ class UniAppGUI:
         self.exitButton = tk.Button(
             self.root,
             text="Exit",
-            font=("Arial", 20),
+            font= self.buttonFont,
             width=40,
             bg=self.exitButtonColor,
             fg=self.buttonFG,   
@@ -90,8 +99,6 @@ class UniAppGUI:
             "Admin GUI is not implemented yet."
         )
 
-
-
 #student Menu
     def studentMenu(self):
         self.clearWindow()      
@@ -99,7 +106,7 @@ class UniAppGUI:
         self.studentMenuTitle = tk.Label(
             self.root, 
             text="Welcome to the Student System", 
-            font=("Arial", 30, "bold"),
+            font=self.mainTitleFont,
             bg=self.bgColor,
             fg=self.textColor
         )    
@@ -109,7 +116,7 @@ class UniAppGUI:
         self.studentMenuSubtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
                 self.root,
                 text="Please choose an option below to access the functionality",
-                font=("Arial", 20),
+                font=self.subTitleFont,
                 bg=self.bgColor,
                 fg=self.subTextColor
             )
@@ -120,7 +127,7 @@ class UniAppGUI:
             self.root, 
             width=40,
             text="Login", 
-            font=("Arial", 20),
+            font=self.buttonFont,
             bg=self.buttoncolor,
             fg=self.buttonFG,
             activebackground=self.buttonActive,
@@ -132,7 +139,7 @@ class UniAppGUI:
             self.root, 
             width=40,
             text="Register", 
-            font=("Arial", 20),
+            font=self.buttonFont,
             bg=self.buttoncolor,
             fg=self.buttonFG,
             activebackground=self.buttonActive,
@@ -144,7 +151,7 @@ class UniAppGUI:
             self.root,
             width=40,
             text="Back to Main Menu",
-            font=("Arial", 20),
+            font=self.buttonFont,
             bg=self.exitButtonColor,
             fg=self.buttonFG,
             activebackground=self.buttonActive,
