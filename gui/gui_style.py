@@ -2,24 +2,24 @@ class GUIStyle:
     def __init__(self):
 
     #GUI colour in the background of the window, enhancing the visual appeal and providing a consistent look and feel for the application.
-        self.bgColor = "#101827"#background colour.
-        self.panelColor= "#1C2A40" #로그인 pannel이나 기타 pannel에 사용
-        self.buttonColor = "#3778D6"
-        self.exitButtonColor = "#556276" #exit 버튼은 다른색으로 했어요! 
-        self.buttonFG = "#010101"  #button 내부글자 colour 
-        self.buttonActive = "#475D7A"
-        self.textColor = "#E2E8F0"
-        self.subTextColor = "#A0AEC0"
+        self.bgColor = "#0F1E3A"#background colour.
+        self.panelColor= "#1E2F4F" #로그인 pannel이나 기타 pannel에 사용
+        self.buttonColor = "#A7B6D0"
+        self.exitButtonColor = "#D8D8DB" #exit 버튼은 다른색으로 했어요! 
+        self.buttonActive = "#1E2F4F"
+        self.buttonFG = "#0F1E3A"  #button 내부글자 colour 
+        self.textColor = "#FFFFFF" #일반 text colour 
+        self.subTextColor = "#A7B6D0"
     #GUI Font setting 
-        self.mainTitleFont = ("Segoe UI", 25, "bold")
-        self.subTitleFont = ("Segoe UI", 20)
-        self.buttonFont = ("Segoe UI", 18, "bold")
-        self.messageFont = ("Calibri", 14)  #error message #data입력필드 
+        self.mainTitleFont = ("Bahnschrift", 25, "bold")
+        self.subTitleFont = ("Bahnschrift", 16)
+        self.buttonFont = ("Bahnschrift", 17, "bold")
+        self.messageFont = ("Bahnschrift", 14)  #error message #data입력필드 
     #GUI spacing 
-        self.titlePadding = (30, 10)
-        self.subTitlePadding = (0, 20)
-        self.buttonPadding = 10
-        self.buttonSizePadding = 15
+        self.titlePadding = (34, 8)
+        self.subTitlePadding = (0, 22)
+        self.buttonPadding = 8
+        self.buttonSizePadding = 9
 
 # GUI Form Button Settings- Widget Style Settings => format은 한번에 다 불러오려면 **self.titleStyle 이런식으로 앞에 **(별두개!)
         self.titleStyle = { #main title 

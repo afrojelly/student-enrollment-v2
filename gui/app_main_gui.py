@@ -10,7 +10,6 @@ class UniAppGUI(GUIStyle):
         self.root = root #THkinter GUI 의 가장 바탕, 최상위 main window창
         self.root.geometry ("1000x600") # Set the window size to 1000 pixels wide and 600 pixels tall, providing a spacious area for the GUI components.
         self.root.title ("University Enrollment System") # Set the title of the window to "University Enrollment System", which will appear in the title bar of the window.
-
         self.root.configure(bg=self.bgColor)
         self.mainMenu()
 
@@ -22,10 +21,33 @@ class UniAppGUI(GUIStyle):
         for widget in self.root.winfo_children(): #현재 GUI 창 내의 모든 widget clear => Widget = tkinter base window component, including labe, button, entry, frame....etc.
             widget.destroy()
 
+    def createMenuPanel(self):
+        # A coloured panel makes the menu stand out without extra packages.
+        panel = tk.Frame(self.root, bg=self.panelColor, padx=32, pady=24)
+        panel.pack()
+        return panel
+
+#Button만드는 함수 저으이 해버렸어여 
+    def createMenuButton(self, parent, text, command, isBack=False):
+        # Standard Tkinter button with a flat, clean appearance
+        color = self.exitButtonColor if isBack else self.buttonColor
+        button = tk.Button(
+            parent,
+            text=text,
+            bg=color,
+            command=command,
+            **self.buttonStyle
+        )
+        button.pack(
+            pady=self.buttonPadding, 
+            ipady=self.buttonSizePadding
+            )
+        return button
+
+
     def mainMenu(self):
-        self.clearWindow() # Clear the window before adding new widgets; tkinter does not automatically clear previous widgets when switching between different screens or menus. This method ensures that the window is clean and ready for new content, preventing overlapping or cluttered interfaces.
-        
-        #mainmenu title and subtitle
+        self.clearWindow() # Clear the window before adding new widgets; tkinter does not automatically clear previous widgets when switching between different screens or menus. This method ensures that the window is clean and ready for new content, preventing overlapping or cluttered interfaces.    
+#mainmenu title and subtitle
         self.mainMenuTitle = tk.Label( #main title of the main menu, welcoming users to the University Enrollment System. The title is styled with a larger font size and bold weight to make it stand out.
                 self.root, 
                 text="Welcome to the University Enrollment System", 
@@ -33,8 +55,7 @@ class UniAppGUI(GUIStyle):
             )
         self.mainMenuTitle.pack (
             pady=self.titlePadding
-            )
-        
+            )       
         self.mainMenuSubtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
                 self.root,
                 text="Please choose an option below to access the system",
@@ -43,45 +64,16 @@ class UniAppGUI(GUIStyle):
         self.mainMenuSubtitle.pack(
             pady=self.subTitlePadding
             )
-
-#system access buttons, allowing users to navigate to the Admin or Student sections of the application. Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
-        self.adminButton = tk.Button(
-            self.root,
-            text="Admin",
-            bg=self.buttonColor,
-            command=self.adminMenu,
-            **self.buttonStyle
-        )
         
-        self.adminButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-            ) #pady = 사이간격 ipady = button 세로
+#system access buttons, 
+# #allowing users to navigate to the Admin or Student sections of the application. 
+# #Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
+#the button specification (panel (:on the panel), "Admin (showing on button)", Command (:action))
+        panel = self.createMenuPanel() #button 하이라이트 시켜주는 패넬을 만들어서 넣어봤어요 
+        self.adminButton = self.createMenuButton (panel, "Adimin", self.adminMenu)
+        self.studentButton = self.createMenuButton(panel,"Student", self.studentMenu)
+        self.exitButton = self.createMenuButton(panel, "Exit", self.root.destroy, isBack=True)
 
-
-        self.studentButton = tk.Button(
-            self.root,
-            text="Student",
-            bg=self.buttonColor,
-            command=self.studentMenu,
-            **self.buttonStyle
-        )
-        self.studentButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-            )
-
-        self.exitButton = tk.Button(
-            self.root,
-            text="Exit",
-            bg=self.exitButtonColor,
-            command=self.root.destroy,
-            **self.buttonStyle
-        ) # page exit  
-        self.exitButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-        )
 
 #Admin menu
     def adminMenu(self):
@@ -111,45 +103,11 @@ class UniAppGUI(GUIStyle):
         self.studentMenuSubtitle.pack(
             pady=self.subTitlePadding
             )
-
-        #student menu buttons and options, allowing users to navigate to the login or registration sections of the student system. Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
-        self.loginButton = tk.Button(
-            self.root, 
-            text="Login", 
-            bg=self.buttonColor,
-            command=self.loginPage,
-            **self.buttonStyle
-            )
-        self.loginButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-        )
-
-
-        self.registerButton = tk.Button(
-            self.root,
-            text="Register",
-            bg=self.buttonColor,
-            **self.buttonStyle,
-            command=self.registrationPage
-            )
-        self.registerButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-        )
-
-
-        self.exitButton = tk.Button(
-            self.root,
-            text="Back to Main Menu",
-            bg=self.exitButtonColor,
-            **self.buttonStyle,
-            command=self.mainMenu
-            ) #one page back to main menu
-        self.exitButton.pack(
-            pady=self.buttonPadding,
-            ipady=self.buttonSizePadding
-        )
+#student menu buttons and options, allowing users to navigate to the login or registration sections of the student system. Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
+        panel = self.createMenuPanel()
+        self.loginButton = self.createMenuButton(panel, "Login", self.loginPage)
+        self.registerButton = self.createMenuButton(panel, "Register", self.registrationPage)
+        self.exitButton = self.createMenuButton(panel, "Back to Main Menu", self.mainMenu, isBack=True)
 
 
     def loginPage(self):
@@ -158,8 +116,7 @@ class UniAppGUI(GUIStyle):
                 "Registration GUI is not implemented yet."
             )
 
-
-    
+   
     def registrationPage(self):
         self.clearWindow()
 
