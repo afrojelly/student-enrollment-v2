@@ -34,89 +34,65 @@ class registrationGUI:
         self.regiSubTitle.pack(
             pady=self.app.subTitlePadding
             )
-
-
+        
 #student NAme label
         self.nameLabel = tk.Label(
             self.root,
             text = "Full Name",
-            font = self.app.messageFont,
-            bg=self.app.bgColor,
-            fg=self.app.textColor
+            **self.app.formLabelStyle
         )
         self.nameLabel.pack(pady=(5,5))
-
-        #sutdent Name enter box
+#sutdent Name enter box
         self.nameEntry =tk.Entry( #tk.label: 입력항목-보여주는거, tk.Entry: 실체 사용자 입력공간
             self.root,
-            font =self.app.messageFont,
-            width = 35
+            **self.app.formEntryStyle
         )
         self.nameEntry.pack(pady=(0,10))
+
 
 # Student Email Label
         self.emailLabel = tk.Label(
             self.root,
             text="University Email",
-            font=self.app.messageFont,
-            bg=self.app.bgColor,
-            fg=self.app.textColor
+            **self.app.formLabelStyle
         )
         self.emailLabel.pack(pady=(5, 5))
-
-        # Student Email Entry
+# Student Email Entry
         self.emailEntry = tk.Entry(
             self.root,
-            font=self.app.messageFont,
-            width=35
+            **self.app.formEntryStyle
         )
         self.emailEntry.pack(pady=(0, 10))
-
-
 
 
 # Student Password Label
         self.passwordLabel = tk.Label(
             self.root,
             text="Password",
-            font=self.app.messageFont,
-            bg=self.app.bgColor,
-            fg=self.app.textColor
+            **self.app.formLabelStyle
         )
         self.passwordLabel.pack(pady=(5, 5))
-
+#student Enter form 
 # Password Entry
         self.passwordEntry = tk.Entry(
             self.root,
-            font=self.app.messageFont,
-            width=35,
+            **self.app.formEntryStyle,
             show="*"
         )
         self.passwordEntry.pack(pady=(0, 10))
 
-
-
+#button
 #registration confirmation button => link to the registration 
-        self.confirmButton = tk.Button(
+        self.confirmButton = self.app.createFormButton(
             self.root,
-            text="Confirm",
-            bg=self.app.buttonColor,
-            command=self.registerStudent,
-            **self.app.formButtonStyle
+            "Confirm",
+            self.registerStudent
         )
-        self.confirmButton.pack(
-            pady=self.app.buttonPadding,
-
-        )
-        self.exitButton = tk.Button(
+        self.exitButton = self.app.createFormButton(
             self.root,
-            text="Back to Student Menu",
-            bg=self.app.exitButtonColor,
-            command=self.app.studentMenu,
-            **self.app.formButtonStyle
-        )
-        self.exitButton.pack(
-            pady=self.app.buttonPadding,
+            "Back to Student Menu",
+            self.app.studentMenu,
+            isBack=True
         )
 
 

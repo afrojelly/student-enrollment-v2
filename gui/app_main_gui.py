@@ -23,14 +23,17 @@ class UniAppGUI(GUIStyle):
 
     def createMenuPanel(self):
         # A coloured panel makes the menu stand out without extra packages.
-        panel = tk.Frame(self.root, bg=self.panelColor, padx=32, pady=24)
+        panel = tk.Frame(self.root, bg=self.panelColor, padx=32, pady=24) #pixel
         panel.pack()
         return panel
 
-#Button만드는 함수 저으이 해버렸어여 
+#Button만드는 함수 저으이 해버렸어여 - 이거는 main button, button만 있는 페이지 
     def createMenuButton(self, parent, text, command, isBack=False):
-        # Standard Tkinter button with a flat, clean appearance
-        color = self.exitButtonColor if isBack else self.buttonColor
+        if isBack:
+            color = self.exitButtonColor  
+        else:
+            color = self.buttonColor #button colour
+
         button = tk.Button(
             parent,
             text=text,
@@ -43,6 +46,25 @@ class UniAppGUI(GUIStyle):
             ipady=self.buttonSizePadding
             )
         return button
+
+# Create small button for input form pages
+#이거는 button -입력창이 있는 페이지의 작은사이즈의 버튼 
+    def createFormButton (self, parent, text, command, isBack=False):
+        if isBack:
+            color = self.exitButtonColor  
+        else:
+            color = self.buttonColor
+
+        button = tk.Button(
+            parent,
+            text=text,
+            bg=color,
+            command=command,
+            **self.formButtonStyle
+        )
+        button.pack(pady=5)
+        return button
+
 
 
     def mainMenu(self):
