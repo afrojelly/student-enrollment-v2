@@ -1,7 +1,10 @@
+from cli.database import Database # import existing CLI database to the GUI  
+
 import tkinter as tk
 from tkinter import messagebox
 from gui.registration_gui import registrationGUI
 from gui.gui_style import GUIStyle
+
 
 class UniAppGUI(GUIStyle):
     def __init__(self, root):
@@ -10,6 +13,11 @@ class UniAppGUI(GUIStyle):
         self.root = root #THkinter GUI 의 가장 바탕, 최상위 main window창
         self.root.geometry ("1000x600") # Set the window size to 1000 pixels wide and 600 pixels tall, providing a spacious area for the GUI components.
         self.root.title ("University Enrollment System") # Set the title of the window to "University Enrollment System", which will appear in the title bar of the window.
+
+#connect GUI to the existing database from CLI 
+        self.database = Database() #실제 Students.data 파일 관리 -> self.app.database 로 불러오기 가능 
+        self.students = self.database.loadStudents()
+        
         self.root.configure(bg=self.bgColor)
         self.mainMenu()
 
@@ -27,7 +35,7 @@ class UniAppGUI(GUIStyle):
         panel.pack()
         return panel
 
-#Button만드는 함수 저으이 해버렸어여 - 이거는 main button, button만 있는 페이지 
+#Button만드는 함수 - 이거는 main button, button만 있는 페이지 
     def createMenuButton(self, parent, text, command, isBack=False):
         if isBack:
             color = self.exitButtonColor  
@@ -48,7 +56,7 @@ class UniAppGUI(GUIStyle):
         return button
 
 # Create small button for input form pages
-#이거는 button -입력창이 있는 페이지의 작은사이즈의 버튼 
+#이거는 button -입력창 (form) 이 있는 페이지의 작은사이즈의 버튼 (registration and login )
     def createFormButton (self, parent, text, command, isBack=False):
         if isBack:
             color = self.exitButtonColor  
@@ -70,6 +78,7 @@ class UniAppGUI(GUIStyle):
     def mainMenu(self):
         self.clearWindow() # Clear the window before adding new widgets; tkinter does not automatically clear previous widgets when switching between different screens or menus. This method ensures that the window is clean and ready for new content, preventing overlapping or cluttered interfaces.    
 #mainmenu title and subtitle
+        
         self.mainMenuTitle = tk.Label( #main title of the main menu, welcoming users to the University Enrollment System. The title is styled with a larger font size and bold weight to make it stand out.
                 self.root, 
                 text="Welcome to the University Enrollment System", 
@@ -146,7 +155,7 @@ class UniAppGUI(GUIStyle):
             self.root,
             self
         )
-        registration.window()
+        registration.regiWindow()
 
 if __name__ == "__main__":
     root = tk.Tk() 

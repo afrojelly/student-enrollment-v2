@@ -106,5 +106,40 @@
 "password": "Qwert123",
 "studentId": "343356",
 "subjects": []
+},
+{
+"name": "Robyn You",
+"email": "Robyn.You@university.com",
+"password": "Robyn01234",
+"studentId": "156496",
+"subjects": []
+},
+{
+"name": "Hyeonji",
+"email": "Hyeonji.You@university.com",
+"password": "Password1234",
+"studentId": "649876",
+"subjects": []
+},
+{
+"name": "GUI test",
+"email": "GUI.test@university.com",
+"password": "GUItest123",
+"studentId": "529488",
+"subjects": []
+},
+{
+"name": "GUI test",
+"email": "return.studentmenu@university.com",
+"password": "GUITEST123",
+"studentId": "216170",
+"subjects": []
+},
+{
+"name": "menu back",
+"email": "Menu.Back@university.com",
+"password": "Menuback123",
+"studentId": "819260",
+"subjects": []
 }
 ]

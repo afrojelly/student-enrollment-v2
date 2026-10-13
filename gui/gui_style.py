@@ -59,7 +59,7 @@ class GUIStyle:
             "fg":self.textColor
         }
 
-# tk.Entry: 실체 사용자 입력공간
+# tk.Entry: 실체 사용자 입력칸
         self.formEntryStyle = { 
             "font": self.messageFont,
             "width":35,
@@ -67,6 +67,12 @@ class GUIStyle:
             "fg": self.bgColor,
         }
 
+# Small hint text for registration/login input rules
+        self.hintStyle = {
+            "font": ("Bahnschrift", 10),
+            "bg": self.bgColor,
+            "fg": self.subTextColor
+        }
 
         #mainTitle: 25
         #subTitle:20
