@@ -35,9 +35,7 @@ class registrationGUI:
         self.regiSubTitle = tk.Label(
             self.root,
             text = "please enter you details below to create an account",
-            font = self.app.subTitleFont,
-            bg=self.app.bgColor,
-            fg=self.app.subTextColor
+            **self.app.subTitleStyle
         )
         self.regiSubTitle.pack(
             pady=self.app.subTitlePadding
@@ -170,7 +168,7 @@ class registrationGUI:
 #creating student list and save
         student = Student(name, email, password, studentId)
         newStudents = self.app.students +[student]
-
+#data error simulation 
         try:
             self.app.database.saveStudent(newStudents)
         except OSError as error:

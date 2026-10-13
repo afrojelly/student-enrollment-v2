@@ -6,7 +6,12 @@
   #      print ("Returning to the student system.")
    #     return None
     #return value 
+def validateLogin(students, email, password):
+    for student in students:
+        if student.email == email and student.password == password:
+            return student
 
+    return None
 def loginStudent(students):
     print("\nwelcome to the Student Login system.")
     print ("""please login with your validated email and password

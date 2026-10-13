@@ -4,6 +4,8 @@ import tkinter as tk
 from tkinter import messagebox
 from gui.registration_gui import registrationGUI
 from gui.gui_style import GUIStyle
+from gui.login_gui import loginGUI
+#from gui.subject_enrolment_gui import subjectEnrolmentGUI 
 
 
 class UniAppGUI(GUIStyle):
@@ -17,6 +19,8 @@ class UniAppGUI(GUIStyle):
 #connect GUI to the existing database from CLI 
         self.database = Database() #실제 Students.data 파일 관리 -> self.app.database 로 불러오기 가능 
         self.students = self.database.loadStudents()
+
+        self.currentStudent = None
         
         self.root.configure(bg=self.bgColor)
         self.mainMenu()
@@ -142,10 +146,13 @@ class UniAppGUI(GUIStyle):
 
 
     def loginPage(self):
-            messagebox.showinfo(
-                "Student Registration",
-                "Registration GUI is not implemented yet."
-            )
+        self.clearWindow()
+
+        login = loginGUI(
+            self.root,
+            self
+        )
+        login.loginWindow()
 
    
     def registrationPage(self):
@@ -156,6 +163,13 @@ class UniAppGUI(GUIStyle):
             self
         )
         registration.regiWindow()
+
+    def subjectEnrolmentPage(self):
+        messagebox.showinfo(
+            " System",
+            "Next enrolment page GUI is not implemented yet."
+        )
+
 
 if __name__ == "__main__":
     root = tk.Tk() 
