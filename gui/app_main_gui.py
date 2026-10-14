@@ -2,10 +2,9 @@ from cli.database import Database # import existing CLI database to the GUI
 
 import tkinter as tk
 from tkinter import messagebox
-from gui.registration_gui import registrationGUI
 from gui.gui_style import GUIStyle
-from gui.login_gui import loginGUI
-#from gui.subject_enrolment_gui import subjectEnrolmentGUI 
+from gui.student_system_gui import studentGUI
+from gui.subject_enrolment_gui import subjectEnrolmentGUI 
 
 
 class UniAppGUI(GUIStyle):
@@ -98,12 +97,12 @@ class UniAppGUI(GUIStyle):
             )
         self.mainMenuSubtitle.pack(
             pady=self.subTitlePadding
-            )
-        
+            )      
 #system access buttons, 
 # #allowing users to navigate to the Admin or Student sections of the application. 
 # #Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
 #the button specification (panel (:on the panel), "Admin (showing on button)", Command (:action))
+
         panel = self.createMenuPanel() #button 하이라이트 시켜주는 패넬을 만들어서 넣어봤어요 
         self.adminButton = self.createMenuButton (panel, "Adimin", self.adminMenu)
         self.studentButton = self.createMenuButton(panel,"Student", self.studentMenu)
@@ -120,55 +119,25 @@ class UniAppGUI(GUIStyle):
 #student Menu
     def studentMenu(self):
         self.clearWindow()      
-        # Code to open the student window
-        self.studentMenuTitle = tk.Label(
-            self.root, 
-            text="Welcome to the Student System", 
-            **self.titleStyle
-        )    
-        self.studentMenuTitle.pack(
-            pady=self.titlePadding
-            )
 
-        self.studentMenuSubtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
-                self.root,
-                text="Please choose an option below to access the functionality",
-                **self.subTitleStyle
-            )
-        self.studentMenuSubtitle.pack(
-            pady=self.subTitlePadding
-            )
-#student menu buttons and options, allowing users to navigate to the login or registration sections of the student system. Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
-        panel = self.createMenuPanel()
-        self.loginButton = self.createMenuButton(panel, "Login", self.loginPage)
-        self.registerButton = self.createMenuButton(panel, "Register", self.registrationPage)
-        self.exitButton = self.createMenuButton(panel, "Back to Main Menu", self.mainMenu, isBack=True)
-
-
-    def loginPage(self):
-        self.clearWindow()
-
-        login = loginGUI(
+        student = studentGUI(
             self.root,
             self
         )
-        login.loginWindow()
+        student.studentWindow()
 
-   
-    def registrationPage(self):
+#once login succeed, it can directly direct the login studnet to the subjectEnrolmentPage. 
+# -> or should we have the extra page for making student to chose (Enrolment page or Exit? ) 
+# i assume it could directly bring user to the enrolment page anyway 
+    def subjectEnrolmentPage(self, student):
         self.clearWindow()
-
-        registration = registrationGUI(
+        
+        enrolment = subjectEnrolmentGUI(
             self.root,
-            self
+            self,
+            student
         )
-        registration.regiWindow()
-
-    def subjectEnrolmentPage(self):
-        messagebox.showinfo(
-            " System",
-            "Next enrolment page GUI is not implemented yet."
-        )
+        enrolment.enrolmentWindow()
 
 
 if __name__ == "__main__":

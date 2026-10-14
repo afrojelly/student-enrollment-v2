@@ -141,5 +141,26 @@
 "password": "Menuback123",
 "studentId": "819260",
 "subjects": []
+},
+{
+"name": "hello UTS",
+"email": "hello.uts@university.com",
+"password": "Hello123",
+"studentId": "299315",
+"subjects": []
+},
+{
+"name": "hyeonji.you",
+"email": "HJ.YOU@university.com",
+"password": "Password123",
+"studentId": "550073",
+"subjects": []
+},
+{
+"name": "HJ.GUI",
+"email": "HJ.GUI@university.com",
+"password": "Password123",
+"studentId": "768836",
+"subjects": []
 }
 ]

@@ -2,9 +2,7 @@
 # database
 from database import Database
 # student
-import registration as registration
-import login as login
-import subject_enrolment as subject_enrolment
+import student_system
 # admin
 import admin as admin
 
@@ -13,7 +11,7 @@ class UniApp:
 #setting the database, initiation. 
     def __init__(self,dataFile=None):
         self.database = Database() if dataFile is None else Database(dataFile)  
-        self.students = self.database.loadStudents()
+        self.student_system = student_system.StudentSystem(self.database)
         self.admin_system = admin.AdminSystem(self.database)
     
 #University System requiremnt, choosing the subsystem class. 
@@ -29,53 +27,17 @@ class UniApp:
             if choice == 'A': 
                 self.admin_system.adminSystem()
             elif choice == 'S':
-                self.studentSystem()
+                self.student_system.studentSystem()
             elif choice == 'X':
                 print("Exiting the UniApp. Goodbye!")
                 break
             else:
                 print("Invalid. Please try again.")
 
-#The Student subsystem menu, which includes login and registration functionalities for students.
-    def studentSystem(self):
-        while True:
-            print("\n Welsome to the Student System. please choose a following option:")
-            print(" (l) login")
-            print(" (r) register")
-            print(" (x) exit")
-            choice = input("Enter your choice (l-r-x): ").lower()
-            if choice == 'l':
-                self.loginStudent()
-            elif choice == 'r':
-                self.registerStudent()
-            elif choice == 'x':
-                print("Exiting the Student System.")
-                break
-            else:
-                print("Invalid. Please try again.")
 
 #  각각의 기능을 다른 파일로 빼서,  student, admin system에서 각각의 def를 선택시에 불러오는 방향으로 파일을 분리하는게 좋을 것 같습니다. 
 #Student Registration functionality.
-    def registerStudent(self):
-        self.students = registration.registerStudent(
-            self.students,
-            self.database
-        )
 
-    def loginStudent(self):
-        self.students = self.database.loadStudents()
-        student = login.loginStudent(self.students)
-
-        if student is None:
-            return None
-        
-        if student is not None: # login에 불러온 student data -> enrolment system에서 불러옴 
-            subject_enrolment.subjectEnrolmentSystem( 
-                student, 
-                self.students,
-                self.database
-                )
-            return student
 
 #actioned. login 후 student page;' enrolment page로 가게 해야합니다; here need to be connected to the subject enrolment system 
 # #done! 

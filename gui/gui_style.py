@@ -12,10 +12,10 @@ class GUIStyle:
         self.subTextColor = "#A0AEC0"
     
     #GUI Font setting 
-        self.mainTitleFont = ("Bahnschrift", 25, "bold")
-        self.subTitleFont = ("Bahnschrift", 20)
-        self.buttonFont = ("Bahnschrift", 18, "bold")
-        self.messageFont = ("Bahnschrift", 14)  #error message #data입력필드 
+        self.mainTitleFont = ("Noto Sans KR", 25, "bold")
+        self.subTitleFont = ("Noto Sans KR", 20)
+        self.buttonFont = ("Noto Sans KR", 18, "bold")
+        self.messageFont = ("Noto Sans KR", 14)  #error message #data입력필드 
     
     #GUI spacing option 
         self.titlePadding = (34, 8)

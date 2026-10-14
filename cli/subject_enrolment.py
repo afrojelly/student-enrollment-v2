@@ -16,6 +16,13 @@ def subjectEnrolmentSystem(student, students, database):
 
         if choice == 'c':
             changePassword(student, students, database)  
+
+
+        elif choice == 'x':
+            print("Exiting the Subject Enrolment System.")
+            break
+
+        
 # actioned. changePassword import "from change_password import changePassword"
 
 
