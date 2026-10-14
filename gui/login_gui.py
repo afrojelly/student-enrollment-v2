@@ -187,4 +187,5 @@ class loginGUI:
             f"Student ID: {student.studentId}"
         )
 
-        self.app.subjectEnrolmentPage(student) # 실제 로그인한 학생객체
+        self.app.currentStudent=student #로그인한 객체 저장 
+        self.app.subjectEnrolmentPage(student) # 학생개체 페이지 호출 
