@@ -1,6 +1,6 @@
 #emain and password enter page 
 
-from cli.login import validateLogin 
+from cli.student_login import validateLogin 
 
 from cli.student import Student 
 

@@ -1,5 +1,5 @@
-import registration 
-import login 
+import student_registration as student_registration 
+import student_login
 import subject_enrolment 
 
 #The Student subsystem menu, which includes login and registration functionalities for students.
@@ -34,14 +34,14 @@ class StudentSystem:
     #Student system functionality.
     def registerStudent(self):         
         self.students = self.database.loadStudents() # Refresh records in case Admin has removed or cleared students.
-        self.students = registration.registerStudent(
+        self.students = student_registration.registerStudent(
             self.students,
             self.database
         )
 
     def loginStudent(self):
         self.students = self.database.loadStudents()
-        student = login.loginStudent(self.students)
+        student = student_login.loginStudent(self.students)
 
         if student is None:
             return None

@@ -21,7 +21,7 @@ class GUIStyle:
         self.titlePadding = (34, 8)
         self.subTitlePadding = (0, 22)
         self.buttonPadding = 8
-        self.buttonSizePadding = 10
+        self.buttonSizePadding = 5
 
 # GUI Form Button Settings- Widget Style Settings => format은 한번에 다 불러오려면 **self.titleStyle 이런식으로 앞에 **(별두개!)
         self.titleStyle = { #main title 

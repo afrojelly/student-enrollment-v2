@@ -3,7 +3,7 @@
 
 #validateEMail (): input없음=> GUI 그대로 사용 
 #registerStudent(): input으로 학생정보를 받아야함, GUI 버튼에 직접 연결하고 터미널 입력 기다리기 => thinter entry로 학생정보 입력받기 
-from cli.registration import (
+from cli.student_registration import (
     validateEmail,
     validatePassword,
     generateStudentId
