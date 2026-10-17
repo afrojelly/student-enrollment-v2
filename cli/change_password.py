@@ -1,4 +1,4 @@
-from cli.student_registration import validatePassword
+from student_registration import validatePassword
 
 
 
