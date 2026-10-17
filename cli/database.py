@@ -1,12 +1,7 @@
 import json
 from pathlib import Path
 
-try:
-    from cli.student import Student
-except ModuleNotFoundError as error:
-    if error.name != "cli":
-        raise
-    from student import Student
+from cli.student import Student
 
 class Database: 
     def __init__(self, dataFile = None):

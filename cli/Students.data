@@ -162,5 +162,12 @@
 "password": "Password123",
 "studentId": "768836",
 "subjects": []
+},
+{
+"name": "Hello GUI",
+"email": "hello.gui@university.com",
+"password": "Change123",
+"studentId": "392279",
+"subjects": []
 }
 ]

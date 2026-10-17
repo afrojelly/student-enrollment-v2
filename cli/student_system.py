@@ -1,6 +1,6 @@
-import student_registration as student_registration 
-import student_login
-import subject_enrolment 
+from cli import student_registration
+from cli import student_login
+from cli import subject_enrolment 
 
 #The Student subsystem menu, which includes login and registration functionalities for students.
 class StudentSystem:

@@ -1,5 +1,4 @@
-from change_password import changePassword
-
+from cli.change_password import changePassword
 def subjectEnrolmentSystem(student, students, database):
     while True:
         print(f"\nWelcome to the Subject Enrolment System , {student.name}. Please choose a following option: ")

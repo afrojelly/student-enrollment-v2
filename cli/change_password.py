@@ -5,9 +5,6 @@ from cli.student_registration import validatePassword
 #actioned. original password validation function needed? -튜터가 말했던 것 같은데.....
 # ; before changing the password, the user enter the original password to verify their identity. 
 
-
-
-
 def changePassword(student, students, database):
     print("\nWould you like to change your password?.")
     while True:

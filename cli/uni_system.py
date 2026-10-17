@@ -1,10 +1,10 @@
 
 # database
-from database import Database
+from cli.database import Database
 # student
-import student_system
+from cli import student_system
 # admin
-import admin as admin
+from cli import admin as admin
 
 
 class UniApp:

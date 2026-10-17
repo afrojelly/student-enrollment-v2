@@ -2,12 +2,9 @@
 import random #student ID generation
 import re #email and password validation
 
-try: #CLI 랑 module GUI try -> 해당하는 경우에서 student data이용 
-    from cli.student import Student
-except ModuleNotFoundError as error:
-    if error.name != "cli":
-        raise
-    from student import Student
+
+from cli.student import Student
+
 
 def registerStudent(students, database):       
     print("\n Welcome to the Student Registration System")
