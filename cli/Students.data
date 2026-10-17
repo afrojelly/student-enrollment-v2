@@ -2,7 +2,7 @@
 {
 "name": "robyn",
 "email": "robyn@university.com",
-"password": "Robyn0801",
+"password": "RobynNew123",
 "studentId": "074526",
 "subjects": [
 {
@@ -68,7 +68,7 @@
 {
 "name": "test",
 "email": "system.test@university.com",
-"password": "Pass123wordtest",
+"password": "GUIPassword123",
 "studentId": "386052",
 "subjects": []
 },
@@ -138,7 +138,7 @@
 {
 "name": "menu back",
 "email": "Menu.Back@university.com",
-"password": "Menuback123",
+"password": "Change123",
 "studentId": "819260",
 "subjects": []
 },
