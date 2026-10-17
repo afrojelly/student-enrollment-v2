@@ -48,9 +48,29 @@ class AdminSystem:
 
     def organiseStudentByGrade(self):
         self.students = self.database.loadStudents()
-        sorted_students = sorted(self.students, key=lambda x: x.subjects.grade)
+
+        def get_average_mark(student):
+            subjects = student.subjects
+
+            if len(subjects) == 0:
+                return -1
+
+            total = sum(subject["mark"] for subject in subjects)
+            return total / len(subjects)
+
+        sorted_students = sorted(
+            self.students,
+            key=get_average_mark,
+            reverse=True
+        )
+
         for student in sorted_students:
-            print(student)
+            print(
+                f"ID: {student.studentId}, "
+                f"Name: {student.name}, "
+                f"Email: {student.email}, "
+                f"Subjects: {student.subjects}, "
+            )
 
     def categoriseStudentsPassFail(self):
         self.students = self.database.loadStudents()
