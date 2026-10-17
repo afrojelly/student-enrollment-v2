@@ -82,7 +82,7 @@
 {
 "name": "testsystem",
 "email": "system.test@university.com",
-"password": "ChangePassword123",
+"password": "Change123",
 "studentId": "536399",
 "subjects": []
 },
