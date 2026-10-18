@@ -1,11 +1,63 @@
-# student_enrollment_interface_cmp1-07-group2
-Developed for UTS FEIT, Fundamental of Software Development, Assessment 
-by team **CMP1-07-GROUP3**
+# student_enrollment_interface_cmp1-07-group2  
+UTS Faculty of Engineering and Information Technology (FEIT)  
+Subject: Fundamentals of Software Development  
+Assessment: Student Enrolment Interface  
+Team: CMP1-07-GROUP2  
+
 
 ## overview
-CLIUniApp is a Python command-line application developed as part of the Fundamentals of Software Development subject. It is designed to support student self-enrolment and administrative student management through separate, menu-based subsystems.
-The Student System provides registration and login, followed by access to password management and subject enrolment services. The Admin System is designed to allow administrators to manage student records.
-Student records are stored locally in `students.data` using JSON format, preserving student details and enrolment information between program sessions.
+The Student Enrolment Interface is a Python-based application developed as part of the Fundamentals of Software Development assessment at the University of Technology Sydney (UTS). The application provides both a Command-Line Interface (CLI) and a Graphical User Interface (GUI) using Tkinter. 
+The system supports student registration, authentication, password management, subject enrolment, and administrative student management through separate menu-based subsystems.
+Student information is stored locally in a JSON-formatted data file `students.data`, allowing student records and enrolment information to persist between program sessions.
+
+## How to Run
+**Requirement**
+- Python 3
+- Tkinter for the graphical interface
+- A terminal or IDE capable of running Python
+- No external Python packages are required for the features described here.
+
+
+**Python Scripts**
+Clone the repository:
+
+1. git clone https://github.com/jisunbella/student-enrollment-interface-cmp1-07-group2.git 
+2. Open the project folder:
+
+cd student-enrollment-interface-cmp1-07-group2
+
+**Run the CLI**
+
+from the project root dirctory:
+
+```bash
+python python -m cli.uni_app_main
+```
+
+Follow the terminal menu instructions.
+
+**Runt the GUI**
+
+from the project root dirctory: 
+
+```bash
+python python -m gui.app_main_gui
+```
+
+The GUI should open a Tkinter window where users can access the application's features.
+
+
+***Important Import Instructions***
+
+Since the project separates CLI and GUI into different folders, both applications should be run using Python's module execution option (-m).
+
+For example:
+
+from cli.student import Student
+from cli.database import Database
+
+Running python cli/uni_app_main.py directly may cause ModuleNotFoundError when package imports are used.
+
 
 ## Project Features 
 The project scope includes:
@@ -15,21 +67,32 @@ The project scope includes:
 - **Subject enrolment:** Enrol in subjects (Max 4), remove subjects, and view enrolled subjects.
 - **Administration:** Provide a separate menu for administrative functions.
 
-## Registration Validation Rules and error 
-### Email Address
+## Student System_Registration Rules and Error Handling
+### Email Validation   
 Email addresses must follow this format:
 
 'firstname.lastname@university.com'
 
-, where shows erreor if:
-- Not matched with the format
+Requirements:
+- The email must contain a first name and last name separated by exactly one dot.
+- The first and last name sections must contain English letters only.
+- The email must end with @university.com.
+- The email must be unique within the student database.
 
-     The first and last name sections must contatin English letters only, separtated one dot.  
-- have a same Email already exist 
+Examples
+|**Email**                | **Result**| **reason**       |
+|-------------------------|-----------|------------------|  
+|robyn.you@university.com | valid     |correct format    |
+|Jisunlee@university.com  | invalid   | Missing separator| 
+|HJ.Han@gmail.com         | Invalid   | incorrect domain | 
+|Existing registered email| Invalid   | Duplicate email  |
 
-### Password
 
-Passwords must:
+If any of these requirements are not satisfied, registration must be rejected and an appropriate error message displayed.
+
+### Password Validation 
+
+Student passwords must satisfy all the following requirements:
 
 - Start with an uppercase English letter.
 - Contain at least five English letters, including the first letter.
@@ -37,14 +100,52 @@ Passwords must:
 - Contain only English letters and digits.
 - Letters and digits may appear in any order after the first character.
 
-Password can be vary among student, while it is acceptable to have the same password with others, while it shows error where one or more password rule isn't matched
+Students may use the same password as other students, provided that the password satisfies the validation requirements.
 
-### Student ID
+An invalid password must be rejected, with an error message explaining the required format.
 
-Each student is assigned a unique, randomly generated ID between 1 and 999,999.
+### Student ID Geeneration
 
-IDs are displayed as six-digit strings, including leading zeros where necessary. For example: `123456`.
+Each successfully registered student receives a unique, randomly generated student ID.
 
+Rules:
+- Generated between 1 and 999,999.
+- Formatted as a six-digit string.
+- Leading zeros are added when necessary.
+- IDs must not duplicate existing student IDs.
+
+Example: `123456`.
+
+After successful registration, the new student record is saved to the database.
+
+
+## Student System_Login and Password Management 
+### Student Login 
+
+A registered student can log in using their university email address and password.
+
+The system:
+- Reads registered student records from the database.
+- Checks whether the email address exists.
+- Verifies the supplied password.
+- Displays an error message if authentication fails.
+- Opens the Subject Enrolment System after successful authentication.
+
+### Change Password 
+
+Logged-in students can change their passwords through the Subject Enrolment System.
+
+The process includes:
+-  Entering the current password.
+- Verifying the current password against the stored record.
+- Entering a new password.
+- Validating the new password using the registration password rules.
+- Confirming the new password.
+- Saving the updated password to the database.
+
+The system rejects an incorrect current password, an invalid new password, or a password confirmation mismatch.
+
+The password rule is same as registration process. 
 
 ## student entroment rule and error 
 
@@ -61,21 +162,7 @@ IDs are displayed as six-digit strings, including leading zeros where necessary.
 #error rule 
 
 
-## How to Run
-**Requirement**
 
-     - python
-     - A terminal or an IDE capable of running python\
-
-**Python Scripts**
-
-1. Download or clone this repository.
-2. Open a terminal in the project folder.
-3. Run the following command:
-```bash
-python uni_app_main.py
-```
-4. Follow the menu prompts to register or log in.
 
 ## System Menus
 
