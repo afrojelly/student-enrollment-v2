@@ -160,39 +160,35 @@ class changePasswordGUI:
             confirmPassword
         )
 
-        if result == "invalid":
-            messagebox.showerror(
-                "Invalid Password",
-                "Password must start with an uppercase letter,\n"
-                "contain at least 5 letters and at least 3 digits."
-            )
-            return
-
-        if result == "mismatch":
-            messagebox.showerror(
-                "Password Mismatch",
-                "Passwords do not match. Please try again."
-            )
-            return
-
-        if result == "save_error":
-            messagebox.showerror(
-                "Database Error",
-                "Unable to save the new password."
-            )
-            return
-
-        if result != "success":
-            messagebox.showerror(
-                "Change Password Failed",
-                "Unable to update your password."
-            )
-            return
-
-        else:
+        if result == "success":
             messagebox.showinfo(
                 "Password Changed Successfully",
-                "Your password has been updated successfully!"
+                "Please use your new password the next time you log in!"
             )
-
             self.exitChangePassword()
+
+        else:
+            if result == "invalid":
+                messagebox.showerror(
+                    "Invalid Password",
+                    "Password must start with an uppercase letter,\n"
+                    "contain at least 5 letters and at least 3 digits."
+                )
+
+            elif result == "mismatch":
+                messagebox.showerror(
+                    "Password Mismatch",
+                    "Passwords do not match. Please try again."
+                )
+
+            elif result == "saveError":
+                messagebox.showerror(
+                    "Database Error",
+                    "Unable to save the new password."
+                )
+
+            else:
+                messagebox.showerror(
+                    "Change Password Failed",
+                    "Unable to update your password."
+                )

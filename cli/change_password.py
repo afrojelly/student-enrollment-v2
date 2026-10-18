@@ -63,6 +63,6 @@ def updatePassword(student, students, database, newPassword, confirmPassword):
         database.saveStudent(students)
     except OSError:
         student.password = oldPassword
-        return "save_error"
+        return "saveError"
 
     return "success"

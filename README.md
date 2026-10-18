@@ -53,7 +53,7 @@ Since the project separates CLI and GUI into different folders, both application
 
 For example:
 
-from cli.student import Student
+from cli.student import Student   
 from cli.database import Database
 
 Running python cli/uni_app_main.py directly may cause ModuleNotFoundError when package imports are used.
