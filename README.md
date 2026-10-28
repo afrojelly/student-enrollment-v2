@@ -21,27 +21,39 @@ Student information is stored locally in a JSON-formatted data file `students.da
 **Python Scripts**
 Clone the repository:
 
-1. git clone https://github.com/jisunbella/student-enrollment-interface-cmp1-07-group2.git 
+1. git clone [https://github.com/afrojelly/student-enrollment-v2.git](https://github.com/afrojelly/student-enrollment-v2.git)
 2. Open the project folder:
 
-cd student-enrollment-interface-cmp1-07-group2
+cd student-enrollment-v2
 
 **Run the CLI**
 
 from the project root dirctory:
 
+### Windows
 ```bash
 python python -m cli.uni_app_main
 ```
 
+### macOS
+```bash
+python3 -m cli.uni_app_main
+```
+
 Follow the terminal menu instructions.
 
-**Runt the GUI**
+**Run the GUI**
 
 from the project root dirctory: 
 
+### Windows
 ```bash
 python python -m gui.app_main_gui
+```
+
+### macOS
+```bash
+python3 -m gui.uni_app_main
 ```
 
 The GUI should open a Tkinter window where users can access the application's features.
