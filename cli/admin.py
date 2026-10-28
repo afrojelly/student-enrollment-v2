@@ -1,3 +1,5 @@
+from cli.utils import isValidStudentId
+
 class AdminSystem:
     def __init__(self, database):
         self.database = database
@@ -7,22 +9,23 @@ class AdminSystem:
         while True:
             print("\n Welcome to the Admin System. Please choose a following option:")
             print(" (V) View all students")
-            print(" (O) Organise students by grade")
-            print(" (C) Categorise students as pass/fail")
-            print(" (R) Remove a student by ID")
-            print(" (L) Clear all student data")
+            print(" (G) View students by grade")
+            print(" (P) View students categorised by pass/fail")
+            print(" (D) Delete one student by ID")
+            print(" (C) Clear all student data")
             print(" (X) Exit")
-            choice = input("Enter your choice (V-O-C-R-L-X): ").upper().strip()
+
+            choice = input("Choose an option (V/G/P/D/C/X): ").strip().upper()
 
             if choice == 'V':
                 self.veiwStudentsAll()
-            elif choice == 'O':
+            elif choice == 'G':
                 self.viewStudentsByGrade()
-            elif choice == 'C':
+            elif choice == 'P':
                 self.viewStudentsByPassFail()
-            elif choice == 'R':
+            elif choice == 'D':
                 self.deleteStudent()
-            elif choice == 'L':
+            elif choice == 'C':
                 self.clearStudent()
             elif choice == 'X':
                 print("Exiting the Admin System.")
@@ -33,7 +36,7 @@ class AdminSystem:
     def veiwStudentsAll(self):
         self.students = self.database.loadStudents()
 
-        print("--- Student List ---")
+        print("\n--- Student List ---")
         for student in self.students:
             print(f"{student.name} ({student.studentId}) / Email: {student.email}")
             # print(
@@ -104,7 +107,6 @@ class AdminSystem:
             else:
                 failGroup.append(result)
 
-
         if passGroup:
             print("\n--- PASS ---")
             for student, grade, averageMark in passGroup:
@@ -128,27 +130,31 @@ class AdminSystem:
 
     def deleteStudent(self):
         inputId = input("Enter the 6-digit student ID to delete: ")
-        student = self.database.get_student(inputId)
 
+        # verify entered studentId correctly.(6-digits, only number allowed)
+        if not isValidStudentId(inputId):
+            print("Invalid student ID. Please enter a 6-digit ID.")
+            return
+
+        # finding matching student
+        student = self.database.getStudent(inputId)
         if student is None:
             print(f"No student found with ID {inputId}.")
+            return
+
+        # Todo: ask confirmation question 할까말까?
+        confirmation = input(f"Are you sure you want to delete {student.name} ({student.studentId})? (Y/N): ").strip().upper()
+
+        if confirmation == 'Y':
+            if self.database.deleteStudent(student.studentId):
+                print(f"Student {student.name} ({student.studentId}) has been deleted.")
+            else:
+                print(f"Student with ID {student.studentId} could not be found.")
         else:
-            self.database.delete_student(inputId)
-            print(f"Student with ID {inputId} has been removed.")
-        
-        # verify entered studentId correctly.(6-digits, only number allowed)
-        
-        # search the studentId from Students.data
-
-        # If there is no matched studentId, return error message amd go back to menu.
-        # otherwise, ask confirmation question.
-
-        # If user say yes, delete the data of the student.
-        # otherwise, return the message and go back to menu.
-        
+            print("Operation cancelled.")
 
     def clearStudent(self):
-        confirmation = input("This will permanently delete all student records. Are you sure? (Y/N): ").upper().strip()
+        confirmation = input("This will permanently delete all student records. Are you sure? (Y/N): ").strip().upper()
         if confirmation == 'Y':
             print("All student data has been cleared.")
         else:

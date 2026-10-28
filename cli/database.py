@@ -40,8 +40,16 @@ class Database:
 
         return studentsInfo
 
-    def deleteStudent(self, student_id):
-        print("deleteStudent")
+    def deleteStudent(self, studentId):
+        students = self.loadStudents()
+
+        for student in students:
+            if student.studentId == studentId:
+                students.remove(student)
+                self.saveStudent(students)
+                return True
+
+        return False
 
     def clearStudents(self):
         print("clearStudents")
@@ -55,6 +63,5 @@ class Database:
                 return student
 
         return None
-
 
 
