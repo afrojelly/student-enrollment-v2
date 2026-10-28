@@ -40,8 +40,21 @@ class Database:
 
         return studentsInfo
 
+    def deleteStudent(self, student_id):
+        print("deleteStudent")
 
+    def clearStudents(self):
+        print("clearStudents")
 
+    # get student by id
+    def getStudent(self, studentId):
+        students = self.loadStudents()
+
+        for student in students:
+            if student.studentId == studentId:
+                return student
+
+        return None
 
 
 
