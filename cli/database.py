@@ -13,14 +13,14 @@ class Database:
         if not self.dataFile.exists():
             self.saveStudent([])
 
-#save Student Information 
+    #save Student Information 
     def saveStudent(self,studentsInfo):
         data =[]
 
         for student in studentsInfo:
             data.append(student.toRecord())
 
-# generating the temporary file (draft) to add the student infromation.-> replace it to the actual dataFile  
+        # generating the temporary file (draft) to add the student infromation.-> replace it to the actual dataFile  
         tempFile =self.dataFile.with_name(
             self.dataFile.name + ".temp"
         )
@@ -28,7 +28,7 @@ class Database:
             json.dump(data, file, indent=0)
         tempFile.replace(self.dataFile)
 
-#bring the student data as the reader mode 
+    # bring the student data as the reader mode 
     def loadStudents(self):
         with self.dataFile.open("r", encoding="utf-8") as file:
             data = json.load(file)
@@ -52,7 +52,8 @@ class Database:
         return False
 
     def clearStudents(self):
-        print("clearStudents")
+        # Todo: 파일에 [] (빈 리스트)를 남길건지 아예 빈 파일로 만들건지(근데 그러면 loadStudents를 조금 수정해야됨) 
+        self.saveStudent([])
 
     # get student by id
     def getStudent(self, studentId):
@@ -63,5 +64,3 @@ class Database:
                 return student
 
         return None
-
-

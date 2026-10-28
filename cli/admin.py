@@ -36,6 +36,10 @@ class AdminSystem:
     def veiwStudentsAll(self):
         self.students = self.database.loadStudents()
 
+        if not self.students:
+            print("No students registered.")
+            return
+        
         print("\n--- Student List ---")
         for student in self.students:
             print(f"{student.name} ({student.studentId}) / Email: {student.email}")
@@ -49,6 +53,10 @@ class AdminSystem:
     def viewStudentsByGrade(self):
         self.students = self.database.loadStudents()
 
+        if not self.students:
+            print("No students registered.")
+            return
+
         gradeGroups = {
             "HD": [],
             "D": [],
@@ -57,6 +65,7 @@ class AdminSystem:
             "Z": [],
         }
         studentsWithoutSubjects = []
+
 
         for student in self.students:
             averageMark = self.getAverageMark(student.subjects)
@@ -87,6 +96,10 @@ class AdminSystem:
 
     def viewStudentsByPassFail(self):
         self.students = self.database.loadStudents()
+
+        if not self.students:
+            print("No students registered.")
+            return
 
         passGroup = []
         failGroup = []
@@ -156,7 +169,8 @@ class AdminSystem:
     def clearStudent(self):
         confirmation = input("This will permanently delete all student records. Are you sure? (Y/N): ").strip().upper()
         if confirmation == 'Y':
-            print("All student data has been cleared.")
+            self.database.clearStudents()
+            print("All student data has been cleared.") 
         else:
             print("Operation cancelled.")
 
