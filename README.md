@@ -30,12 +30,12 @@ cd student-enrollment-v2
 
 from the project root dirctory:
 
-### Windows
+**Windows**
 ```bash
 python python -m cli.uni_app_main
 ```
 
-### macOS
+**macOS**
 ```bash
 python3 -m cli.uni_app_main
 ```
@@ -46,12 +46,12 @@ Follow the terminal menu instructions.
 
 from the project root dirctory: 
 
-### Windows
+**Windows**
 ```bash
 python python -m gui.app_main_gui
 ```
 
-### macOS
+**macOS**
 ```bash
 python3 -m gui.uni_app_main
 ```
