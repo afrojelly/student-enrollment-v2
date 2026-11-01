@@ -113,10 +113,6 @@ class UniAppGUI(GUIStyle):
 
 #Admin menu
     def adminMenu(self):
-        # messagebox.showinfo(
-        #     "Admin System",
-        #     "Admin GUI is not implemented yet."
-        # )
         self.clearWindow()
 
         admin = AdminGUI(
