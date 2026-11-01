@@ -6,6 +6,8 @@ from gui.gui_style import GUIStyle
 from gui.student_system_gui import studentGUI
 from gui.subject_enrolment_gui import subjectEnrolmentGUI 
 
+from gui.admin_gui import AdminGUI
+
 
 class UniAppGUI(GUIStyle):
     def __init__(self, root):
@@ -111,10 +113,17 @@ class UniAppGUI(GUIStyle):
 
 #Admin menu
     def adminMenu(self):
-        messagebox.showinfo(
-            "Admin System",
-            "Admin GUI is not implemented yet."
+        # messagebox.showinfo(
+        #     "Admin System",
+        #     "Admin GUI is not implemented yet."
+        # )
+        self.clearWindow()
+
+        admin = AdminGUI(
+            self.root,
+            self
         )
+        admin.adminWindow()
 
 #student Menu
     def studentMenu(self):
