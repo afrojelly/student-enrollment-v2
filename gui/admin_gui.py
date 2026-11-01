@@ -28,19 +28,19 @@ class AdminGUI:
 
     panel = self.app.createMenuPanel()
     self.viewStudentsAllBtn = self.app.createMenuButton(
-      panel, "View Student List", self.openViewStudentGUI
+      panel, "View All Students", self.openViewStudentGUI
     )
     self.viewStudentsByGradeBtn = self.app.createMenuButton(
-      panel, "View Student List by Grade", self.openViewStudentGUI
+      panel, "View Students by Grade", self.openViewStudentGUI
     )
     self.viewStudentsByPassFailBtn = self.app.createMenuButton(
-      panel, "View Student List Categorised by Pass/Fail", self.openViewStudentGUI
+      panel, "View Students by Pass/Fail", self.openViewStudentGUI
     )
     self.deleteStudentBtn = self.app.createMenuButton(
       panel, "Delete Student by ID", self.openDeleteStudentGUI
     )
     self.clearStudentBtn = self.app.createMenuButton(
-      panel, "Clear All Student", self.openClearStudentGUI
+      panel, "Clear All Students", self.openClearStudentGUI
     )
 
   def openViewStudentGUI(self):
