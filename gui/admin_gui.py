@@ -33,19 +33,19 @@ class AdminGUI:
 
     panel = self.app.createMenuPanel()
     self.viewStudentsAllBtn = self.app.createMenuButton(
-      panel, "View All Students", self.openViewAllStudentsGUI
+      panel, "Show All Students", self.openViewAllStudentsGUI
     )
     self.viewStudentsByGradeBtn = self.app.createMenuButton(
-      panel, "View Students by Grade", self.openViewStudentsByGradeGUI
+      panel, "Group Students by Grade", self.openViewStudentsByGradeGUI
     )
     self.viewStudentsByPassFailBtn = self.app.createMenuButton(
-      panel, "View Students by Pass/Fail", self.openViewStudentsByPassFailGUI
+      panel, "Partition Students by Pass/Fail", self.openViewStudentsByPassFailGUI
     )
-    self.deleteStudentBtn = self.app.createMenuButton(
-      panel, "Delete Student by ID", self.openDeleteStudentGUI
+    self.removeStudentBtn = self.app.createMenuButton(
+      panel, "Remove Student", self.openRemoveStudentGUI
     )
     self.clearStudentBtn = self.app.createMenuButton(
-      panel, "Clear All Students", self.clearAllStudents
+      panel, "Clear Database", self.clearAllStudents
     )
     self.exitButton = self.app.createMenuButton(
       panel, "Exit", self.root.destroy, isBack=True
@@ -67,7 +67,7 @@ class AdminGUI:
     self.currentPage = ViewStudentResultsGUI(self.root, self.app, resultType)
     self.currentPage.viewResultsWindow()
 
-  def openDeleteStudentGUI(self):
+  def openRemoveStudentGUI(self):
     self.app.clearWindow()
     self.currentPage = DeleteStudentGUI(self.root, self.app)
     self.currentPage.deleteStudentWindow()
@@ -272,14 +272,14 @@ class DeleteStudentGUI:
   def deleteStudentWindow(self):
     title = tk.Label(
       self.root,
-      text="Delete Student",
+      text="Remove Student",
       **self.app.titleStyle
     )
     title.pack(pady=self.app.titlePadding)
 
     prompt = tk.Label(
       self.root,
-      text="Enter the 6-digit student ID to delete.",
+      text="Enter the 6-digit student ID to remove.",
       **self.app.subTitleStyle
     )
     prompt.pack(pady=self.app.subTitlePadding)
@@ -305,8 +305,8 @@ class DeleteStudentGUI:
 
     self.app.createFormButton(
       self.root,
-      "Delete Student",
-      self.deleteStudent
+      "Remove Student",
+      self.removeStudent
     )
     self.app.createFormButton(
       self.root,
@@ -333,12 +333,12 @@ class DeleteStudentGUI:
     self.studentIdValidationMessage.config(text="")
     return True
 
-  def deleteStudent(self):
+  def removeStudent(self):
     studentId = self.studentIdEntry.get().strip()
     if not isValidStudentId(studentId):
       messagebox.showerror(
         "Invalid Student ID",
-        "Please enter a valid 6-digit student ID.",
+        "Please enter a 6-digit ID.",
         parent=self.root
       )
       return

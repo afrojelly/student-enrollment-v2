@@ -8,23 +8,23 @@ class AdminSystem:
     def adminSystem(self):
         while True:
             print("\n Welcome to the Admin System. Please choose a following option:")
-            print(" (V) View all students")
-            print(" (G) View students by grade")
-            print(" (P) View students categorised by pass/fail")
-            print(" (D) Delete one student by ID")
-            print(" (C) Clear all student data")
+            print(" (S) Show all students")
+            print(" (G) Group students by grade")
+            print(" (P) Partition students by pass/fail")
+            print(" (R) Remove student")
+            print(" (C) Clear database")
             print(" (X) Exit")
 
-            choice = input("Choose an option (V/G/P/D/C/X): ").strip().upper()
+            choice = input("Choose an option (S/G/P/R/C/X): ").strip().upper()
 
-            if choice == 'V':
-                self.veiwStudentsAll()
+            if choice == 'S':
+                self.showStudentsAll()
             elif choice == 'G':
-                self.viewStudentsByGrade()
+                self.groupStudentsByGrade()
             elif choice == 'P':
-                self.viewStudentsByPassFail()
-            elif choice == 'D':
-                self.deleteStudent()
+                self.partitionStudentsByPassFail()
+            elif choice == 'R':
+                self.removeStudent()
             elif choice == 'C':
                 self.clearStudent()
             elif choice == 'X':
@@ -33,7 +33,7 @@ class AdminSystem:
             else:
                 print("Invalid. Please try again.")
 
-    def veiwStudentsAll(self):
+    def showStudentsAll(self):
         self.students = self.database.loadStudents()
 
         if not self.students:
@@ -50,7 +50,7 @@ class AdminSystem:
             #     # f"Subjects: {student.subjects}, "
             # )
 
-    def viewStudentsByGrade(self):
+    def groupStudentsByGrade(self):
         self.students = self.database.loadStudents()
 
         if not self.students:
@@ -94,7 +94,7 @@ class AdminSystem:
             for student in studentsWithoutSubjects:
                 print(f"{student.name} ({student.studentId})")
 
-    def viewStudentsByPassFail(self):
+    def partitionStudentsByPassFail(self):
         self.students = self.database.loadStudents()
 
         if not self.students:
@@ -141,8 +141,8 @@ class AdminSystem:
             for student in studentsWithoutSubjects:
                 print(f"{student.name} ({student.studentId})")  
 
-    def deleteStudent(self):
-        inputId = input("Enter the 6-digit student ID to delete: ")
+    def removeStudent(self):
+        inputId = input("Enter the 6-digit student ID to remove: ")
 
         # verify entered studentId correctly.(6-digits, only number allowed)
         if not isValidStudentId(inputId):
