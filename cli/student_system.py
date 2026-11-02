@@ -6,9 +6,9 @@ from cli import subject_enrolment
 class StudentSystem:
     def __init__(self,database):
         self.database = database
-        self.students = self.database.loadStudents()
+        self.students = self.database.load_students()
 
-    def studentSystem(self):
+    def student_system(self):
         while True: 
             print 
             print("\nWelcome to the Student System. Please choose an option:")
@@ -19,10 +19,10 @@ class StudentSystem:
             choice = input("Enter your choice (l-r-x): ").lower()
 
             if choice == 'l':
-                self.loginStudent()
+                self.login_student()
 
             elif choice == 'r':
-                self.registerStudent()
+                self.register_student()
 
             elif choice == 'x':
                 print("Exiting the Student System.")
@@ -32,23 +32,23 @@ class StudentSystem:
                 print("Invalid. Please try again.")
 
     #Student system functionality.
-    def registerStudent(self):         
-        self.students = self.database.loadStudents() # Refresh records in case Admin has removed or cleared students.
-        self.students = student_registration.registerStudent(
+    def register_student(self):
+        self.students = self.database.load_students() # Refresh records in case Admin has removed or cleared students.
+        self.students = student_registration.register_student(
             self.students,
             self.database
         )
 
-    def loginStudent(self):
-        self.students = self.database.loadStudents()
-        student = student_login.loginStudent(self.students)
+    def login_student(self):
+        self.students = self.database.load_students()
+        student = student_login.login_student(self.students)
 
         if student is None:
             return None
         
         if student is not None: # login에 불러온 student data -> enrolment system에서 불러옴 
 
-            subject_enrolment.subjectEnrolmentSystem( 
+            subject_enrolment.subject_enrolment_system(
                 student, 
                 self.students,
                 self.database

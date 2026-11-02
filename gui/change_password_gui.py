@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox
 
-from cli.utils import validatePassword
-from cli.change_password import verifyPassword,updatePassword
+from cli.utils import validate_password
+from cli.change_password import verify_password,update_password
 
-class changePasswordGUI:
+class ChangePasswordGUI:
 
     def __init__(self,root,app,student):
         self.root = root
@@ -12,62 +12,62 @@ class changePasswordGUI:
         self.student = student 
 
 #1. change PAssword Window 생성 
-    def changePasswordWindow(self):
-        self.app.clearWindow()
-        self.passwordTitle = tk.Label(
+    def change_password_window(self):
+        self.app.clear_window()
+        self.password_title = tk.Label(
             self.root,
             text = "would you like to change your password?",
-            **self.app.titleStyle
+            **self.app.title_style
         )
-        self.passwordTitle.pack (pady=self.app.titlePadding)
+        self.password_title.pack (pady=self.app.title_padding)
 
-        self.passwordSubtitle = tk.Label(
+        self.password_subtitle = tk.Label(
             self.root,
             text = f"Please verify your current password, {self.student.name}",
-            **self.app.subTitleStyle
+            **self.app.sub_title_style
         )
-        self.passwordSubtitle.pack(
-            pady=self.app.subTitlePadding
+        self.password_subtitle.pack(
+            pady=self.app.sub_title_padding
         )
 
 #current Password validation (page 1)
-        self.currentPasswordLabel= tk.Label(
+        self.current_password_label= tk.Label(
             self.root,
             text="current Password",
-            **self.app.formLabelStyle
+            **self.app.form_label_style
         )
-        self.currentPasswordLabel.pack(pady = (5,5))
+        self.current_password_label.pack(pady = (5,5))
 
-        self.currentPasswordEntry = tk.Entry(
+        self.current_password_entry = tk.Entry(
             self.root,
-            **self.app.formEntryStyle,
+            **self.app.form_entry_style,
             show ="*" #비밀번호가 보이지 않게함, 이거 지우면 password 볼 수 있음 참고
         )
-        self.currentPasswordEntry.pack(pady=(0,10))
+        self.current_password_entry.pack(pady=(0,10))
 
 
-        self.verifyButton = self.app.createFormButton(
+        self.verify_button = self.app.create_form_button(
             self.root,
             "Verify",
-            self.verifyCurrentPassword
+            self.verify_current_password
         )
 
         # Back Button
-        self.exitButton = self.app.createFormButton(
+        self.exit_button = self.app.create_form_button(
             self.root,
             "Exit",
-            self.exitChangePassword,
-            isBack=True
+            self.exit_change_password,
+            is_back=True
         )
 #2. trtun to subject enrolment page  
-    def exitChangePassword(self):
-        self.app.subjectEnrolmentPage(self.student)
+    def exit_change_password(self):
+        self.app.subject_enrolment_page(self.student)
 
 #3. current password varity 
-    def verifyCurrentPassword(self):
-        currentPassword = self.currentPasswordEntry.get()
+    def verify_current_password(self):
+        current_password = self.current_password_entry.get()
 
-        if not verifyPassword(self.student, currentPassword):
+        if not verify_password(self.student, current_password):
             messagebox.showerror(
                 "Verification Failed",
                 "Current password is incorrect. Please try again."
@@ -75,85 +75,85 @@ class changePasswordGUI:
             return
  
             
-        self.newPassword()
+        self.new_password()
 #=> once validate the current password, it will go to the next new page, enter new password 
  #4. once matched the current password, can go change the password    
-    def newPassword(self):
-        self. app.clearWindow()
+    def new_password(self):
+        self. app.clear_window()
 
-        self.newPasswordTitle = tk.Label(
+        self.new_password_title = tk.Label(
             self.root,
             text = "Plase Enter your New Password",
-            **self.app.subTitleStyle
+            **self.app.sub_title_style
         )
-        self.newPasswordTitle.pack(
-            pady = self.app.titlePadding
+        self.new_password_title.pack(
+            pady = self.app.title_padding
         )
         # New Password Label
-        self.newPasswordLabel = tk.Label(
+        self.new_password_label = tk.Label(
             self.root,
             text="New Password",
-            **self.app.formLabelStyle
+            **self.app.form_label_style
         )
-        self.newPasswordLabel.pack(pady=(5, 5))
+        self.new_password_label.pack(pady=(5, 5))
 
         # New Password Entry
-        self.newPasswordEntry = tk.Entry(
+        self.new_password_entry = tk.Entry(
             self.root,
-            **self.app.formEntryStyle,
+            **self.app.form_entry_style,
             show="*"
         )
-        self.newPasswordEntry.pack(pady=(0, 5))
+        self.new_password_entry.pack(pady=(0, 5))
 
         # Password Hint
-        self.passwordHint = tk.Label(
+        self.password_hint = tk.Label(
             self.root,
             text="Uppercase first | At least 5 letters | At least 3 digits",
-            **self.app.hintStyle
+            **self.app.hint_style
         )
-        self.passwordHint.pack(pady=(0, 10))
+        self.password_hint.pack(pady=(0, 10))
 
         # Confirm Password Label
-        self.confirmPasswordLabel = tk.Label(
+        self.confirm_password_label = tk.Label(
             self.root,
             text="Confirm New Password",
-            **self.app.formLabelStyle
+            **self.app.form_label_style
         )
-        self.confirmPasswordLabel.pack(pady=(5, 5))
+        self.confirm_password_label.pack(pady=(5, 5))
 
         # Confirm Password Entry
-        self.confirmPasswordEntry = tk.Entry(
+        self.confirm_password_entry = tk.Entry(
             self.root,
-            **self.app.formEntryStyle,
+            **self.app.form_entry_style,
             show="*"
         )
-        self.confirmPasswordEntry.pack(pady=(0, 15))
+        self.confirm_password_entry.pack(pady=(0, 15))
 
         # Confirm Button
-        self.confirmButton = self.app.createFormButton(
+        self.confirm_button = self.app.create_form_button(
             self.root,
             "Confirm",
-            self.saveNewPassword
+            self.save_new_password
         )
 
         # Exit Button
-        self.exitButton = self.app.createFormButton(
+        self.exit_button = self.app.create_form_button(
             self.root,
             "Exit",
-            self.exitChangePassword,
-            isBack=True
+            self.exit_change_password,
+            is_back=True
         )
 #saved new Passwordd 
-    def saveNewPassword(self):
-        newPassword = self.newPasswordEntry.get()
-        confirmPassword = self.confirmPasswordEntry.get()
+    def save_new_password(self):
+        new_password = self.new_password_entry.get()
+        confirm_password = self.confirm_password_entry.get()
 
-        result = updatePassword(
+        result = update_password(
             self.student,
             self.app.students,
             self.app.database,
-            newPassword,
-            confirmPassword
+            new_password,
+            confirm_password
         )
 
         if result == "success":
@@ -161,7 +161,7 @@ class changePasswordGUI:
                 "Password Changed Successfully",
                 "Please use your new password the next time you log in!"
             )
-            self.exitChangePassword()
+            self.exit_change_password()
 
         else:
             if result == "invalid":

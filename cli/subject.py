@@ -1,17 +1,17 @@
 import random
 
 class Subject:
-    def __init__(self, subjectId):
-        self.subjectId = subjectId
-        self.mark = self.generateMark()      # 305: mark generated automatically
-        self.grade = self.calculateGrade()   # 306: grade calculated from the mark
+    def __init__(self, subject_id):
+        self.subject_id = subject_id
+        self.mark = self.generate_mark()      # 305: mark generated automatically
+        self.grade = self.calculate_grade()   # 306: grade calculated from the mark
 
     # random mark between 25 and 100
-    def generateMark(self):
+    def generate_mark(self):
         return random.randint(25, 100)
 
-    # same grading rule as admin.py getGrade()
-    def calculateGrade(self):
+    # Use the same grading rule as AdminSystem.get_grade().
+    def calculate_grade(self):
         if self.mark >= 85:
             return "HD"
         elif self.mark >= 75:
@@ -24,9 +24,9 @@ class Subject:
             return "Z"
 
     # Subject object -> dictionary (Students.data format)
-    def toRecord(self):
+    def to_record(self):
         return {
-            "id": self.subjectId,
+            "id": self.subject_id,
             "mark": self.mark,
             "grade": self.grade,
         }

@@ -4,63 +4,63 @@ from pathlib import Path
 from cli.student import Student
 
 class Database: 
-    def __init__(self, dataFile = None):
-        self.dataFile=(
-            Path(dataFile)
-            if dataFile is not None 
+    def __init__(self, data_file = None):
+        self.data_file=(
+            Path(data_file)
+            if data_file is not None
             else Path(__file__).with_name("Students.data") #data base; student data file; generated automatically 
         )
-        if not self.dataFile.exists():
-            self.saveStudent([])
+        if not self.data_file.exists():
+            self.save_student([])
 
     #save Student Information 
-    def saveStudent(self,studentsInfo):
+    def save_student(self,students_info):
         data =[]
 
-        for student in studentsInfo:
-            data.append(student.toRecord())
+        for student in students_info:
+            data.append(student.to_record())
 
-        # generating the temporary file (draft) to add the student infromation.-> replace it to the actual dataFile  
-        tempFile =self.dataFile.with_name(
-            self.dataFile.name + ".temp"
+        # Generate a temporary file before replacing data_file.
+        temp_file =self.data_file.with_name(
+            self.data_file.name + ".temp"
         )
-        with tempFile.open ("w",encoding ="utf-8") as file:
+        with temp_file.open ("w",encoding ="utf-8") as file:
             json.dump(data, file, indent=0)
-        tempFile.replace(self.dataFile)
+        temp_file.replace(self.data_file)
 
     # bring the student data as the reader mode 
-    def loadStudents(self):
-        with self.dataFile.open("r", encoding="utf-8") as file:
+    def load_students(self):
+        with self.data_file.open("r", encoding="utf-8") as file:
             data = json.load(file)
 
-        studentsInfo = []
+        students_info = []
         for item in data:
-            student = Student.fromRecord(item)
-            studentsInfo.append(student)
+            student = Student.from_record(item)
+            students_info.append(student)
 
-        return studentsInfo
+        return students_info
 
-    def deleteStudent(self, studentId):
-        students = self.loadStudents()
+    def delete_student(self, student_id):
+        students = self.load_students()
 
         for student in students:
-            if student.studentId == studentId:
+            if student.student_id == student_id:
                 students.remove(student)
-                self.saveStudent(students)
+                self.save_student(students)
                 return True
 
         return False
 
-    def clearStudents(self):
-        # Todo: 파일에 [] (빈 리스트)를 남길건지 아예 빈 파일로 만들건지(근데 그러면 loadStudents를 조금 수정해야됨) 
-        self.saveStudent([])
+    def clear_students(self):
+        # Keep the empty list as valid JSON so load_students() can read it.
+        self.save_student([])
 
     # get student by id
-    def getStudent(self, studentId):
-        students = self.loadStudents()
+    def get_student(self, student_id):
+        students = self.load_students()
 
         for student in students:
-            if student.studentId == studentId:
+            if student.student_id == student_id:
                 return student
 
         return None

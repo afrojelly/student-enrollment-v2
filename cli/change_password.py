@@ -1,15 +1,15 @@
-from cli.utils import validatePassword
+from cli.utils import validate_password
 
 
 
 #actioned. original password validation function needed? -튜터가 말했던 것 같은데.....
 # ; before changing the password, the user enter the original password to verify their identity. 
 
-def changePassword(student, students, database):
+def change_password(student, students, database):
     print("\nWould you like to change your password?.")
     while True:
-        currentPassword = input("Enter your current password and validate: ")
-        if currentPassword == student.password:
+        current_password = input("Enter your current password and validate: ")
+        if current_password == student.password:
             break  # exit loop, after validation of the current password
         else:
             print("Failed Verification. Please try again.")
@@ -17,9 +17,9 @@ def changePassword(student, students, database):
 
 #password validation and confirmation => validation function is called from registration.py
     while True:
-        newPassword = input("Enter your new password: ")
+        new_password = input("Enter your new password: ")
 
-        if not validatePassword(newPassword):
+        if not validate_password(new_password):
             print("""Wrong access. Please follow the password format.
             Password required
             - Must start with an Uppercase Letter
@@ -27,14 +27,14 @@ def changePassword(student, students, database):
             - Contain at least 3-digit Please try again.""")
             continue
 
-        confirmPassword = input("Confirm your new password: ")
-        if newPassword != confirmPassword:
+        confirm_password = input("Confirm your new password: ")
+        if new_password != confirm_password:
             print("Passwords do not match. Please try again.")
             continue
-#newPassword !=originalPassword => check if the new password is the same as the original password.
+# new_password != original_password: check whether the new password differs.
 #필요한가?
-        student.password = newPassword
-        database.saveStudent(students) #changed password will be saved in the database
+        student.password = new_password
+        database.save_student(students) #changed password will be saved in the database
 
         print ("""Password changed successfully! 
         Please use your new password the next time you log in.""")
@@ -43,26 +43,26 @@ def changePassword(student, students, database):
 
 
 
-def verifyPassword(student,currentPassword):
-    return currentPassword == student.password
+def verify_password(student,current_password):
+    return current_password == student.password
 
 
 # Validate and save a new password
-def updatePassword(student, students, database, newPassword, confirmPassword):
+def update_password(student, students, database, new_password, confirm_password):
 
-    if not validatePassword(newPassword):
+    if not validate_password(new_password):
         return "invalid"
 
-    if newPassword != confirmPassword:
+    if new_password != confirm_password:
         return "mismatch"
 
-    oldPassword = student.password
-    student.password = newPassword
+    old_password = student.password
+    student.password = new_password
 
     try:
-        database.saveStudent(students)
+        database.save_student(students)
     except OSError:
-        student.password = oldPassword
+        student.password = old_password
         return "saveError"
 
     return "success"

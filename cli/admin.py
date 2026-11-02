@@ -1,11 +1,11 @@
-from cli.utils import isValidStudentId
+from cli.utils import is_valid_student_id
 
 class AdminSystem:
     def __init__(self, database):
         self.database = database
-        self.students = self.database.loadStudents()
+        self.students = self.database.load_students()
 
-    def adminSystem(self):
+    def admin_system(self):
         while True:
             print("\n Welcome to the Admin System. Please choose a following option:")
             print(" (S) Show all students")
@@ -18,23 +18,23 @@ class AdminSystem:
             choice = input("Choose an option (S/G/P/R/C/X): ").strip().upper()
 
             if choice == 'S':
-                self.showStudentsAll()
+                self.show_students_all()
             elif choice == 'G':
-                self.groupStudentsByGrade()
+                self.group_students_by_grade()
             elif choice == 'P':
-                self.partitionStudentsByPassFail()
+                self.partition_students_by_pass_fail()
             elif choice == 'R':
-                self.removeStudent()
+                self.remove_student()
             elif choice == 'C':
-                self.clearStudent()
+                self.clear_student()
             elif choice == 'X':
                 print("Exiting the Admin System.")
                 break
             else:
                 print("Invalid. Please try again.")
 
-    def showStudentsAll(self):
-        self.students = self.database.loadStudents()
+    def show_students_all(self):
+        self.students = self.database.load_students()
 
         if not self.students:
             print("No students registered.")
@@ -42,147 +42,146 @@ class AdminSystem:
         
         print("\n--- Student List ---")
         for student in self.students:
-            print(f"{student.name} ({student.studentId}) / Email: {student.email}")
+            print(f"{student.name} ({student.student_id}) / Email: {student.email}")
             # print(
-            #     # f"ID: {student.studentId}, "
             #     # f"Name: {student.name}, "
             #     # f"Email: {student.email}, "
             #     # f"Subjects: {student.subjects}, "
             # )
 
-    def groupStudentsByGrade(self):
-        self.students = self.database.loadStudents()
+    def group_students_by_grade(self):
+        self.students = self.database.load_students()
 
         if not self.students:
             print("No students registered.")
             return
 
-        gradeGroups = {
+        grade_groups = {
             "HD": [],
             "D": [],
             "C": [],
             "P": [],
             "Z": [],
         }
-        studentsWithoutSubjects = []
+        students_without_subjects = []
 
 
         for student in self.students:
-            averageMark = self.getAverageMark(student.subjects)
+            average_mark = self.get_average_mark(student.subjects)
 
-            if averageMark is None:
-                studentsWithoutSubjects.append(student)
+            if average_mark is None:
+                students_without_subjects.append(student)
                 continue
 
-            grade = self.getGrade(averageMark)
-            gradeGroups[grade].append((student, averageMark))
+            grade = self.get_grade(average_mark)
+            grade_groups[grade].append((student, average_mark))
 
-        for grade, students in gradeGroups.items():
+        for grade, students in grade_groups.items():
             print(f"\n--- {grade} ---")
             if not students:
                 print("No students in this grade.")
                 continue
 
-            for student, averageMark in students:
+            for student, average_mark in students:
                 print(
-                    f"{student.name} ({student.studentId}) "
-                    f"- Grade: {grade}, Average Mark: {averageMark:.2f}"
+                    f"{student.name} ({student.student_id}) "
+                    f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
                 )
 
-        if studentsWithoutSubjects:
+        if students_without_subjects:
             print("\n--- No Subjects ---")
-            for student in studentsWithoutSubjects:
-                print(f"{student.name} ({student.studentId})")
+            for student in students_without_subjects:
+                print(f"{student.name} ({student.student_id})")
 
-    def partitionStudentsByPassFail(self):
-        self.students = self.database.loadStudents()
+    def partition_students_by_pass_fail(self):
+        self.students = self.database.load_students()
 
         if not self.students:
             print("No students registered.")
             return
 
-        passGroup = []
-        failGroup = []
-        studentsWithoutSubjects = []
+        pass_group = []
+        fail_group = []
+        students_without_subjects = []
 
         for student in self.students:
-            averageMark = self.getAverageMark(student.subjects)
+            average_mark = self.get_average_mark(student.subjects)
 
-            if averageMark is None:
-                studentsWithoutSubjects.append(student)
+            if average_mark is None:
+                students_without_subjects.append(student)
                 continue
 
-            grade = self.getGrade(averageMark)
-            result = (student, grade, averageMark)
+            grade = self.get_grade(average_mark)
+            result = (student, grade, average_mark)
 
-            if averageMark >= 50:
-                passGroup.append(result)
+            if average_mark >= 50:
+                pass_group.append(result)
             else:
-                failGroup.append(result)
+                fail_group.append(result)
 
-        if passGroup:
+        if pass_group:
             print("\n--- PASS ---")
-            for student, grade, averageMark in passGroup:
+            for student, grade, average_mark in pass_group:
                 print(
-                    f"{student.name} ({student.studentId}) "
-                    f"- Grade: {grade}, Average Mark: {averageMark:.2f}"
+                    f"{student.name} ({student.student_id}) "
+                    f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
                 )
 
-        if failGroup:
+        if fail_group:
             print("\n--- FAIL ---")
-            for student, grade, averageMark in failGroup:
+            for student, grade, average_mark in fail_group:
                 print(
-                    f"{student.name} ({student.studentId}) "
-                    f"- Grade: {grade}, Average Mark: {averageMark:.2f}"
+                    f"{student.name} ({student.student_id}) "
+                    f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
                 )
 
-        if studentsWithoutSubjects:
+        if students_without_subjects:
             print("\n--- No Subjects ---")
-            for student in studentsWithoutSubjects:
-                print(f"{student.name} ({student.studentId})")  
+            for student in students_without_subjects:
+                print(f"{student.name} ({student.student_id})")
 
-    def removeStudent(self):
-        inputId = input("Enter the 6-digit student ID to remove: ")
+    def remove_student(self):
+        input_id = input("Enter the 6-digit student ID to remove: ")
 
-        # verify entered studentId correctly.(6-digits, only number allowed)
-        if not isValidStudentId(inputId):
+        # Verify the entered student_id is six digits.
+        if not is_valid_student_id(input_id):
             print("Invalid student ID. Please enter a 6-digit ID.")
             return
 
         # finding matching student
-        student = self.database.getStudent(inputId)
+        student = self.database.get_student(input_id)
         if student is None:
-            print(f"No student found with ID {inputId}.")
+            print(f"No student found with ID {input_id}.")
             return
 
         # Todo: ask confirmation question 할까말까?
-        confirmation = input(f"Are you sure you want to delete {student.name} ({student.studentId})? (Y/N): ").strip().upper()
+        confirmation = input(f"Are you sure you want to delete {student.name} ({student.student_id})? (Y/N): ").strip().upper()
 
         if confirmation == 'Y':
-            if self.database.deleteStudent(student.studentId):
-                print(f"Student {student.name} ({student.studentId}) has been deleted.")
+            if self.database.delete_student(student.student_id):
+                print(f"Student {student.name} ({student.student_id}) has been deleted.")
             else:
-                print(f"Student with ID {student.studentId} could not be found.")
+                print(f"Student with ID {student.student_id} could not be found.")
         else:
             print("Operation cancelled.")
 
-    def clearStudent(self):
+    def clear_student(self):
         confirmation = input("This will permanently delete all student records. Are you sure? (Y/N): ").strip().upper()
         if confirmation == 'Y':
-            self.database.clearStudents()
+            self.database.clear_students()
             print("All student data has been cleared.") 
         else:
             print("Operation cancelled.")
 
 
-    def getAverageMark(self, subjects):
+    def get_average_mark(self, subjects):
         if len(subjects) == 0:
             return None
 
         total = sum(subject["mark"] for subject in subjects)
         return total / len(subjects)
 
-    def getGrade(self, mark):
+    def get_grade(self, mark):
         if mark >= 85:
             grade = "HD"
         elif mark >= 75:

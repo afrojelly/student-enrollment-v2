@@ -1,18 +1,18 @@
 #exit page; go back to the before page; atm, don't have to have 
-#def  exitOrLogin(string)
+# def exit_or_login(string)
  #   value = input(string)
 #
  #   if value.string() == "X":
   #      print ("Returning to the student system.")
    #     return None
     #return value 
-def validateLogin(students, email, password):
+def validate_login(students, email, password):
     for student in students:
         if student.email == email and student.password == password:
             return student
 
     return None
-def loginStudent(students):
+def login_student(students):
     print("\nwelcome to the Student Login system.")
     print ("""please login with your validated email and password
     """)
@@ -23,7 +23,7 @@ def loginStudent(students):
 
         for student in students:
             if student.email == email and student.password == password:
-                print (f"login successful!, Welcome {student.name} (ID: {student.studentId})!")
+                print (f"login successful!, Welcome {student.name} (ID: {student.student_id})!")
                 return student 
             
         #actioned. page는 student enrolment page로 넘어가게 해야함

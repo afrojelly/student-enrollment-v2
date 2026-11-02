@@ -1,53 +1,53 @@
 import tkinter as tk
-from gui.login_gui import loginGUI
-from gui.registration_gui import registrationGUI
+from gui.login_gui import LoginGUI
+from gui.registration_gui import RegistrationGUI
 
 
-class studentGUI:
+class StudentGUI:
     def __init__(self, root, app):
         self.root = root
         self.app = app
 
-    def studentWindow(self):
-        self.studentMenuTitle = tk.Label(
+    def student_window(self):
+        self.student_menu_title = tk.Label(
             self.root,
             text="Welcome to the Student System",
-            **self.app.titleStyle
+            **self.app.title_style
         )
-        self.studentMenuTitle.pack(
-            pady=self.app.titlePadding
+        self.student_menu_title.pack(
+            pady=self.app.title_padding
         )
 
-        self.studentMenuSubtitle = tk.Label(
+        self.student_menu_subtitle = tk.Label(
             self.root,
             text="Please choose an option below to access the functionality",
-            **self.app.subTitleStyle
+            **self.app.sub_title_style
         )
-        self.studentMenuSubtitle.pack(
-            pady=self.app.subTitlePadding
+        self.student_menu_subtitle.pack(
+            pady=self.app.sub_title_padding
         )
 
-        panel = self.app.createMenuPanel()
-        self.loginButton = self.app.createMenuButton(panel, "Login", self.loginPage)
-        self.registerButton = self.app.createMenuButton(panel, "Register", self.registrationPage)
-        self.exitButton = self.app.createMenuButton(panel, "Back to Main Menu", self.app.mainMenu, isBack=True)
+        panel = self.app.create_menu_panel()
+        self.login_button = self.app.create_menu_button(panel, "Login", self.login_page)
+        self.register_button = self.app.create_menu_button(panel, "Register", self.registration_page)
+        self.exit_button = self.app.create_menu_button(panel, "Back to Main Menu", self.app.main_menu, is_back=True)
 
 
-    def loginPage(self):
-        self.app.clearWindow()
+    def login_page(self):
+        self.app.clear_window()
 
-        login = loginGUI(
+        login = LoginGUI(
             self.root,
             self.app
         )
-        login.loginWindow()
+        login.login_window()
 
    
-    def registrationPage(self):
-        self.app.clearWindow()
+    def registration_page(self):
+        self.app.clear_window()
 
-        registration = registrationGUI(
+        registration = RegistrationGUI(
             self.root,
             self.app
         )
-        registration.regiWindow()
+        registration.regi_window()

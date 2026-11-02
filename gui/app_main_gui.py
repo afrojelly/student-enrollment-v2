@@ -3,8 +3,8 @@ from cli.database import Database # import existing CLI database to the GUI
 import tkinter as tk
 from tkinter import messagebox
 from gui.gui_style import GUIStyle
-from gui.student_system_gui import studentGUI
-from gui.subject_enrolment_gui import subjectEnrolmentGUI 
+from gui.student_system_gui import StudentGUI
+from gui.subject_enrolment_gui import SubjectEnrolmentGUI
 
 from gui.admin_gui import AdminGUI
 
@@ -19,130 +19,130 @@ class UniAppGUI(GUIStyle):
 
 #connect GUI to the existing database from CLI 
         self.database = Database() #실제 Students.data 파일 관리 -> self.app.database 로 불러오기 가능 
-        self.students = self.database.loadStudents()
+        self.students = self.database.load_students()
 
-        self.currentStudent = None
+        self.current_student = None
         
-        self.root.configure(bg=self.bgColor)
-        self.mainMenu()
+        self.root.configure(bg=self.bg_color)
+        self.main_menu()
 
-        #mainTitle: 25
-        #subTitle:20
-        #button: 20
+        # Main title: 25
+        # Subtitle: 20
+        # Button: 20
 
-    def clearWindow(self):
+    def clear_window(self):
         for widget in self.root.winfo_children(): #현재 GUI 창 내의 모든 widget clear => Widget = tkinter base window component, including labe, button, entry, frame....etc.
             widget.destroy()
 
-    def createMenuPanel(self):
+    def create_menu_panel(self):
         # A coloured panel makes the menu stand out without extra packages.
-        panel = tk.Frame(self.root, bg=self.panelColor, padx=32, pady=24) #pixel
+        panel = tk.Frame(self.root, bg=self.panel_color, padx=32, pady=24) #pixel
         panel.pack()
         return panel
 
 #Button만드는 함수 - 이거는 main button, button만 있는 페이지 
-    def createMenuButton(self, parent, text, command, isBack=False):
-        if isBack:
-            color = self.exitButtonColor  
+    def create_menu_button(self, parent, text, command, is_back=False):
+        if is_back:
+            color = self.exit_button_color
         else:
-            color = self.buttonColor #button colour
+            color = self.button_color #button colour
 
         button = tk.Button(
             parent,
             text=text,
             bg=color,
             command=command,
-            **self.buttonStyle
+            **self.button_style
         )
         button.pack(
-            pady=self.buttonPadding, 
-            ipady=self.buttonSizePadding
+            pady=self.button_padding,
+            ipady=self.button_size_padding
             )
         return button
 
 # Create small button for input form pages
 #이거는 button -입력창 (form) 이 있는 페이지의 작은사이즈의 버튼 (registration and login )
-    def createFormButton (self, parent, text, command, isBack=False):
-        if isBack:
-            color = self.exitButtonColor  
+    def create_form_button (self, parent, text, command, is_back=False):
+        if is_back:
+            color = self.exit_button_color
         else:
-            color = self.buttonColor
+            color = self.button_color
 
         button = tk.Button(
             parent,
             text=text,
             bg=color,
             command=command,
-            **self.formButtonStyle
+            **self.form_button_style
         )
         button.pack(pady=5)
         return button
 
 
 
-    def mainMenu(self):
-        self.clearWindow() # Clear the window before adding new widgets; tkinter does not automatically clear previous widgets when switching between different screens or menus. This method ensures that the window is clean and ready for new content, preventing overlapping or cluttered interfaces.    
+    def main_menu(self):
+        self.clear_window() # Clear the window before adding new widgets; tkinter does not automatically clear previous widgets when switching between different screens or menus. This method ensures that the window is clean and ready for new content, preventing overlapping or cluttered interfaces.
 #mainmenu title and subtitle
         
-        self.mainMenuTitle = tk.Label( #main title of the main menu, welcoming users to the University Enrollment System. The title is styled with a larger font size and bold weight to make it stand out.
+        self.main_menu_title = tk.Label( #main title of the main menu, welcoming users to the University Enrollment System. The title is styled with a larger font size and bold weight to make it stand out.
                 self.root, 
                 text="Welcome to the University Enrollment System", 
-                **self.titleStyle
+                **self.title_style
             )
-        self.mainMenuTitle.pack (
-            pady=self.titlePadding
+        self.main_menu_title.pack (
+            pady=self.title_padding
             )       
-        self.mainMenuSubtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
+        self.main_menu_subtitle = tk.Label( #sub title of the main menu, providing instructions to users on how to proceed. It is styled with a slightly smaller font size than the main title and is positioned below it with some padding for visual separation.
                 self.root,
                 text="Please choose an option below to access the system",
-                **self.subTitleStyle
+                **self.sub_title_style
             )
-        self.mainMenuSubtitle.pack(
-            pady=self.subTitlePadding
+        self.main_menu_subtitle.pack(
+            pady=self.sub_title_padding
             )      
 #system access buttons, 
 # #allowing users to navigate to the Admin or Student sections of the application. 
 # #Each button is styled with a consistent width and is linked to a specific command that opens the corresponding window when clicked.
 #the button specification (panel (:on the panel), "Admin (showing on button)", Command (:action))
 
-        panel = self.createMenuPanel() #button 하이라이트 시켜주는 패넬을 만들어서 넣어봤어요 
-        self.adminButton = self.createMenuButton (panel, "Adimin", self.adminMenu)
-        self.studentButton = self.createMenuButton(panel,"Student", self.studentMenu)
-        self.exitButton = self.createMenuButton(panel, "Exit", self.root.destroy, isBack=True)
+        panel = self.create_menu_panel() #button 하이라이트 시켜주는 패넬을 만들어서 넣어봤어요
+        self.admin_button = self.create_menu_button (panel, "Adimin", self.admin_menu)
+        self.student_button = self.create_menu_button(panel,"Student", self.student_menu)
+        self.exit_button = self.create_menu_button(panel, "Exit", self.root.destroy, is_back=True)
 
 
 #Admin menu
-    def adminMenu(self):
-        self.clearWindow()
+    def admin_menu(self):
+        self.clear_window()
 
         admin = AdminGUI(
             self.root,
             self
         )
-        admin.adminWindow()
+        admin.admin_window()
 
 #student Menu
-    def studentMenu(self):
-        self.clearWindow()      
+    def student_menu(self):
+        self.clear_window()
 
-        student = studentGUI(
+        student = StudentGUI(
             self.root,
             self
         )
-        student.studentWindow()
+        student.student_window()
 
-#once login succeed, it can directly direct the login studnet to the subjectEnrolmentPage. 
+# After login, send the student directly to the subject_enrolment_page.
 # -> or should we have the extra page for making student to chose (Enrolment page or Exit? ) 
 # i assume it could directly bring user to the enrolment page anyway 
-    def subjectEnrolmentPage(self, student):
-        self.clearWindow()
+    def subject_enrolment_page(self, student):
+        self.clear_window()
         
-        enrolment = subjectEnrolmentGUI(
+        enrolment = SubjectEnrolmentGUI(
             self.root,
             self,
             student
         )
-        enrolment.enrolmentWindow()
+        enrolment.enrolment_window()
 
 
 if __name__ == "__main__":

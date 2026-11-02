@@ -8,7 +8,7 @@ Team: CMP1-07-GROUP2
 ## overview
 The Student Enrolment Interface is a Python-based application developed as part of the Fundamentals of Software Development assessment at the University of Technology Sydney (UTS). The application provides both a Command-Line Interface (CLI) and a Graphical User Interface (GUI) using Tkinter. 
 The system supports student registration, authentication, password management, subject enrolment, and administrative student management through separate menu-based subsystems.
-Student information is stored locally in a JSON-formatted data file `students.data`, allowing student records and enrolment information to persist between program sessions.
+Student information is stored locally in a JSON-formatted data file `Students.data`, allowing student records and enrolment information to persist between program sessions.
 
 ## How to Run
 **Requirement**
@@ -232,8 +232,8 @@ Each student record contains:
 - Enrolled subjects (0-4)
 
 This Database class provides the following mehods: 
-- `saveStudent(studentsInfo)`: Saves the student list to `students.data`.
-- `loadStudents()`: Reads saved records and recreates Student objects.
+- `save_student(students_info)`: Saves the student list to `Students.data`.
+- `load_students()`: Reads saved records and recreates `Student` objects.
 
 IF the data file does not exist, the application creates it automatically in the file 
 
@@ -251,7 +251,7 @@ student-enrollment-interface-cmp1-07-group2/
 │   ├── login.py  
 │   ├── registration.py  
 │   ├── student.py  
-│   ├── students.data  
+│   ├── Students.data
 │   ├── subject_enrolment.py  
 │   ├── subject.py  
 │   ├── uni_app_main.py  

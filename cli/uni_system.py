@@ -9,13 +9,13 @@ from cli import admin as admin
 
 class UniApp:
 #setting the database, initiation. 
-    def __init__(self,dataFile=None):
-        self.database = Database() if dataFile is None else Database(dataFile)  
+    def __init__(self,data_file=None):
+        self.database = Database() if data_file is None else Database(data_file)
         self.student_system = student_system.StudentSystem(self.database)
         self.admin_system = admin.AdminSystem(self.database)
     
 #University System requiremnt, choosing the subsystem class. 
-    def universitySystem(self):
+    def university_system(self):
         while True:
             print("\nWelcome to the University System. please choose a following option")
 
@@ -25,9 +25,9 @@ class UniApp:
             choice = input("Enter your choice (A-S-X): ").upper()
 
             if choice == 'A': 
-                self.admin_system.adminSystem()
+                self.admin_system.admin_system()
             elif choice == 'S':
-                self.student_system.studentSystem()
+                self.student_system.student_system()
             elif choice == 'X':
                 print("Exiting the UniApp. Goodbye!")
                 break
