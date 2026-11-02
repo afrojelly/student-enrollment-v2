@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-from cli.student_registration import validatePassword
+from cli.utils import validatePassword
 from cli.change_password import verifyPassword,updatePassword
 
 class changePasswordGUI:
@@ -73,13 +73,9 @@ class changePasswordGUI:
                 "Current password is incorrect. Please try again."
             )
             return
-        
-        else: 
-            messagebox.showinfo(
-                "Verification Successful",
-                "Current password verified successfully!"
-            )
-            self.newPassword()
+ 
+            
+        self.newPassword()
 #=> once validate the current password, it will go to the next new page, enter new password 
  #4. once matched the current password, can go change the password    
     def newPassword(self):

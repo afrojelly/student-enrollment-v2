@@ -27,4 +27,3 @@ class Student:
             subjects=record.get("subjects",[]),
         )
 
-       
