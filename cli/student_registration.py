@@ -3,7 +3,10 @@ import random #student ID generation
 import re #email and password validation
 
 from cli.student import Student
+
+from cli.utils import validate_email
 from cli.utils import validate_password
+
 
 def register_student(students, database):
     print("\n Welcome to the Student Registration System")
@@ -47,24 +50,17 @@ def register_student(students, database):
     student_id = generate_student_id(students)
     if student_id is None:
         return students
-##
+
     student = Student(name, email, password, student_id)
     new_students = students+[student]
 
     database.save_student(new_students)
-  
+
     print("""Registration successful!, 
     please back to the student system and login with your email and password.""")
     print(f"Your student ID is: {student.student_id}")
 
     return new_students #memory uptodate. return the updated list
-
-     
-#validation for email and password format
-def validate_email(email): #email  #  actioned. Todo: email format: firstname.lastname@university.com  # 현재 특수문자 입력이 허용돼서 아이디 부분 "문자.문자" 형식만 입력 가능하도록 validation 수정 => actioned!
-    pattern = r"[A-Za-z]+\.[A-Za-z]+@university\.com"
-    return bool(re.fullmatch(pattern, email))
-#currently register multiple accounts with the same email address. Since we only have  pattern validation right now, should i add a duplicate email check before completing the registration ?  
 
 #Auto-student ID generation 
 def generate_student_id(students):
@@ -82,5 +78,3 @@ def generate_student_id(students):
             All available student IDs have been used
             A new student ID cannot be generated.
             Please contact the administrator""")
-
-
