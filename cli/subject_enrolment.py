@@ -8,38 +8,39 @@ MAX_SUBJECTS = 4
 def subject_enrolment_system(student, students, database):
     while True:
         print(f"\nWelcome to the Subject Enrolment System , {student.name}. Please choose a following option: ")
-        print ("(c) change password")
         print( "(e) enrol in a subject")
-        print ("(r) remove a subject")
         print ("(s) show enrolled subjects")
+        print ("(r) remove a subject")
+        print ("(c) change password")
         print ("(x) exit")
         choice = input("Enter your choice (c-e-r-s-x): ").lower()
  
-        if choice == 'c':
-            change_password(student, students, database)
- 
-        elif choice == 'e':
+        if choice == 'e':
             enrol_subject(student, students, database)
- 
-        elif choice == 'r':
-            remove_subject(student, students, database)
- 
+
         elif choice == 's':
             view_enrolment(student)
- 
+
+        elif choice == 'r':
+            remove_subject(student, students, database)
+
+        elif choice == 'c':
+            change_password(student, students, database)
+
         elif choice == 'x':
             print("Exiting the Subject Enrolment System.")
             break
- 
+
         else:
             print("Invalid. Please try again.")
  
 # logic functions
-# 301: True if the student can still enrol (less than 4 subjects), 과목 등록 체크 함수
+
+# Max subject check
 def check_enrolment_limit(student):
     return len(student.subjects) < MAX_SUBJECTS
  
-# 300: add a new subject and save -> returns the Subject, or None if limit reached
+# add a new subject and save
 def add_subject(student, students, database):
     if not check_enrolment_limit(student):
         return None
@@ -49,7 +50,7 @@ def add_subject(student, students, database):
     database.save_student(students)
     return subject
  
-# 303: find the subject by ID, remove it and save -> True if removed
+# delete subject, remove it and save
 def delete_subject(student, students, database, subject_id):
     for subject in student.subjects:
         if subject["id"] == subject_id:

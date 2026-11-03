@@ -6,7 +6,7 @@ class Subject:
         self.mark = self.generate_mark()      # 305: mark generated automatically
         self.grade = self.calculate_grade()   # 306: grade calculated from the mark
  
-    # 302: unique 3-digit subject ID, Subject ID 생성 함수
+    # random subject ID
     def generate_subject_id(self, student):
         existing_ids = {subject["id"] for subject in student.subjects}
         while True:
