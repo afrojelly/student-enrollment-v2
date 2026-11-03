@@ -31,12 +31,11 @@ class SubjectEnrolmentGUI:
 
 #enrolment system label 
         panel = self.app.create_menu_panel()
-        self.change_password_button = self.app.create_menu_button(panel, "Change the Password", self.change_password)
         self.enrol_subject_button = self.app.create_menu_button(panel, "Enrol in a subject", self.enrol_subject)
-        self.remove_subject_button = self.app.create_menu_button(panel,"Remove a subject",self.remove_subject)
         self.view_enrolment_button = self.app.create_menu_button(panel,"view enrolment", self.view_enrolment)
+        self.remove_subject_button = self.app.create_menu_button(panel,"Remove a subject",self.remove_subject)
+        self.change_password_button = self.app.create_menu_button(panel, "Change the Password", self.change_password)
         self.logout_button = self.app.create_menu_button(panel, "logout", self.app.main_menu, self.logout )
-
 
 
     def change_password(self):

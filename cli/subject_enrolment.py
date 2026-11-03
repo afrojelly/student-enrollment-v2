@@ -5,7 +5,6 @@ from cli.subject import Subject
 
 MAX_SUBJECTS = 4
 
-
 def subject_enrolment_system(student, students, database):
     while True:
         print(f"\nWelcome to the Subject Enrolment System , {student.name}. Please choose a following option: ")
@@ -36,14 +35,14 @@ def subject_enrolment_system(student, students, database):
             print("Invalid. Please try again.")
 
 
-# ---------- logic functions (no input/print -> reused by GUI) ----------
+# logic functions
 
-# 301: True if the student can still enrol (less than 4 subjects)
+# 301: True if the student can still enrol (less than 4 subjects), 과목 등록 체크 함수
 def check_enrolment_limit(student):
     return len(student.subjects) < MAX_SUBJECTS
 
 
-# 302: unique 3-digit subject ID (same idea as generate_student_id)
+# 302: unique 3-digit subject ID, Subject ID 생성 함수
 def generate_subject_id(student):
     existing_ids = {subject["id"] for subject in student.subjects}
     while True:
@@ -74,7 +73,7 @@ def delete_subject(student, students, database, subject_id):
     return False
 
 
-# ---------- CLI functions ----------
+# CLI
 
 def enrol_subject(student, students, database):
     subject = add_subject(student, students, database)
@@ -97,7 +96,7 @@ def remove_subject(student, students, database):
         print(f"Subject-{subject_id} is not in your enrolment list.")
 
 
-# 304: show the current enrolment list
+# View enrolment 함수
 def view_enrolment(student):
     print(f"Showing {len(student.subjects)} subjects")
 
