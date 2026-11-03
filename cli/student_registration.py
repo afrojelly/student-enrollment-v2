@@ -1,6 +1,5 @@
 
 import random #student ID generation
-import re #email and password validation
 
 from cli.student import Student
 
