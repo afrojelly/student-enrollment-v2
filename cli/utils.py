@@ -17,10 +17,11 @@ def validate_email(email): #email  #  actioned. Todo: email format: firstname.la
 
 
 def validate_password(password): #password  #  actioned. Todo: password format이 현재는 대문자 + 영문4글자 + 숫자3자리로 고정되어있는데, 대문자 시작 부분만 고정하고 뒤에는 영문, 숫자 입력 순서 상관없이 가능하도록 수정 필요 => actioned!
-    pattern = r"[A-Z][A-Za-z0-9]*"
+    # pattern = r"[A-Z][A-Za-z0-9]*"
+    pattern = r"[A-Z][a-z]{5,}[0-9]{3,}"
     return (
         bool(re.fullmatch(pattern,password))
         and sum(c.isalpha() for c in password) >= 5
         and sum(c.isdigit() for c in password) >= 3
-        )
-    
+    )
+

@@ -1,9 +1,10 @@
 
 import random #student ID generation
-import re #email and password validation
-
 
 from cli.student import Student
+
+from cli.utils import validate_email
+from cli.utils import validate_password
 
 
 def register_student(students, database):
@@ -23,7 +24,7 @@ def register_student(students, database):
 #email 중복체크? 
             existing_emails = {student.email for student in students}
             if email in existing_emails:
-                print("This email is already registered. Please login or try another email.")
+                print("This email is already registered. Please try another email.")
                 continue 
 #중복체크      
 # just block the registration if the email is already registered will be enough
@@ -48,35 +49,18 @@ def register_student(students, database):
     student_id = generate_student_id(students)
     if student_id is None:
         return students
-##
+
     student = Student(name, email, password, student_id)
     new_students = students+[student]
 
     database.save_student(new_students)
-  
+
     print("""Registration successful!, 
-    please back to the student system and login with your email and password.""")
+    please login with your email and password.""")
     print(f"Your student ID is: {student.student_id}")
 
     return new_students #memory uptodate. return the updated list
 
-     
-#validation for email and password format
-def validate_email(email): #email  #  actioned. Todo: email format: firstname.lastname@university.com  # 현재 특수문자 입력이 허용돼서 아이디 부분 "문자.문자" 형식만 입력 가능하도록 validation 수정 => actioned!
-    pattern = r"[A-Za-z]+\.[A-Za-z]+@university\.com"
-    return bool(re.fullmatch(pattern, email))
-#currently register multiple accounts with the same email address. Since we only have  pattern validation right now, should i add a duplicate email check before completing the registration ?  
-
-
-def validate_password(password): #password  #  actioned. Todo: password format이 현재는 대문자 + 영문4글자 + 숫자3자리로 고정되어있는데, 대문자 시작 부분만 고정하고 뒤에는 영문, 숫자 입력 순서 상관없이 가능하도록 수정 필요 => actioned!
-    pattern = r"[A-Z][A-Za-z0-9]*"
-    return (
-        bool(re.fullmatch(pattern,password))
-        and sum(c.isalpha() for c in password) >= 5
-        and sum(c.isdigit() for c in password) >= 3
-        )
-    
-    
 #Auto-student ID generation 
 def generate_student_id(students):
     existing_ids = {student.student_id for student in students}
@@ -93,5 +77,3 @@ def generate_student_id(students):
             All available student IDs have been used
             A new student ID cannot be generated.
             Please contact the administrator""")
-
-

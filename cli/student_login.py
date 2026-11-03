@@ -33,4 +33,4 @@ def login_student(students):
 
         print ("Login failed. please check your email and password.")
         print ("Try again")
-        print ("or if you have not registered, exit and register first.")
+
