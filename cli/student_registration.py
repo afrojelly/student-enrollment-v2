@@ -44,7 +44,7 @@ def register_student(students, database):
             Password required
             - Must start with anUppercase Letter
             - Contain at least 5-letter
-            - Contain at least 3-digit Please try again.""")
+            - followed by at least 3-digit Please try again.""")
 
     student_id = generate_student_id(students)
     if student_id is None:

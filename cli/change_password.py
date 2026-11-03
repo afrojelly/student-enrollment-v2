@@ -24,7 +24,7 @@ def change_password(student, students, database):
             Password required
             - Must start with an Uppercase Letter
             - Contain at least 5-letter
-            - Contain at least 3-digit Please try again.""")
+            - followed by at least 3-digit Please try again.""")
             continue
 
         confirm_password = input("Confirm your new password: ")
