@@ -25,7 +25,7 @@ class Database:
             self.data_file.name + ".temp"
         )
         with temp_file.open ("w",encoding ="utf-8") as file:
-            json.dump(data, file, indent=0)
+            json.dump(data, file, indent=4)
         temp_file.replace(self.data_file)
 
     # bring the student data as the reader mode 
