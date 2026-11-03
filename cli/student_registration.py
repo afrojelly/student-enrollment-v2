@@ -24,7 +24,7 @@ def register_student(students, database):
 #email 중복체크? 
             existing_emails = {student.email for student in students}
             if email in existing_emails:
-                print("This email is already registered. Please login or try another email.")
+                print("This email is already registered. Please try another email.")
                 continue 
 #중복체크      
 # just block the registration if the email is already registered will be enough
@@ -56,7 +56,7 @@ def register_student(students, database):
     database.save_student(new_students)
 
     print("""Registration successful!, 
-    please back to the student system and login with your email and password.""")
+    please login with your email and password.""")
     print(f"Your student ID is: {student.student_id}")
 
     return new_students #memory uptodate. return the updated list

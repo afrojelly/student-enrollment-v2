@@ -24,3 +24,4 @@ def validate_password(password): #password  #  actioned. Todo: password formatì
         and sum(c.isalpha() for c in password) >= 5
         and sum(c.isdigit() for c in password) >= 3
     )
+
