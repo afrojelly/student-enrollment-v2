@@ -148,7 +148,7 @@ The system:
 Logged-in students can change their passwords through the Subject Enrolment System.
 
 The process includes:
--  Entering the current password.
+- Entering the current password.
 - Verifying the current password against the stored record.
 - Entering a new password.
 - Validating the new password using the registration password rules.
