@@ -5,6 +5,7 @@ class Student:
         self.password = password
         self.student_id = student_id
         self.subjects = subjects if subjects is not None else []
+        #self.recalculate_average()  # Calculate average mark upon initialization vs calculating it on demand
 
     def to_record(self):
         return {

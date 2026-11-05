@@ -1,5 +1,5 @@
 import random
- 
+
 from cli.change_password import change_password
 from cli.subject import Subject
  
@@ -33,8 +33,6 @@ def subject_enrolment_system(student, students, database):
 
         else:
             print("Invalid. Please try again.")
- 
-# logic functions
 
 # Max subject check
 def check_enrolment_limit(student):
