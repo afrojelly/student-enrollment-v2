@@ -1,6 +1,7 @@
+import tkinter as tk
+
 class GUIStyle:
     def __init__(self):
-
     #GUI colour in the background of the window, enhancing the visual appeal and providing a consistent look and feel for the application.
         self.bg_color = "#101827"#background colour.
         self.panel_color= "#1C2A40" #로그인 pannel이나 기타 pannel에 사용
@@ -77,3 +78,49 @@ class GUIStyle:
         # Main title: 25
         # Subtitle: 20
         #button: 20
+
+
+#back panel and landscape setting       
+    def create_menu_panel(self):
+        # A coloured panel makes the menu stand out without extra packages.
+        panel = tk.Frame(self.root, bg=self.panel_color, padx=32, pady=24) #pixel
+        panel.pack()
+        return panel
+
+#Button만드는 함수 - 이거는 main button, button만 있는 페이지 
+    def create_menu_button(self, parent, text, command, is_back=False):
+        if is_back:
+            color = self.exit_button_color
+        else:
+            color = self.button_color #button colour
+
+        button = tk.Button(
+            parent,
+            text=text,
+            bg=color,
+            command=command,
+            **self.button_style
+        )
+        button.pack(
+            pady=self.button_padding,
+            ipady=self.button_size_padding
+            )
+        return button
+
+# Create small button for input form pages
+#이거는 button -입력창 (form) 이 있는 페이지의 작은사이즈의 버튼 (registration and login )
+    def create_form_button (self, parent, text, command, is_back=False):
+        if is_back:
+            color = self.exit_button_color
+        else:
+            color = self.button_color
+
+        button = tk.Button(
+            parent,
+            text=text,
+            bg=color,
+            command=command,
+            **self.form_button_style
+        )
+        button.pack(pady=5)
+        return button

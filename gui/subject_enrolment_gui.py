@@ -35,7 +35,7 @@ class SubjectEnrolmentGUI:
         self.view_enrolment_button = self.app.create_menu_button(panel,"view enrolment", self.view_enrolment)
         self.remove_subject_button = self.app.create_menu_button(panel,"Remove a subject",self.remove_subject)
         self.change_password_button = self.app.create_menu_button(panel, "Change the Password", self.change_password)
-        self.logout_button = self.app.create_menu_button(panel, "logout", self.app.main_menu, self.logout )
+        self.logout_button = self.app.create_menu_button(panel, "Logout", self.logout, is_back=True)
 
 
     def change_password(self):
@@ -56,14 +56,18 @@ class SubjectEnrolmentGUI:
 
     def logout(self):
         self.app.current_student = None
-        self.app.student_menu()
+        self.app.login_page()
 
     def back_to_enrolment(self):
         self.app.subject_enrolment_page(self.student)
 
     # enrol: no extra page, just show the result in a message box
     def enrol_subject(self):
-        subject = add_subject(self.student, self.app.students, self.app.database)
+        subject = add_subject(
+            self.student, 
+            self.app.students, 
+            self.app.database
+        )
 
         if subject is None:
             messagebox.showerror(

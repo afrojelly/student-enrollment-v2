@@ -143,8 +143,8 @@ class LoginGUI:
 
         self.exit_button = self.app.create_form_button(
             self.root,
-            "Back to Student Menu",
-            self.app.student_menu,
+            "Exit",
+            self.root.destroy,
             is_back=True
         )
 
@@ -187,5 +187,5 @@ class LoginGUI:
             f"Student ID: {student.student_id}"
         )
 
-        self.app.current_student=student #로그인한 객체 저장
+        self.app.current_student = student #로그인한 객체 저장
         self.app.subject_enrolment_page(student) # 학생개체 페이지 호출
