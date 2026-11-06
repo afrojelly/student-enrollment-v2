@@ -21,13 +21,13 @@ def register_student(students, database):
 
     # email input and validation
     while True:
-        email = input("Enter your email (firstname.lastname@university.com, or x to cancel): ").strip()
+        email = input("Enter your email (firstname.lastname@university.com, or x to cancel): ").strip().lower()
 
         if not email:
             print("Email cannot be empty, try again.")
             continue
 
-        if email.lower() == "x":
+        if email == "x":
             return go_back(students)
 
         if not validate_email(email):
