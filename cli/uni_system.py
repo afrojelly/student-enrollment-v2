@@ -28,14 +28,3 @@ class UniApp:
                 break
             else:
                 print("Invalid. Please try again.")
-
-
-#  각각의 기능을 다른 파일로 빼서,  student, admin system에서 각각의 def를 선택시에 불러오는 방향으로 파일을 분리하는게 좋을 것 같습니다. 
-#Student Registration functionality.
-
-
-#actioned. login 후 student page;' enrolment page로 가게 해야합니다; here need to be connected to the subject enrolment system 
-# #done! 
-
-
-        
