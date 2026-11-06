@@ -1,4 +1,4 @@
-from cli.utils import is_valid_student_id
+from cli.utils import get_grade, is_valid_student_id
 
 class AdminSystem:
     def __init__(self, database):
@@ -67,7 +67,7 @@ class AdminSystem:
                 students_without_subjects.append(student)
                 continue
 
-            grade = self._get_grade(average_mark)
+            grade = get_grade(average_mark)
             grade_groups[grade].append((student, average_mark))
 
         for grade, grade_students in grade_groups.items():
@@ -105,7 +105,7 @@ class AdminSystem:
                 students_without_subjects.append(student)
                 continue
 
-            grade = self._get_grade(average_mark)
+            grade = get_grade(average_mark)
             result = (student, grade, average_mark)
 
             if average_mark >= 50:
@@ -191,14 +191,3 @@ class AdminSystem:
 
         total = sum(subject["mark"] for subject in subjects)
         return total / len(subjects)
-
-    def _get_grade(self, average_mark):
-        if average_mark >= 85:
-            return "HD"
-        if average_mark >= 75:
-            return "D"
-        if average_mark >= 65:
-            return "C"
-        if average_mark >= 50:
-            return "P"
-        return "Z"

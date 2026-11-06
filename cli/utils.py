@@ -12,6 +12,17 @@ def validate_password(password):
     pattern = r"[A-Z][A-Za-z]{4,}[0-9]{3,}"
     return bool(re.fullmatch(pattern, password))
 
+def get_grade(mark):
+    if mark >= 85:
+        return "HD"
+    if mark >= 75:
+        return "D"
+    if mark >= 65:
+        return "C"
+    if mark >= 50:
+        return "P"
+    return "Z"
+
 def go_back(value = None):
     print("Returning to the previous menu.")
     return value

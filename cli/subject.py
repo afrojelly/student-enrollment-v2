@@ -1,5 +1,7 @@
 import random
 
+from cli.utils import get_grade
+
 class Subject:
     def __init__(self, student):
         self.subject_id = self.generate_subject_id(student)
@@ -18,18 +20,8 @@ class Subject:
     def generate_mark(self):
         return random.randint(25, 100)
 
-    # Use the same grading rule as AdminSystem.get_grade().
     def calculate_grade(self):
-        if self.mark >= 85:
-            return "HD"
-        elif self.mark >= 75:
-            return "D"
-        elif self.mark >= 65:
-            return "C"
-        elif self.mark >= 50:
-            return "P"
-        else:
-            return "Z"
+        return get_grade(self.mark)
 
     # Subject object -> dictionary (Students.data format)
     def to_record(self):
