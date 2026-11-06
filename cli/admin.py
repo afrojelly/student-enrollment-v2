@@ -25,7 +25,7 @@ class AdminSystem:
             elif choice == "r":
                 self.remove_student()
             elif choice == "c":
-                self.clear_student()
+                self.clear_students()
             elif choice == "x":
                 print("Exiting the Admin System.")
                 break
@@ -70,13 +70,13 @@ class AdminSystem:
             grade = self._get_grade(average_mark)
             grade_groups[grade].append((student, average_mark))
 
-        for grade, students in grade_groups.items():
+        for grade, grade_students in grade_groups.items():
             print(f"\n--- {grade} ---")
-            if not students:
+            if not grade_students:
                 print("No students in this grade.")
                 continue
 
-            for student, average_mark in students:
+            for student, average_mark in grade_students:
                 print(
                     f"{student.name} ({student.student_id}) "
                     f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
@@ -168,7 +168,7 @@ class AdminSystem:
         else:
             print("Operation cancelled.")
 
-    def clear_student(self):
+    def clear_students(self):
         confirm_statement = "This will permanently delete all student records. Are you sure? (y/n): "
         if self._confirm_action(confirm_statement):
             self.database.clear_students()
