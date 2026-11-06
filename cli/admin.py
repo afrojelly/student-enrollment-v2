@@ -7,7 +7,7 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            print("\n Welcome to the Admin System. Please choose a following option:")
+            print("\nWelcome to the Admin System. Please choose a following option:")
             print(" (S) Show all students")
             print(" (G) Group students by grade")
             print(" (P) Partition students by pass/fail")
@@ -41,6 +41,7 @@ class AdminSystem:
             return
         
         print("\n--- Student List ---")
+
         for student in self.students:
             print(f"{student.name} ({student.student_id}) / Email: {student.email}")
 

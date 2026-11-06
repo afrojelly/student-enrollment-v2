@@ -1,51 +1,49 @@
 from cli.utils import validate_password, go_back
 
-
 def change_password(student, students, database):
-    print("\nWould you like to change your password?. (x to cancel)")
-    while True: #retain the existing identity cheack
-        current_password = go_back("For Validation, Enter your current password: ")
+    print("\nChange your password (enter x at any prompt to cancel).")
+
+    while True:
+        current_password = input("Enter your current password: ").strip()
         
-        if current_password is None:
-            return
+        if current_password.lower() == "x":
+            return go_back()
         
         if current_password == student.password:
-            break  #varify successful, proceed to change password
-        else:
-            print("Failed Verification. Please try again.")
+            break
 
-#password validation and confirmation => validation function is called from registration.py
+        print("Current password is incorrect. Please try again.")
+
     while True:
-        new_password = go_back("Enter your new password: ")
+        new_password = input("Enter your new password: ").strip()
         
-        if new_password is None:
-            print("Password change cancelled.")
-            return
+        if new_password.lower() == "x":
+            return go_back()
         
         if not validate_password(new_password):
-            print("""Wrong access. Please follow the password format.
-            Password required
-            - Must start with an Uppercase Letter
-            - Contain at least 5-letter
-            - followed by at least 3-digit Please try again.""")
+            print(
+                "Invalid password. It must start with an uppercase letter, "
+                "contain at least 5 letters, and end with at least 3 digits. "
+                "Please try again."
+            )
             continue
 
-        confirm_password = go_back("Confirm your new password: ")
-
-        if confirm_password is None:
-            print("Password change cancelled.")
-            return
+        confirm_password = input("Confirm your new password (x to cancel): ").strip()
+        if confirm_password.lower() == "x":
+            return go_back()
 
         if new_password != confirm_password:
             print("Passwords do not match. Please try again.")
             continue
 
         student.password = new_password
-        database.save_student(students) #changed password will be saved in the database
+        database.save_student(students)
 
-        print ("""Password changed successfully! 
-        Please use your new password the next time you log in.""")
-        return  # Exit the function after changing the password -> back to the subject enrolment system
+        print(
+            "Password changed successfully. \n"
+            "Please use your new password the next time you log in."
+        )
+        return
 
 def verify_password(student,current_password):
     return current_password == student.password

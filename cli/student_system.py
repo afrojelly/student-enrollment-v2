@@ -2,7 +2,6 @@ from cli import student_registration
 from cli import student_login
 from cli import subject_enrolment 
 
-#The Student subsystem menu, which includes login and registration functionalities for students.
 class StudentSystem:
     def __init__(self,database):
         self.database = database
@@ -10,7 +9,6 @@ class StudentSystem:
 
     def student_system(self):
         while True: 
-            print 
             print("\nWelcome to the Student System. Please choose an option:")
             print(" (l) login")
             print(" (r) register")
@@ -20,14 +18,11 @@ class StudentSystem:
 
             if choice == 'l':
                 self.login_student()
-
             elif choice == 'r':
                 self.register_student()
-
             elif choice == 'x':
                 print("Exiting the Student System.")
                 break
-
             else:
                 print("Invalid. Please try again.")
 

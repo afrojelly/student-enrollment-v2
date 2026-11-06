@@ -11,7 +11,7 @@ class UniAppGUI(GUIStyle):
     def __init__(self, root):
         super().__init__()
 
-# Main Tkinter window
+        # Main Tkinter window
         self.root = root
         self.root.geometry("1000x800")
         self.root.title("University Enrollment System")
@@ -28,7 +28,7 @@ class UniAppGUI(GUIStyle):
         # Start GUI from Login Page
         self.login_page()
 
-# Login Page - starting window
+    # Login Page - starting window
     def login_page(self):
         self.clear_window()
 
@@ -38,7 +38,7 @@ class UniAppGUI(GUIStyle):
         )
         login.login_window()
 
-# Subject Enrolment Page - after successful login
+    # Subject Enrolment Page - after successful login
     def subject_enrolment_page(self, student):
         self.current_student = student
         self.clear_window()
@@ -50,12 +50,12 @@ class UniAppGUI(GUIStyle):
         )
         enrolment.enrolment_window()
 
-#Logout - return to Login Page
+    # Logout - return to Login Page
     def logout(self):
         self.current_student = None
         self.login_page()
 
-# Clear current window before opening the next page
+    # Clear current window before opening the next page
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()

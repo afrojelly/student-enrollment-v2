@@ -5,7 +5,6 @@ class Student:
         self.password = password
         self.student_id = student_id
         self.subjects = subjects if subjects is not None else []
-        #self.recalculate_average()  # Calculate average mark upon initialization vs calculating it on demand
 
     def to_record(self):
         return {
@@ -16,8 +15,7 @@ class Student:
             "subjects": self.subjects,   
         }
 
-
-#Jason, Dictionary -> student, object converting. Bring the value from the Recorded value. => allowing comparison 
+    #JSON, Dictionary -> student, object converting. Bring the value from the Recorded value. => allowing comparison 
     @classmethod
     def from_record(cls, record):
         return cls (

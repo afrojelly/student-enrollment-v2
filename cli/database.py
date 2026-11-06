@@ -13,7 +13,7 @@ class Database:
         if not self.data_file.exists():
             self.save_student([])
 
-    #save Student Information 
+    # Save student information 
     def save_student(self,students_info):
         data =[]
 
@@ -28,7 +28,7 @@ class Database:
             json.dump(data, file, indent=4)
         temp_file.replace(self.data_file)
 
-    # bring the student data as the reader mode 
+    # Bring the student data as the reader mode 
     def load_students(self):
         with self.data_file.open("r", encoding="utf-8") as file:
             data = json.load(file)
@@ -40,6 +40,7 @@ class Database:
 
         return students_info
 
+    # Delete student by id
     def delete_student(self, student_id):
         students = self.load_students()
 
@@ -51,11 +52,12 @@ class Database:
 
         return False
 
+    # Clear all students
     def clear_students(self):
         # Keep the empty list as valid JSON so load_students() can read it.
         self.save_student([])
 
-    # get student by id
+    # Get student by id
     def get_student(self, student_id):
         students = self.load_students()
 

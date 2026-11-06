@@ -12,9 +12,6 @@ def validate_password(password):
     pattern = r"[A-Z][A-Za-z]{4,}[0-9]{3,}"
     return bool(re.fullmatch(pattern, password))
 
-def go_back(input_value):
-    value = input(input_value).strip().lower()
-    if value == "x":
-        print("Returning to the previous menu.")
-        return None
+def go_back(value = None):
+    print("Returning to the previous menu.")
     return value

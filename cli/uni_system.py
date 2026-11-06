@@ -1,4 +1,3 @@
-
 # database
 from cli.database import Database
 # student
@@ -6,19 +5,15 @@ from cli import student_system
 # admin
 from cli import admin as admin
 
-
 class UniApp:
-#setting the database, initiation. 
     def __init__(self,data_file=None):
         self.database = Database() if data_file is None else Database(data_file)
         self.student_system = student_system.StudentSystem(self.database)
         self.admin_system = admin.AdminSystem(self.database)
     
-#University System requiremnt, choosing the subsystem class. 
     def university_system(self):
         while True:
             print("\nWelcome to the University System. please choose a following option")
-
             print(" (A) Admin")
             print(" (S) Student")
             print(" (X) Exit")

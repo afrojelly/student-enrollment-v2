@@ -1,40 +1,42 @@
-
 from cli.utils import validate_password, validate_email, go_back
 
+def login_student(students):
+    print(
+        "\nWelcome to the Student Login.\n"
+        "Please enter your registered email and password to login."
+    )
 
-def validate_login(students, email, password):
+    while True:
+        email = input("Enter your registered email (x to cancel): ").strip().lower()
+        if email == "x":
+            return go_back()
+
+        password = input("Enter your password (x to cancel): ").strip()
+        if password.lower() == "x":
+            return go_back()
+
+        if not validate_email(email) or not validate_password(password):
+            print("Incorrect email or password format. Please try again.")
+            continue        
+
+        student = find_student_by_credentials(students, email, password)
+
+        if student is None:
+            print(
+                "Login failed. Please check your email and password. \n"
+                "Please try again"
+            )
+            continue
+        
+        print(
+            f"Login successful! Welcome {student.name} "
+            f"(ID: {student.student_id})!"
+        )
+        return student
+
+def find_student_by_credentials(students, email, password):
     for student in students:
         if student.email == email and student.password == password:
             return student
 
     return None
-def login_student(students):
-    print("\n welcome to the Student Login system.")
-    print ("""please login with your validated email and password 
-            (x to cancel)
-    """)
-
-    while True:
-        email = go_back("Enter your registered email: ")
-        if email is None:
-            return None
-        password = go_back("Enter your password (x to cancel): ")
-        if password is None:
-            return None
-
-        if not validate_email(email) or not validate_password(password):
-            print("Incorrect email or password format")
-            continue        
-
-        student = validate_login(students, email, password)
-
-        if student is not None:
-            print(
-                f"Login successful! Welcome {student.name} "
-                f"(ID: {student.student_id})!"
-            )
-            return student
-
-        else:
-            print("Login failed. Please check your email and password.")
-            print("Try again")
