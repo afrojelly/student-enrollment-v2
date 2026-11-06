@@ -173,4 +173,4 @@ This application was developed collaboratively, with team members contributing t
 - Hyejin Han (26510228): Subject enrolment
 - Jisun Lee (26645135): Admin system
 - Robyn You (25960535): University and student systems
-- Ryeongeun Kim (26639361): Change Password
+- Ryeongeun Kim (26639361): Change password
