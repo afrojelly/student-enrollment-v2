@@ -25,4 +25,3 @@ class Student:
             student_id=record["studentId"],
             subjects=record.get("subjects",[]),
         )
-

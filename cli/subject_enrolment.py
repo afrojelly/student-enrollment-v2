@@ -1,5 +1,3 @@
-import random
-
 from cli.change_password import change_password
 from cli.subject import Subject
 

@@ -48,7 +48,6 @@ def change_password(student, students, database):
 def verify_password(student,current_password):
     return current_password == student.password
 
-
 # Validate and save a new password
 def update_password(student, students, database, new_password, confirm_password):
     if not validate_password(new_password):
