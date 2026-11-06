@@ -43,11 +43,6 @@ class AdminSystem:
         print("\n--- Student List ---")
         for student in self.students:
             print(f"{student.name} ({student.student_id}) / Email: {student.email}")
-            # print(
-            #     # f"Name: {student.name}, "
-            #     # f"Email: {student.email}, "
-            #     # f"Subjects: {student.subjects}, "
-            # )
 
     def group_students_by_grade(self):
         self.students = self.database.load_students()
@@ -64,7 +59,6 @@ class AdminSystem:
             "Z": [],
         }
         students_without_subjects = []
-
 
         for student in self.students:
             average_mark = self.get_average_mark(student.subjects)
@@ -141,20 +135,22 @@ class AdminSystem:
                 print(f"{student.name} ({student.student_id})")
 
     def remove_student(self):
-        input_id = input("Enter the 6-digit student ID to remove: ")
+        while True:
+            input_id = input(
+                "Enter the 6-digit student ID to remove: "
+            ).strip()
 
-        # Verify the entered student_id is six digits.
-        if not is_valid_student_id(input_id):
-            print("Invalid student ID. Please enter a 6-digit ID.")
-            return
+            if not is_valid_student_id(input_id):
+                print("Invalid student ID. Please enter a 6-digit ID.")
+                continue
 
-        # finding matching student
-        student = self.database.get_student(input_id)
-        if student is None:
-            print(f"No student found with ID {input_id}.")
-            return
+            student = self.database.get_student(input_id)
+            if student is None:
+                print(f"No student found with ID {input_id}. Please try again.")
+                continue
 
-        # Todo: ask confirmation question 할까말까?
+            break
+
         confirmation = input(f"Are you sure you want to delete {student.name} ({student.student_id})? (Y/N): ").strip().upper()
 
         if confirmation == 'Y':
@@ -173,7 +169,6 @@ class AdminSystem:
         else:
             print("Operation cancelled.")
 
-
     def get_average_mark(self, subjects):
         if len(subjects) == 0:
             return None
@@ -181,16 +176,18 @@ class AdminSystem:
         total = sum(subject["mark"] for subject in subjects)
         return total / len(subjects)
 
-    def get_grade(self, mark):
-        if mark >= 85:
+    def get_grade(self, average_mark):
+        if average_mark >= 85:
             grade = "HD"
-        elif mark >= 75:
+        elif average_mark >= 75:
             grade = "D"
-        elif mark >= 65:
+        elif average_mark >= 65:
             grade = "C"
-        elif mark >= 50:
+        elif average_mark >= 50:
             grade = "P"
         else:
             grade = "Z"
 
         return grade
+
+
