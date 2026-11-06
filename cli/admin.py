@@ -16,38 +16,38 @@ class AdminSystem:
 
             choice = input("Choose an option (s/g/p/r/c/x): ").strip().lower()
 
-            if choice == 's':
+            if choice == "s":
                 self.show_students_all()
-            elif choice == 'g':
+            elif choice == "g":
                 self.group_students_by_grade()
-            elif choice == 'p':
+            elif choice == "p":
                 self.partition_students_by_pass_fail()
-            elif choice == 'r':
+            elif choice == "r":
                 self.remove_student()
-            elif choice == 'c':
+            elif choice == "c":
                 self.clear_student()
-            elif choice == 'x':
+            elif choice == "x":
                 print("Exiting the Admin System.")
                 break
             else:
                 print("Invalid. Please try again.")
 
     def show_students_all(self):
-        self.students = self.database.load_students()
+        students = self.database.load_students()
 
-        if not self.students:
+        if not students:
             print("No students registered.")
             return
         
         print("\n--- Student List ---")
 
-        for student in self.students:
+        for student in students:
             print(f"{student.name} ({student.student_id}) / Email: {student.email}")
 
     def group_students_by_grade(self):
-        self.students = self.database.load_students()
+        students = self.database.load_students()
 
-        if not self.students:
+        if not students:
             print("No students registered.")
             return
 
@@ -60,7 +60,7 @@ class AdminSystem:
         }
         students_without_subjects = []
 
-        for student in self.students:
+        for student in students:
             average_mark = self._get_average_mark(student.subjects)
 
             if average_mark is None:
@@ -88,9 +88,9 @@ class AdminSystem:
                 print(f"{student.name} ({student.student_id})")
 
     def partition_students_by_pass_fail(self):
-        self.students = self.database.load_students()
+        students = self.database.load_students()
 
-        if not self.students:
+        if not students:
             print("No students registered.")
             return
 
@@ -98,7 +98,7 @@ class AdminSystem:
         fail_group = []
         students_without_subjects = []
 
-        for student in self.students:
+        for student in students:
             average_mark = self._get_average_mark(student.subjects)
 
             if average_mark is None:
@@ -194,14 +194,11 @@ class AdminSystem:
 
     def _get_grade(self, average_mark):
         if average_mark >= 85:
-            grade = "HD"
-        elif average_mark >= 75:
-            grade = "D"
-        elif average_mark >= 65:
-            grade = "C"
-        elif average_mark >= 50:
-            grade = "P"
-        else:
-            grade = "Z"
-
-        return grade
+            return "HD"
+        if average_mark >= 75:
+            return "D"
+        if average_mark >= 65:
+            return "C"
+        if average_mark >= 50:
+            return "P"
+        return "Z"
