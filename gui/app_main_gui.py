@@ -1,10 +1,10 @@
+import tkinter as tk
 
 from cli.database import Database
 
-import tkinter as tk
 from gui.gui_style import GUIStyle
-from gui.subject_enrolment_gui import SubjectEnrolmentGUI
 from gui.login_gui import LoginGUI
+from gui.subject_enrolment_gui import SubjectEnrolmentGUI
 
 
 class UniAppGUI(GUIStyle):
@@ -59,7 +59,6 @@ class UniAppGUI(GUIStyle):
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()
-
 
 if __name__ == "__main__":
     root = tk.Tk()

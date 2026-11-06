@@ -1,17 +1,14 @@
-#emain and password enter page 
-
-from cli.student_login import validate_login
-
-from cli.student import Student 
-
 import tkinter as tk
-from tkinter import messagebox 
+from tkinter import messagebox
+
+from cli.student_login import find_student_by_credentials
 
 
+# Email and password entry page.
 class LoginGUI:
     def __init__(self, root, app):
-        self.root=root
-        self.app=app # Store the app object on this LoginGUI instance.
+        self.root = root
+        self.app = app  # Store the app object on this LoginGUI instance.
 
     def clear_placeholder(self, event, entry, placeholder, is_password=False):
         if entry.get() == placeholder:
@@ -21,7 +18,6 @@ class LoginGUI:
             if is_password:
                 entry.config(show="*")
 
-
     def show_placeholder(self, event, entry, placeholder, is_password=False):
         if entry.get() == "":
             if is_password:
@@ -30,28 +26,22 @@ class LoginGUI:
             entry.insert(0, placeholder)
             entry.config(fg="grey")
 
-
     def login_window(self):
         self.login_title = tk.Label(
             self.root,
-            text ="This is student Login Page",
+            text="Student Login",
             **self.app.title_style
-    )
-        self.login_title.pack (
-            pady=self.app.title_padding
-            )
+        )
+        self.login_title.pack(pady=self.app.title_padding)
 
         self.login_sub_title = tk.Label(
             self.root,
-            text = "please login with your validated email and password",
+            text="Please log in with your university email and password.",
             **self.app.sub_title_style
         )
-        self.login_sub_title.pack(
-            pady=self.app.sub_title_padding
-            )
+        self.login_sub_title.pack(pady=self.app.sub_title_padding)
 
-        
-# Email Label
+        # Email label.
         self.email_label = tk.Label(
             self.root,
             text="University Email",
@@ -59,21 +49,19 @@ class LoginGUI:
         )
         self.email_label.pack(pady=(5, 5))
 
-# Email Entry
+        # Email entry field.
         self.email_entry = tk.Entry(
             self.root,
             **self.app.form_entry_style
-        #이 상자 안에 hint를 넣고, user가 입력을 사작하면 clear 하고 입력값을 받을 수 는 없나? 
         )
         self.email_entry.pack(pady=(0, 10))
 
- # form box placeholder 
-
+        # Show an example email until the user starts entering one.
         self.email_placeholder = "firstname.lastname@university.com"
+        self.email_entry.insert(0, self.email_placeholder)
+        self.email_entry.config(fg="grey")
 
-        self.email_entry.insert (0, self.email_placeholder)
-        self.email_entry.config (fg ="grey")
-#(tkinter) bind() =>method : 특정 이벤트(Event)(e.g.: 마우스 클릭, 키보드 입력, Focus 이동 등)이 윈도우에서 발생했을 때 실행할 Callback Function
+        # Clear or restore the placeholder when the field gains or loses focus.
         self.email_entry.bind(
             "<FocusIn>",
             lambda event: self.clear_placeholder(
@@ -83,7 +71,6 @@ class LoginGUI:
             )
         )
 
-        # When leaving the Entry
         self.email_entry.bind(
             "<FocusOut>",
             lambda event: self.show_placeholder(
@@ -93,25 +80,26 @@ class LoginGUI:
             )
         )
 
-#Password
-        self.password_label=tk.Label(
+        # Password label and entry field.
+        self.password_label = tk.Label(
             self.root,
             text="Password",
             **self.app.form_label_style
         )
-        self.password_label.pack(pady=(5,5))
+        self.password_label.pack(pady=(5, 5))
 
         self.password_entry = tk.Entry(
-            self.root, 
+            self.root,
             **self.app.form_entry_style
         )
-        self.password_entry.pack (pady =(0,10))
+        self.password_entry.pack(pady=(0, 10))
 
+        # Use a placeholder while keeping the password visible only as placeholder text.
         self.password_placeholder = "Enter your password"
-        self.password_entry.insert (0,self.password_placeholder)
+        self.password_entry.insert(0, self.password_placeholder)
         self.password_entry.config(fg="grey", show="")
 
-        # When clicking inside the Entry
+        # Hide the password once the user starts entering it.
         self.password_entry.bind(
             "<FocusIn>",
             lambda event: self.clear_placeholder(
@@ -122,7 +110,6 @@ class LoginGUI:
             )
         )
 
-        # When leaving the Entry
         self.password_entry.bind(
             "<FocusOut>",
             lambda event: self.show_placeholder(
@@ -132,8 +119,6 @@ class LoginGUI:
                 is_password=True
             )
         )
-
-        # Connect Subject Enrolment GUI here when ready
 
         self.login_button = self.app.create_form_button(
             self.root,
@@ -149,7 +134,7 @@ class LoginGUI:
         )
 
     def login_student(self):
-        email =self.email_entry.get().strip()
+        email = self.email_entry.get().strip()
         password = self.password_entry.get()
 
         if email == self.email_placeholder:
@@ -159,15 +144,15 @@ class LoginGUI:
 
         if not email or not password:
             messagebox.showerror(
-            "Login Failed",
-            "Please enter your email and password."
-        )
+                "Login Failed",
+                "Please enter your email and password."
+            )
             return
-        
+
         self.app.students = self.app.database.load_students()
 
-        # Validate using CLI function
-        student = validate_login(
+        # Reuse the CLI login validation logic.
+        student = find_student_by_credentials(
             self.app.students,
             email,
             password
@@ -179,7 +164,7 @@ class LoginGUI:
                 "Incorrect email or password."
             )
             return
-        
+
         self.app.current_student = student
         messagebox.showinfo(
             "Login Successful",
@@ -187,5 +172,5 @@ class LoginGUI:
             f"Student ID: {student.student_id}"
         )
 
-        self.app.current_student = student #로그인한 객체 저장
-        self.app.subject_enrolment_page(student) # 학생개체 페이지 호출
+        # Open the subject enrolment page for the authenticated student.
+        self.app.subject_enrolment_page(student)

@@ -1,8 +1,9 @@
 import tkinter as tk
-from tkinter import messagebox 
+from tkinter import messagebox
 
-from gui.change_password_gui import ChangePasswordGUI
 from cli.subject_enrolment import add_subject, delete_subject
+from gui.change_password_gui import ChangePasswordGUI
+
 
 class SubjectEnrolmentGUI:
     def __init__(self, root, app, student):
@@ -11,38 +12,46 @@ class SubjectEnrolmentGUI:
         self.student = student
 
     def enrolment_window(self):
-        self.enrol_title = tk.Label (
+        self.enrol_title = tk.Label(
             self.root,
-            text = "This is Subject Enrolment System",
+            text="Subject Enrolment System",
             **self.app.title_style
         )
-        self.enrol_title.pack(
-            pady = self.app.title_padding
-        )
+        self.enrol_title.pack(pady=self.app.title_padding)
 
         self.enrol_sub_title = tk.Label(
             self.root,
-            text = f"Welcome, {self.student.name} ({self.student.student_id}) Please choose a following option",
+            text=(
+                f"Welcome, {self.student.name} ({self.student.student_id}). "
+                "Please choose an option."
+            ),
             **self.app.sub_title_style
         )
-        self.enrol_sub_title.pack(
-            pady=self.app.sub_title_padding
-        )
+        self.enrol_sub_title.pack(pady=self.app.sub_title_padding)
 
-#enrolment system label 
+        # Add the available actions to the enrolment menu.
         panel = self.app.create_menu_panel()
-        self.enrol_subject_button = self.app.create_menu_button(panel, "Enrol in a subject", self.enrol_subject)
-        self.view_enrolment_button = self.app.create_menu_button(panel,"view enrolment", self.view_enrolment)
-        self.remove_subject_button = self.app.create_menu_button(panel,"Remove a subject",self.remove_subject)
-        self.change_password_button = self.app.create_menu_button(panel, "Change the Password", self.change_password)
-        self.logout_button = self.app.create_menu_button(panel, "Logout", self.logout, is_back=True)
-
+        self.enrol_subject_button = self.app.create_menu_button(
+            panel, "Enrol in a subject", self.enrol_subject
+        )
+        self.view_enrolment_button = self.app.create_menu_button(
+            panel, "View enrolment", self.view_enrolment
+        )
+        self.remove_subject_button = self.app.create_menu_button(
+            panel, "Remove a subject", self.remove_subject
+        )
+        self.change_password_button = self.app.create_menu_button(
+            panel, "Change password", self.change_password
+        )
+        self.logout_button = self.app.create_menu_button(
+            panel, "Log out", self.logout, is_back=True
+        )
 
     def change_password(self):
         self.app.clear_window()
 
         change_password = ChangePasswordGUI(
-            self.root, 
+            self.root,
             self.app,
             self.student
         )
@@ -58,14 +67,15 @@ class SubjectEnrolmentGUI:
         self.app.current_student = None
         self.app.login_page()
 
+    # Return to the enrolment menu after viewing or removing a subject.
     def back_to_enrolment(self):
         self.app.subject_enrolment_page(self.student)
 
-    # enrol: no extra page, just show the result in a message box
+    # Enrol without opening another page; show the result in a message box.
     def enrol_subject(self):
         subject = add_subject(
             self.student, 
-            self.app.students, 
+            self.app.students,
             self.app.database
         )
 
@@ -82,7 +92,7 @@ class SubjectEnrolmentGUI:
             f"You are now enrolled in {len(self.student.subjects)} out of 4 subjects."
         )
 
-    # list of enrolled subjects (used by view and remove pages)
+    # Display enrolled subjects on both the view and remove pages.
     def show_subject_list(self):
         if not self.student.subjects:
             tk.Label(
@@ -95,11 +105,14 @@ class SubjectEnrolmentGUI:
         for subject in self.student.subjects:
             tk.Label(
                 self.root,
-                text=f"Subject-{subject['id']}  |  Mark: {subject['mark']}  |  Grade: {subject['grade']}",
+                text=(
+                    f"Subject-{subject['id']}  |  Mark: {subject['mark']}  |  "
+                    f"Grade: {subject['grade']}"
+                ),
                 **self.app.form_label_style
             ).pack(pady=3)
 
-    # view enrolment page
+    # Show the student's current enrolments.
     def view_enrolment(self):
         self.app.clear_window()
 
@@ -113,7 +126,7 @@ class SubjectEnrolmentGUI:
 
         self.app.create_form_button(self.root, "Back", self.back_to_enrolment, is_back=True)
 
-    # remove subject page
+    # Show the enrolled subjects and the subject removal form.
     def remove_subject(self):
         self.app.clear_window()
 
@@ -143,12 +156,17 @@ class SubjectEnrolmentGUI:
     def confirm_remove(self):
         subject_id = self.subject_id_entry.get().strip()
 
-        if delete_subject(self.student, self.app.students, self.app.database, subject_id):
+        if delete_subject(
+            self.student,
+            self.app.students,
+            self.app.database,
+            subject_id
+        ):
             messagebox.showinfo(
                 "Subject Removed",
                 f"Subject-{subject_id} has been removed."
             )
-            self.remove_subject()  # refresh the page with the updated list
+            self.remove_subject()  # Refresh the page to show the updated list.
         else:
             messagebox.showerror(
                 "Remove Failed",

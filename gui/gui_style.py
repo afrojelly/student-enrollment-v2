@@ -1,99 +1,94 @@
 import tkinter as tk
 
+
 class GUIStyle:
     def __init__(self):
-    #GUI colour in the background of the window, enhancing the visual appeal and providing a consistent look and feel for the application.
-        self.bg_color = "#101827"#background colour.
-        self.panel_color= "#1C2A40" #로그인 pannel이나 기타 pannel에 사용
+        # Background colors used throughout the application.
+        self.bg_color = "#101827"
+        self.panel_color = "#1C2A40"  # Used for login panels and other panels.
         self.button_color = "#3778D6"
-        self.exit_button_color = "#556276" #exit 버튼은 다른색으로 했어요!
+        self.exit_button_color = "#556276"  # Back and exit buttons use a different color.
         self.button_active = "#475D7A"
-        self.button_fg = "#010101"  #button 내부글자 colour
-        self.text_color = "#E2E8F0" #일반 text colour
+        self.button_fg = "#010101"  # Button text color.
+        self.text_color = "#E2E8F0"  # Main text color.
         self.sub_text_color = "#A0AEC0"
-    
-    #GUI Font setting 
+
+        # Font settings.
         self.main_title_font = ("Noto Sans KR", 25, "bold")
         self.sub_title_font = ("Noto Sans KR", 20)
         self.button_font = ("Noto Sans KR", 18, "bold")
-        self.message_font = ("Noto Sans KR", 14)  #error message #data입력필드
-    
-    #GUI spacing option 
+        self.message_font = ("Noto Sans KR", 14)  # Used for messages and form fields.
+
+        # Spacing settings.
         self.title_padding = (34, 8)
         self.sub_title_padding = (0, 22)
         self.button_padding = 8
         self.button_size_padding = 5
 
-# GUI form button settings. Expand a style dictionary with **self.title_style.
-        self.title_style = { #main title
+        # Widget style dictionaries are passed to Tkinter with the ** operator.
+        self.title_style = {  # Main title style.
             "font": self.main_title_font,
             "bg": self.bg_color,
-            "fg": self.text_color
+            "fg": self.text_color,
         }
 
-        self.sub_title_style = { #subtitle format
+        self.sub_title_style = {  # Subtitle style.
             "font": self.sub_title_font,
             "bg": self.bg_color,
-            "fg": self.sub_text_color
+            "fg": self.sub_text_color,
         }
 
-        self.button_style = { #main size button -> 버튼만 있는 페이지에서 사용하는 큰 사이즈 버튼
+        self.button_style = {  # Large buttons for pages without input fields.
             "width": 40,
             "font": self.button_font,
             "fg": self.button_fg,
-            "activebackground": self.button_active
+            "activebackground": self.button_active,
         }
-            
-        
-        self.form_button_style = { #small size button -> 레지 페이지나 로그인 페이지에서 , 위쪽에 입력 있고 아래에 confirm 이나 cancle등을 넣을때 쓰는 작은 버튼)
+
+        self.form_button_style = {  # Smaller buttons for forms, such as login and registration.
             "width": 25,
             "height": 2,
             "font": self.message_font,
             "fg": self.button_fg,
-            "activebackground": self.button_active
+            "activebackground": self.button_active,
         }
 
-#tk.label: 입력항목-보여주는거,
+        # Styles for labels that describe form fields.
         self.form_label_style = {
             "font": self.message_font,
-            "bg":self.panel_color,
-            "fg":self.text_color
+            "bg": self.panel_color,
+            "fg": self.text_color,
         }
 
-# tk.Entry: 실체 사용자 입력칸
+        # Style for text-entry fields where users enter data.
         self.form_entry_style = {
             "font": self.message_font,
-            "width":35,
+            "width": 35,
             "bg": "#FFFFFF",
             "fg": self.bg_color,
         }
 
-# Small hint text for registration/login input rules
+        # Style for hints that explain input requirements.
         self.hint_style = {
             "font": ("Bahnschrift", 10),
             "bg": self.bg_color,
-            "fg": self.sub_text_color
+            "fg": self.sub_text_color,
         }
 
-        # Main title: 25
-        # Subtitle: 20
-        #button: 20
-
-
-#back panel and landscape setting       
     def create_menu_panel(self):
-        # A coloured panel makes the menu stand out without extra packages.
-        panel = tk.Frame(self.root, bg=self.panel_color, padx=32, pady=24) #pixel
+        # Create a colored panel to visually distinguish the menu.
+        panel = tk.Frame(self.root, bg=self.panel_color, padx=32, pady=24)
         panel.pack()
         return panel
 
-#Button만드는 함수 - 이거는 main button, button만 있는 페이지 
     def create_menu_button(self, parent, text, command, is_back=False):
+        # Use a distinct color for back or exit buttons.
         if is_back:
             color = self.exit_button_color
         else:
-            color = self.button_color #button colour
+            color = self.button_color
 
+        # Create a large button for menu pages without input fields.
         button = tk.Button(
             parent,
             text=text,
@@ -104,17 +99,18 @@ class GUIStyle:
         button.pack(
             pady=self.button_padding,
             ipady=self.button_size_padding
-            )
+        )
         return button
 
-# Create small button for input form pages
-#이거는 button -입력창 (form) 이 있는 페이지의 작은사이즈의 버튼 (registration and login )
-    def create_form_button (self, parent, text, command, is_back=False):
+    # Create a smaller button for form pages, such as login and registration.
+    def create_form_button(self, parent, text, command, is_back=False):
+        # Use a distinct color for back or exit buttons.
         if is_back:
             color = self.exit_button_color
         else:
             color = self.button_color
 
+        # Apply the shared form-button style.
         button = tk.Button(
             parent,
             text=text,
