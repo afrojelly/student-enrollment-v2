@@ -104,7 +104,7 @@ This menu is available after a successful login.
 | e          | Enrol in a subject              |
 | r          | Remove a subject                |
 | s          | Show enrolled subjects          |
-| x          | Return to the University System |
+| x          | Return to the Student System    |
 
 ### Admin System (CLI)
 
