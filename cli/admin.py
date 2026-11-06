@@ -3,31 +3,30 @@ from cli.utils import is_valid_student_id
 class AdminSystem:
     def __init__(self, database):
         self.database = database
-        self.students = self.database.load_students()
 
     def admin_system(self):
         while True:
-            print("\nWelcome to the Admin System. Please choose a following option:")
-            print(" (S) Show all students")
-            print(" (G) Group students by grade")
-            print(" (P) Partition students by pass/fail")
-            print(" (R) Remove student")
-            print(" (C) Clear database")
-            print(" (X) Exit")
+            print("\nWelcome to the Admin System. Please choose an option:")
+            print(" (s) Show all students")
+            print(" (g) Group students by grade")
+            print(" (p) Show pass/fail results")
+            print(" (r) Remove student")
+            print(" (c) Clear database")
+            print(" (x) Exit")
 
-            choice = input("Choose an option (S/G/P/R/C/X): ").strip().upper()
+            choice = input("Choose an option (s/g/p/r/c/x): ").strip().lower()
 
-            if choice == 'S':
+            if choice == 's':
                 self.show_students_all()
-            elif choice == 'G':
+            elif choice == 'g':
                 self.group_students_by_grade()
-            elif choice == 'P':
+            elif choice == 'p':
                 self.partition_students_by_pass_fail()
-            elif choice == 'R':
+            elif choice == 'r':
                 self.remove_student()
-            elif choice == 'C':
+            elif choice == 'c':
                 self.clear_student()
-            elif choice == 'X':
+            elif choice == 'x':
                 print("Exiting the Admin System.")
                 break
             else:
@@ -62,13 +61,13 @@ class AdminSystem:
         students_without_subjects = []
 
         for student in self.students:
-            average_mark = self.get_average_mark(student.subjects)
+            average_mark = self._get_average_mark(student.subjects)
 
             if average_mark is None:
                 students_without_subjects.append(student)
                 continue
 
-            grade = self.get_grade(average_mark)
+            grade = self._get_grade(average_mark)
             grade_groups[grade].append((student, average_mark))
 
         for grade, students in grade_groups.items():
@@ -100,13 +99,13 @@ class AdminSystem:
         students_without_subjects = []
 
         for student in self.students:
-            average_mark = self.get_average_mark(student.subjects)
+            average_mark = self._get_average_mark(student.subjects)
 
             if average_mark is None:
                 students_without_subjects.append(student)
                 continue
 
-            grade = self.get_grade(average_mark)
+            grade = self._get_grade(average_mark)
             result = (student, grade, average_mark)
 
             if average_mark >= 50:
@@ -114,21 +113,25 @@ class AdminSystem:
             else:
                 fail_group.append(result)
 
-        if pass_group:
-            print("\n--- PASS ---")
-            for student, grade, average_mark in pass_group:
-                print(
-                    f"{student.name} ({student.student_id}) "
-                    f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
-                )
+        print("\n--- PASS ---")
+        if not pass_group:
+            print("No students passed.")
 
-        if fail_group:
-            print("\n--- FAIL ---")
-            for student, grade, average_mark in fail_group:
-                print(
-                    f"{student.name} ({student.student_id}) "
-                    f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
-                )
+        for student, grade, average_mark in pass_group:
+            print(
+                f"{student.name} ({student.student_id}) "
+                f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
+            )
+
+        print("\n--- FAIL ---")
+        if not fail_group:
+            print("No students failed.")
+
+        for student, grade, average_mark in fail_group:
+            print(
+                f"{student.name} ({student.student_id}) "
+                f"- Grade: {grade}, Average Mark: {average_mark:.2f}"
+            )
 
         if students_without_subjects:
             print("\n--- No Subjects ---")
@@ -138,8 +141,12 @@ class AdminSystem:
     def remove_student(self):
         while True:
             input_id = input(
-                "Enter the 6-digit student ID to remove: "
+                "Enter the 6-digit student ID to remove (x to cancel): "
             ).strip()
+
+            if input_id.lower() == "x":
+                print("Operation cancelled.")
+                return
 
             if not is_valid_student_id(input_id):
                 print("Invalid student ID. Please enter a 6-digit ID.")
@@ -152,9 +159,8 @@ class AdminSystem:
 
             break
 
-        confirmation = input(f"Are you sure you want to delete {student.name} ({student.student_id})? (Y/N): ").strip().upper()
-
-        if confirmation == 'Y':
+        confirm_statement = f"Are you sure you want to delete {student.name} ({student.student_id})? (y/n): "
+        if self._confirm_action(confirm_statement):
             if self.database.delete_student(student.student_id):
                 print(f"Student {student.name} ({student.student_id}) has been deleted.")
             else:
@@ -163,21 +169,30 @@ class AdminSystem:
             print("Operation cancelled.")
 
     def clear_student(self):
-        confirmation = input("This will permanently delete all student records. Are you sure? (Y/N): ").strip().upper()
-        if confirmation == 'Y':
+        confirm_statement = "This will permanently delete all student records. Are you sure? (y/n): "
+        if self._confirm_action(confirm_statement):
             self.database.clear_students()
-            print("All student data has been cleared.") 
+            print("All student data has been cleared.")
         else:
             print("Operation cancelled.")
 
-    def get_average_mark(self, subjects):
+    def _confirm_action(self, prompt):
+        while True:
+            confirmation = input(prompt).strip().lower()
+            if confirmation == "y":
+                return True
+            if confirmation == "n":
+                return False
+            print("Invalid choice. Please enter y or n.")
+
+    def _get_average_mark(self, subjects):
         if len(subjects) == 0:
             return None
 
         total = sum(subject["mark"] for subject in subjects)
         return total / len(subjects)
 
-    def get_grade(self, average_mark):
+    def _get_grade(self, average_mark):
         if average_mark >= 85:
             grade = "HD"
         elif average_mark >= 75:
@@ -190,5 +205,3 @@ class AdminSystem:
             grade = "Z"
 
         return grade
-
-
