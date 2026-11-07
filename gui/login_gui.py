@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from cli.student_login import find_student_by_credentials
-
+from cli.utils import validate_email, validate_password
 
 # Email and password entry page.
 class LoginGUI:
@@ -149,6 +149,13 @@ class LoginGUI:
             )
             return
 
+        if not validate_email(email) or not validate_password(password):
+            messagebox.showerror(
+                "Login Failed",
+                "Incorrect email or password format."
+            )
+            return
+        
         self.app.students = self.app.database.load_students()
 
         # Reuse the CLI login validation logic.
