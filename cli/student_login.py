@@ -1,36 +1,38 @@
+
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli.utils import validate_password, validate_email, go_back
 
 def login_student(students):
     print(
-        "\nWelcome to the Student Login.\n"
-        "Please enter your registered email and password to login."
+        colour("\nWelcome to the Student Login.\n"
+        "Please enter your registered email and password to login.", CYAN)
     )
 
     while True:
-        email = input("Enter your registered email (x to cancel): ").strip().lower()
+        email = input("\tEnter your registered email (x to cancel): ").strip().lower()
         if email == "x":
             return go_back()
 
-        password = input("Enter your password (x to cancel): ").strip()
+        password = input("\tEnter your password (x to cancel): ").strip()
         if password.lower() == "x":
             return go_back()
 
         if not validate_email(email) or not validate_password(password):
-            print("Incorrect email or password format. Please try again.")
+            print(colour("\tIncorrect email or password format. Please try again.", RED))
             continue        
 
         student = find_student_by_credentials(students, email, password)
 
         if student is None:
             print(
-                "Login failed. Please check your email and password. \n"
-                "Please try again"
+                colour("\tLogin failed. Please check your email and password. \n"
+                "\tPlease try again", RED)
             )
             continue
         
         print(
-            f"Login successful! Welcome {student.name} "
-            f"(ID: {student.student_id})!"
+            colour(f"\tLogin successful! Welcome {student.name} "
+            f"(ID: {student.student_id})!", GREEN)
         )
         return student
 

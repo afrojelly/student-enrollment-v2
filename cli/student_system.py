@@ -1,3 +1,4 @@
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli import student_registration
 from cli import student_login
 from cli import subject_enrolment 
@@ -9,22 +10,22 @@ class StudentSystem:
 
     def student_system(self):
         while True: 
-            print("\nWelcome to the Student System. Please choose an option:")
-            print(" (l) login")
-            print(" (r) register")
-            print(" (x) exit")
+            print(colour("\nWelcome to the Student System. Please choose an option:", CYAN))
+            print(colour(" \t(l) login", CYAN))
+            print(colour(" \t(r) register", CYAN))
+            print(colour(" \t(x) exit", CYAN))
 
-            choice = input("Enter your choice (l-r-x): ").lower()
+            choice = input(colour("\tEnter your choice (l-r-x): ", CYAN)).lower()
 
             if choice == 'l':
                 self.login_student()
             elif choice == 'r':
                 self.register_student()
             elif choice == 'x':
-                print("Exiting the Student System.")
+                print(colour("Exiting the Student System.", YELLOW))
                 break
             else:
-                print("Invalid. Please try again.")
+                print(colour("Invalid. Please try again.", RED))
 
     #Student system functionality.
     def register_student(self):

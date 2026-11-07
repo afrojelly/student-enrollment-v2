@@ -12,5 +12,12 @@
         "password": "Hyejin123",
         "studentId": "057372",
         "subjects": []
+    },
+    {
+        "name": "Robyn You",
+        "email": "hyeonji.you@university.com",
+        "password": "PAssword123",
+        "studentId": "447553",
+        "subjects": []
     }
 ]

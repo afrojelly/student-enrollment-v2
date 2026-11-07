@@ -1,17 +1,18 @@
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 import random #student ID generation
 
 from cli.student import Student
 from cli.utils import validate_email, validate_password, go_back
 
 def register_student(students, database):
-    print("\nWelcome to the Student Registration.")
+    print(colour("\nWelcome to the Student Registration.", CYAN))
 
     # name input and validation
     while True:
-        name = input("Enter your name (x to cancel): ").strip()
+        name = input("\tEnter your name (x to cancel): ").strip()
 
         if not name:
-            print("Name cannot be empty, try again.")
+            print(colour("\tName cannot be empty, try again.", RED))
             continue
 
         if name.lower() == "x":
@@ -21,32 +22,32 @@ def register_student(students, database):
 
     # email input and validation
     while True:
-        email = input("Enter your email (firstname.lastname@university.com, or x to cancel): ").strip().lower()
+        email = input("\tEnter your email (firstname.lastname@university.com, or x to cancel): ").strip().lower()
 
         if not email:
-            print("Email cannot be empty, try again.")
+            print(colour("\tEmail cannot be empty, try again.", RED))
             continue
 
         if email == "x":
             return go_back(students)
 
         if not validate_email(email):
-            print("Invalid email. Use the format: firstname.lastname@university.com")
+            print(colour("\tInvalid email. Use the format: firstname.lastname@university.com", RED))
             continue
 
         existing_emails = {student.email for student in students}
         if email in existing_emails:
-            print("This email is already registered. Please try another email.")
+            print(colour("\tThis email is already registered. Please try another email.", RED))
             continue
 
         break
 
     # password input and validation
     while True:
-        password = input("Enter your password (Password123, or x to cancel): ").strip()
+        password = input("\tEnter your password (Password123, or x to cancel): ").strip()
 
         if not password:
-            print("Password cannot be empty, try again.")
+            print(colour("\tPassword cannot be empty, try again.", RED))
             continue
 
         if password.lower() == "x":
@@ -54,10 +55,10 @@ def register_student(students, database):
 
         if not validate_password(password):
             print(
-                "Invalid password.\n"
-                "It must start with an uppercase letter, "
-                "contain at least 5 letters, and end with at least 3 digits.\n"
-                "Please try again."
+                colour("\tInvalid password.\n"
+                "\tIt must start with an uppercase letter, "
+                "\tcontain at least 5 letters, and end with at least 3 digits.\n", RED)
+                + colour("\tPlease try again.", RED)
             )
             continue
 
@@ -74,10 +75,10 @@ def register_student(students, database):
     database.save_student(students)
 
     print(
-        "Registration successful!\n"
-        "Please login with your email and password."
+        colour("\tRegistration successful!\n"
+        "\tPlease login with your email and password.", GREEN)
     )
-    print(f"Your student ID is: {student.student_id}")
+    print(colour(f"\tYour student ID is: {student.student_id}", YELLOW))
 
     return students # return the updated list
 
@@ -86,11 +87,11 @@ def generate_student_id(students):
     existing_ids = {student.student_id for student in students}
 
     if len(existing_ids) >= 999_999:
-        print(
-            "All available student IDs have been used. "
-            "A new student ID cannot be generated.\n"
-            "Please contact the administrator for assistance."
-        )
+        print(colour(
+            "\tAll available student IDs have been used. "
+            "\tA new student ID cannot be generated.\n"
+            "\tPlease contact the administrator for assistance."
+        , RED))
         return None
 
     while True:

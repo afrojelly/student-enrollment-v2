@@ -7,12 +7,12 @@ class AdminSystem:
     def admin_system(self):
         while True:
             print("\nWelcome to the Admin System. Please choose an option:")
-            print(" (s) Show all students")
-            print(" (g) Group students by grade")
-            print(" (p) Show pass/fail results")
-            print(" (r) Remove student")
-            print(" (c) Clear database")
-            print(" (x) Exit")
+            print("\t (s) Show all students")
+            print("\t (g) Group students by grade")
+            print("\t (p) Show pass/fail results")
+            print("\t (r) Remove student")
+            print("\t (c) Clear database")
+            print("\t (x) Exit")
 
             choice = input("Choose an option (s/g/p/r/c/x): ").strip().lower()
 

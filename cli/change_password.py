@@ -1,10 +1,11 @@
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli.utils import validate_password, go_back
 
 def change_password(student, students, database):
-    print("\nChange your password (enter x at any prompt to cancel).")
+    print(colour("\nChange your password (enter x at any prompt to cancel).", YELLOW))
 
     while True:
-        current_password = input("Enter your current password: ").strip()
+        current_password = input("\tEnter your current password: ").strip()
         
         if current_password.lower() == "x":
             return go_back()
@@ -12,36 +13,36 @@ def change_password(student, students, database):
         if current_password == student.password:
             break
 
-        print("Current password is incorrect. Please try again.")
+        print(colour("\tCurrent password is incorrect. Please try again.", RED))
 
     while True:
-        new_password = input("Enter your new password: ").strip()
+        new_password = input("\tEnter your new password: ").strip()
         
         if new_password.lower() == "x":
             return go_back()
         
         if not validate_password(new_password):
-            print(
-                "Invalid password. It must start with an uppercase letter, "
-                "contain at least 5 letters, and end with at least 3 digits. "
-                "Please try again."
+            print(colour(
+                "\tInvalid password. It must start with an uppercase letter, "
+                "\tcontain at least 5 letters, and end with at least 3 digits. "
+                "\tPlease try again.", RED)
             )
             continue
 
-        confirm_password = input("Confirm your new password (x to cancel): ").strip()
+        confirm_password = input("\tConfirm your new password (x to cancel): ").strip()
         if confirm_password.lower() == "x":
             return go_back()
 
         if new_password != confirm_password:
-            print("Passwords do not match. Please try again.")
+            print(colour("\tPasswords do not match. Please try again.", RED))
             continue
 
         student.password = new_password
         database.save_student(students)
 
-        print(
-            "Password changed successfully. \n"
-            "Please use your new password the next time you log in."
+        print(colour(
+            "\tPassword changed successfully. \n"
+            "\tPlease use your new password the next time you log in.", GREEN)
         )
         return
 

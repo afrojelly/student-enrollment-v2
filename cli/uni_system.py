@@ -1,3 +1,4 @@
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 # database
 from cli.database import Database
 # student
@@ -13,18 +14,18 @@ class UniApp:
     
     def university_system(self):
         while True:
-            print("\nWelcome to the University System. please choose a following option")
-            print(" (A) Admin")
-            print(" (S) Student")
-            print(" (X) Exit")
-            choice = input("Enter your choice (A-S-X): ").upper()
+            print(colour("\nWelcome to the University System. please choose a following option", CYAN))
+            print(colour(" \t(A) Admin", CYAN))
+            print(colour(" \t(S) Student", CYAN))
+            print(colour(" \t(X) Exit", CYAN))
+            choice = input(colour(" \tEnter your choice (A-S-X): ", CYAN)).upper()
 
             if choice == 'A': 
                 self.admin_system.admin_system()
             elif choice == 'S':
                 self.student_system.student_system()
             elif choice == 'X':
-                print("Exiting the UniApp. Goodbye!")
+                print(colour("\tExiting the UniApp. Goodbye!", YELLOW))
                 break
             else:
-                print("Invalid. Please try again.")
+                print(colour("\tInvalid. Please try again.", RED))

@@ -34,7 +34,7 @@ def get_grade(mark):
 
 # Utility function to go back to the previous menu
 def go_back(value = None):
-    print("Returning to the previous menu.")
+    print(colour("\tReturning to the previous menu.", YELLOW))
     return value
 
 #Terminal clours 

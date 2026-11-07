@@ -125,7 +125,7 @@ The GUI is designed for registered students and does not include admin or regist
 - A login page that validates credentials against the saved student records.
 - A subject-enrolment menu for enrolling in subjects and changing a password.
 - Pages for viewing and removing enrolled subjects.
-- Error dialogs for empty login fields, incorrect credentials, invalid password changes, and attempts to exceed the subject limit.
+- Error dialogs for empty login fields, incorrect credentials, invalid email or password fromat, invalid password changes, and attempts to exceed the subject limit.
 
 ## Data storage
 
@@ -173,4 +173,4 @@ This application was developed collaboratively, with team members contributing t
 - Hyejin Han (26510228): Subject enrolment
 - Jisun Lee (26645135): Admin system
 - Robyn You (25960535): University and student systems
-- Ryeongeun Kim (26639361): Change password
+- Ryeongeun Kim (26639361): GUI, Change password 
