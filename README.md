@@ -15,7 +15,7 @@ The CLI also includes an admin system for viewing all students, grouping student
 
 The GUI is for registered students and provides login and subject-enrolment features.
 
-Student records are stored locally as JSON in `cli/Students.data` and persist between runs.
+Student records are stored locally as JSON in `cli/students.data` and persist between runs.
 
 ## Requirements
 
@@ -129,7 +129,7 @@ The GUI is designed for registered students and does not include admin or regist
 
 ## Data storage
 
-The `Database` class reads and writes student records in `cli/Students.data`. It creates the data file with an empty JSON list if the file does not exist. Student records contain a name, email, password, student ID, and a list of enrolled subjects.
+The `Database` class reads and writes student records in `cli/students.data`. It creates the data file with an empty JSON list if the file does not exist. Student records contain a name, email, password, student ID, and a list of enrolled subjects.
 
 Database operations include:
 
@@ -156,7 +156,7 @@ student-enrollment-v2/
 │   ├── uni_app_main.py
 │   ├── uni_system.py
 │   ├── utils.py
-│   └── Students.data
+│   └── students.data
 ├── gui/
 │   ├── app_main_gui.py
 │   ├── change_password_gui.py

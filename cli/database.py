@@ -8,7 +8,7 @@ class Database:
         self.data_file=(
             Path(data_file)
             if data_file is not None
-            else Path(__file__).with_name("Students.data") #data base; student data file; generated automatically 
+            else Path(__file__).with_name("students.data") #data base; student data file; generated automatically 
         )
         if not self.data_file.exists():
             self.save_student([])
