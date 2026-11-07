@@ -15,7 +15,7 @@ class Database:
 
     # Save student information 
     def save_student(self,students_info):
-        data =[]
+        data = []
 
         for student in students_info:
             data.append(student.to_record())
