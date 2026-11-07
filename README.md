@@ -47,7 +47,7 @@ The `-m` option runs the applications as modules so their package imports resolv
 
 - Students can register and log in through the CLI.
 - Email addresses must follow `firstname.lastname@university.com`. The first and last name portions must contain English letters and be separated by one dot. Email addresses must be unique.
-- Passwords must start with an uppercase English letter, contain at least five English letters in total, and end with at least three digits. Only English letters and digits are allowed. The password may be reused by another student.
+- Passwords must start with an uppercase English letter, contain more than five English letters in total, and end with at least three digits. Only English letters and digits are allowed. The password may be reused by another student.
 - Each new student receives a unique, randomly generated six-digit ID from `000001` to `999999`.
 - Registration and login input is validated, and users can cancel supported prompts with `x`.
 

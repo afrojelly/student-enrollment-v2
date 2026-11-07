@@ -5,11 +5,11 @@ from cli.student import Student
 from cli.utils import validate_email, validate_password, go_back
 
 def register_student(students, database):
-    print(colour("\nWelcome to the Student Registration.", CYAN))
+    print(colour("\nStudent Registration.", CYAN))
 
     # name input and validation
     while True:
-        name = input("\tEnter your name (x to cancel): ").strip()
+        name = input("\tName (x to cancel): ").strip()
 
         if not name:
             print(colour("\tName cannot be empty, try again.", RED))
@@ -22,7 +22,7 @@ def register_student(students, database):
 
     # email input and validation
     while True:
-        email = input("\tEnter your email (firstname.lastname@university.com, or x to cancel): ").strip().lower()
+        email = input("\tEmail (firstname.lastname@university.com, or x to cancel): ").strip().lower()
 
         if not email:
             print(colour("\tEmail cannot be empty, try again.", RED))
@@ -44,7 +44,7 @@ def register_student(students, database):
 
     # password input and validation
     while True:
-        password = input("\tEnter your password (Password123, or x to cancel): ").strip()
+        password = input("\tPassword (comfirm format, or x to cancel): ").strip()
 
         if not password:
             print(colour("\tPassword cannot be empty, try again.", RED))
@@ -52,13 +52,12 @@ def register_student(students, database):
 
         if password.lower() == "x":
             return go_back(students)
-
+        
         if not validate_password(password):
-            print(
-                colour("\tInvalid password.\n"
-                "\tIt must start with an uppercase letter, "
-                "\tcontain at least 5 letters, and end with at least 3 digits.\n", RED)
-                + colour("\tPlease try again.", RED)
+            print(colour(
+                "\tInvalid password. It must start with an uppercase letter, "  
+                "\tcontain more than 5 letters, followed by at least 3 digits. "  
+                "\tPlease try again.", RED)
             )
             continue
 

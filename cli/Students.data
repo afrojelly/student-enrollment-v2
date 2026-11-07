@@ -2,7 +2,7 @@
     {
         "name": "Robyn You",
         "email": "robyn.you@university.com",
-        "password": "Robyn123",
+        "password": "Robynyou123",
         "studentId": "660639",
         "subjects": []
     },
@@ -19,5 +19,28 @@
         "password": "PAssword123",
         "studentId": "447553",
         "subjects": []
+    },
+    {
+        "name": "robyn",
+        "email": "hello.sydney@university.com",
+        "password": "Sydney123",
+        "studentId": "179132",
+        "subjects": [
+            {
+                "id": "453",
+                "mark": 65,
+                "grade": "C"
+            },
+            {
+                "id": "671",
+                "mark": 92,
+                "grade": "HD"
+            },
+            {
+                "id": "142",
+                "mark": 60,
+                "grade": "P"
+            }
+        ]
     }
 ]

@@ -4,16 +4,16 @@ from cli.utils import validate_password, validate_email, go_back
 
 def login_student(students):
     print(
-        colour("\nWelcome to the Student Login.\n"
-        "Please enter your registered email and password to login.", CYAN)
+        colour("\nStudent Login.\n"
+        "\tEnter your registered email and password", CYAN)
     )
 
     while True:
-        email = input("\tEnter your registered email (x to cancel): ").strip().lower()
+        email = input("\tRegistered email (x to cancel): ").strip().lower()
         if email == "x":
             return go_back()
 
-        password = input("\tEnter your password (x to cancel): ").strip()
+        password = input("\tPassword (x to cancel): ").strip()
         if password.lower() == "x":
             return go_back()
 

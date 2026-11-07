@@ -79,11 +79,11 @@ def remove_subject(student, students, database):
 
 # View enrolment 함수
 def view_enrolment(student):
-    print(colour(f"\tShowing {len(student.subjects)} subjects", YELLOW))
+    print(f"\tShowing {len(student.subjects)} subjects")
 
     if not student.subjects:
         print(colour("\tNo subjects enrolled yet.", YELLOW))
         return
 
     for subject in student.subjects:
-        print(colour(f"\t[ Subject::{subject['id']} -- mark = {subject['mark']} -- grade = {subject['grade']} ]", YELLOW))
+        print(f"\t[ Subject::{subject['id']} -- mark = {subject['mark']} -- grade = {subject['grade']} ]")

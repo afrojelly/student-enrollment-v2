@@ -10,7 +10,7 @@ class StudentSystem:
 
     def student_system(self):
         while True: 
-            print(colour("\nWelcome to the Student System. Please choose an option:", CYAN))
+            print(colour("\nStudent System. Please choose an option:", CYAN))
             print(colour(" \t(l) login", CYAN))
             print(colour(" \t(r) register", CYAN))
             print(colour(" \t(x) exit", CYAN))
@@ -22,11 +22,11 @@ class StudentSystem:
             elif choice == 'r':
                 self.register_student()
             elif choice == 'x':
-                print(colour("Exiting the Student System.", YELLOW))
+                print(colour("\tExiting the Student System.", YELLOW))
                 break
             else:
                 print(colour("Invalid. Please try again.", RED))
-
+    
     #Student system functionality.
     def register_student(self):
         self.students = self.database.load_students() # Refresh records in case Admin has removed or cleared students.

@@ -1,3 +1,4 @@
+from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli.utils import get_grade, is_valid_student_id
 
 class AdminSystem:
@@ -6,15 +7,15 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            # print("\nWelcome to the Admin System. Please choose an option:")
-            # print(" (s) Show all students")
-            # print(" (g) Group students by grade")
-            # print(" (p) Show pass/fail results")
-            # print(" (r) Remove student")
-            # print(" (c) Clear database")
-            # print(" (x) Exit")
+            #print("\nWelcome to the Admin System. Please choose an option:")
+            #print(" \t(s) Show all students")
+            #print(" \t(g) Group students by grade")
+            #print(" \t(p) Show pass/fail results")
+            #print(" \t(r) Remove student")
+            #print(" \t(c) Clear database")
+            #print(" \t(x) Exit")
 
-            choice = input("\033[36m\tAdmin System (c/g/p/r/s/x): \033[0m").strip().lower()
+            choice = input(colour("\tAdmin System (c/g/p/r/s/x): ", CYAN)).strip().lower()
             if choice == "s":
                 self.show_students_all()
             elif choice == "g":
@@ -29,15 +30,15 @@ class AdminSystem:
                 # print("Exiting the Admin System.")
                 break
             else:
-                print("\033[31m\tInvalid. Please try again.\033[0m")
+                print(colour("\tInvalid. Please try again.", RED))
 
     def show_students_all(self):
         students = self.database.load_students()
 
-        print("\033[33m\tStudent List\033[0m")
+        print(colour("\tStudent List", YELLOW))
 
         if not students:
-            print("\t\t< Nothing to Display >")
+            print(colour("\t\t< Nothing to Display >", RED))
             return
         
 
@@ -47,7 +48,7 @@ class AdminSystem:
     def group_students_by_grade(self):
         students = self.database.load_students()
 
-        print("\033[33m\tGrade Grouping\033[0m")
+        print(colour("\tGrade Grouping", YELLOW))
 
         if not students:
             print("\t\t< Nothing to Display >")
@@ -84,7 +85,7 @@ class AdminSystem:
     def partition_students_by_pass_fail(self):
         students = self.database.load_students()
 
-        print("\033[33m\tPASS/FAIL Partition\033[0m")
+        print(colour("\tPASS/FAIL Partition", YELLOW))
 
         if not students:
             print("\t\t< Nothing to Display >")
@@ -133,21 +134,21 @@ class AdminSystem:
 
         student = self.database.get_student(input_id)
         if student is None:
-            print(f"\033[31m\tStudent {input_id} does not exist\033[0m")
+            print(colour(f"\tStudent {input_id} does not exist", RED))
             return
 
         if self.database.delete_student(student.student_id):
-            print(f"\033[33m\tRemoving student {student.student_id} Account\033[0m")
+            print(colour(f"\tRemoving student {student.student_id} Account", YELLOW))
         else:
-            print(f"\033[31m\tFailed to remove student {student.student_id}\033[0m")
+            print(colour(f"\tFailed to remove student {student.student_id}", RED))
 
     def clear_students(self):
-        print("\033[33m\tClearing students database\033[0m")
+        print(colour("\tClearing students database", YELLOW))
 
-        input_value = input("\033[31m\tAre you sure you want to clear the database (Y)ES/(N)O: \033[0m").strip().upper()
+        input_value = input(colour("\tAre you sure you want to clear the database (Y)ES/(N)O: ", RED)).strip().upper()
         if input_value == "Y":
             self.database.clear_students()
-            print("\033[33m\tStudent data cleared\033[0m")
+            print(colour("\tStudent data cleared", GREEN))
         elif input_value == "N":
             return
 
