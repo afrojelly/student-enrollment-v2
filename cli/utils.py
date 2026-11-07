@@ -36,3 +36,12 @@ def get_grade(mark):
 def go_back(value = None):
     print("Returning to the previous menu.")
     return value
+
+#Terminal clours 
+RED = 31
+GREEN = 32
+YELLOW = 33
+CYAN = 36
+
+def colour(text, code):
+    return f"\033[{code}m{text}\033[0m"
