@@ -31,7 +31,11 @@ class Database:
     # Bring the student data as the reader mode 
     def load_students(self):
         with self.data_file.open("r", encoding="utf-8") as file:
-            data = json.load(file)
+            content =file.read().strip()
+            if not content:
+                return []
+            
+            data = json.loads(content)
 
         students_info = []
         for item in data:
