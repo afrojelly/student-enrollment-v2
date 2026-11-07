@@ -55,9 +55,10 @@ def register_student(students, database):
         
         if not validate_password(password):
             print(colour(
-                "\tInvalid password. It must start with an uppercase letter, "  
-                "\tcontain more than 5 letters, followed by at least 3 digits. "  
-                "\tPlease try again.", RED)
+                "\tInvalid password. "
+                "\n\tIt must start with an uppercase letter, "  
+                "\n\tcontain more than 5 letters, followed by at least 3 digits. "  
+                "\n\tPlease try again.", RED)
             )
             continue
 
