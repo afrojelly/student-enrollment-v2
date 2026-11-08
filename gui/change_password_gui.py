@@ -61,7 +61,7 @@ class ChangePasswordGUI:
 
     # Verify the current password before allowing a change.
     def verify_current_password(self):
-        current_password = self.current_password_entry.get()
+        current_password = self.current_password_entry.get().strip()
 
         if not current_password:
             messagebox.showerror(
@@ -140,8 +140,8 @@ class ChangePasswordGUI:
 
     # Save the new password after validation and confirmation.
     def save_new_password(self):
-        new_password = self.new_password_entry.get()
-        confirm_password = self.confirm_password_entry.get()
+        new_password = self.new_password_entry.get().strip()
+        confirm_password = self.confirm_password_entry.get().strip()
 
         result = update_password(
             self.student,

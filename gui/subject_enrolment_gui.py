@@ -3,6 +3,7 @@ from tkinter import messagebox
 
 from cli.subject_enrolment import add_subject, delete_subject
 from gui.change_password_gui import ChangePasswordGUI
+from cli.subject_enrolment import MAX_SUBJECTS
 
 
 class SubjectEnrolmentGUI:
@@ -84,14 +85,14 @@ class SubjectEnrolmentGUI:
         if subject is None:
             messagebox.showerror(
                 "Enrolment Limit",
-                "Students are allowed to enrol in 4 subjects only."
+                f"Students are allowed to enrol in {MAX_SUBJECTS} subjects only."
             )
             return
 
         messagebox.showinfo(
             "Enrolment Successful",
             f"Enrolled in Subject-{subject.subject_id}\n"
-            f"You are now enrolled in {len(self.student.subjects)} out of 4 subjects."
+            f"You are now enrolled in {len(self.student.subjects)} out of {MAX_SUBJECTS} subjects."
         )
 
     # Display enrolled subjects on both the view and remove pages.
@@ -120,7 +121,7 @@ class SubjectEnrolmentGUI:
 
         tk.Label(
             self.root,
-            text=f"Enrolled Subjects ({len(self.student.subjects)}/4)",
+            text=f"Enrolled Subjects ({len(self.student.subjects)}/{MAX_SUBJECTS})",
             **self.app.title_style
         ).pack(pady=self.app.title_padding)
 
