@@ -31,17 +31,19 @@ class SubjectEnrolmentGUI:
 
         # Add the available actions to the enrolment menu.
         panel = self.app.create_menu_panel()
+
+        self.change_password_button = self.app.create_menu_button(
+            panel, "Change password", self.change_password
+        )
+
         self.enrol_subject_button = self.app.create_menu_button(
             panel, "Enrol in a subject", self.enrol_subject
-        )
-        self.view_enrolment_button = self.app.create_menu_button(
-            panel, "View enrolment", self.view_enrolment
         )
         self.remove_subject_button = self.app.create_menu_button(
             panel, "Remove a subject", self.remove_subject
         )
-        self.change_password_button = self.app.create_menu_button(
-            panel, "Change password", self.change_password
+        self.view_enrolment_button = self.app.create_menu_button(
+            panel, "View enrolment", self.view_enrolment
         )
         self.logout_button = self.app.create_menu_button(
             panel, "Log out", self.logout, is_back=True
