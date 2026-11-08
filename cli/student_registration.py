@@ -31,7 +31,7 @@ def register_student(students, database):
 
     # password input and validation
     while True:
-        password = input("\tPassword (comfirm format)(x to cancel): ").strip()
+        password = input("\tPassword (confirm format)(x to cancel): ").strip()
 
         if not password:
             print(colour("\tPassword cannot be empty, try again.", RED))
