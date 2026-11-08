@@ -6,13 +6,13 @@ MAX_SUBJECTS = 4
 
 def subject_enrolment_system(student, students, database):
     while True:
-        print(colour(f"\nWelcome to the Subject Enrolment, {student.name}. Please choose a following option: ", CYAN))
+        print(colour(f"\nWelcome to the Subject Enrolment, {student.name}. Please choose a following option: ", YELLOW))
         print(colour(" \t(c) change password", CYAN))
         print(colour(" \t(e) enrol in a subject", CYAN))
         print(colour(" \t(r) remove a subject", CYAN))
         print(colour(" \t(s) show enrolled subjects", CYAN))
         print(colour(" \t(x) exit", CYAN))
-        choice = input(colour(" \t Enter your choice (c-e-r-s-x): ", CYAN)).lower()
+        choice = input(colour(" \t Enter your choice (c/e/r/s/x): ", CYAN)).lower()
 
         if choice == 'c':
             change_password(student, students, database)
@@ -66,14 +66,18 @@ def enrol_subject(student, students, database):
         return
 
     print(colour(f"\tEnrolling in Subject-{subject.subject_id}", GREEN))
-    print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", YELLOW))
+    print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
 
 def remove_subject(student, students, database):
-    subject_id = input("\tRemove Subject by ID: ").strip()
+    if not student.subjects:
+        print(colour("\tNo subjects to remove", RED))
+        return
+
+    subject_id = input(colour("\tRemove Subject by ID: ", CYAN)).strip()
 
     if delete_subject(student, students, database, subject_id):
-        print(colour(f"\tDropping Subject-{subject_id}", YELLOW))
-        print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", YELLOW))
+        print(colour(f"\tDropping Subject-{subject_id}", GREEN))
+        print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
     else:
         print(colour(f"\tSubject-{subject_id} is not in your enrolment list.", RED))
 
