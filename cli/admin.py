@@ -7,7 +7,7 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            print(colour("\tAdmin System", CYAN))
+            print(colour("\n\tAdmin System", CYAN))
             print(colour("\t(s) Show all students", CYAN))
             print(colour("\t(g) Group students by grade", CYAN))
             print(colour("\t(p) Show pass/fail results", CYAN))
@@ -144,7 +144,7 @@ class AdminSystem:
             return
 
         if self.database.delete_student(student.student_id):
-            print(colour(f"\tRemoving student {student.student_id} Account", YELLOW))
+            print(colour(f"\tRemoving student {student.student_id} Account", GREEN))
         else:
             print(colour(f"\tFailed to remove student {student.student_id}", RED))
 
@@ -154,6 +154,6 @@ class AdminSystem:
         input_value = input(colour("\tAre you sure you want to clear the database (Y)ES/(N)O: ", RED)).strip().upper()
         if input_value == "Y":
             self.database.clear_students()
-            print(colour("\tStudent data cleared", YELLOW))
+            print(colour("\tStudent data cleared", GREEN))
         elif input_value == "N":
             return
