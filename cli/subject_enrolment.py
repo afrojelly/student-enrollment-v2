@@ -6,14 +6,14 @@ MAX_SUBJECTS = 4
 
 def subject_enrolment_system(student, students, database):
     while True:
-        print(colour(f"\n\tWelcome to the Subject Enrolment, {student.name}. Please choose a following option: ", YELLOW))
+        print(colour(f"\n\tSubject Enrolment, {student.name}", YELLOW))
         print(colour(" \t(c) change password", CYAN))
         print(colour(" \t(e) enrol in a subject", CYAN))
         print(colour(" \t(s) show enrolled subjects", CYAN))
         print(colour(" \t(r) remove a subject", CYAN))
         print(colour(" \t(c) change password", CYAN))
         print(colour(" \t(x) exit", CYAN))
-        choice = input(colour(" \t Enter your choice (c/e/r/s/x): ", CYAN)).lower()
+        choice = input(colour(" \t Please choose a following option (c/e/r/s/x): ", CYAN)).lower()
 
         if choice == 'e':
             enrol_subject(student, students, database)
@@ -70,22 +70,15 @@ def enrol_subject(student, students, database):
     print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
 
 def remove_subject(student, students, database):
-<<<<<<< HEAD
-=======
     if not student.subjects:
         print(colour("\tNo subjects to remove", RED))
         return
 
->>>>>>> 563cef4f1ce5e587eaa3b60944361c9bcbd905cd
     subject_id = input(colour("\tRemove Subject by ID: ", CYAN)).strip()
 
     if delete_subject(student, students, database, subject_id):
         print(colour(f"\tDropping Subject-{subject_id}", GREEN))
-<<<<<<< HEAD
-        print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", YELLOW))
-=======
         print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
->>>>>>> 563cef4f1ce5e587eaa3b60944361c9bcbd905cd
     else:
         print(colour(f"\tSubject-{subject_id} is not in your enrolment list.", RED))
 
