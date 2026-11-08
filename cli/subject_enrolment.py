@@ -81,7 +81,7 @@ def remove_subject(student, students, database):
     else:
         print(colour(f"\tSubject-{subject_id} is not in your enrolment list.", RED))
 
-# View enrolment 함수
+# View enrolment
 def view_enrolment(student):
     print(colour(f"\tShowing {len(student.subjects)} subjects", YELLOW))
 

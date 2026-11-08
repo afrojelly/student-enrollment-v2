@@ -42,7 +42,7 @@ class StudentSystem:
         if student is None:
             return None
         
-        if student is not None: # login에 불러온 student data -> enrolment system에서 불러옴 
+        if student is not None:
 
             subject_enrolment.subject_enrolment_system(
                 student, 

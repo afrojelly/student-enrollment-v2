@@ -134,10 +134,6 @@ class AdminSystem:
         if input_id.lower() == "x":
             return
 
-        # if not is_valid_student_id(input_id):
-        #     print("Invalid student ID. Please enter a 6-digit ID.")
-        #     continue
-
         student = self.database.get_student(input_id)
         if student is None:
             print(colour(f"\tStudent {input_id} does not exist", RED))
