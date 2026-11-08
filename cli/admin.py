@@ -7,7 +7,14 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            choice = input(colour("\tAdmin System (c/g/p/r/s/x): ", CYAN)).strip().lower()
+            print(colour("\tAdmin System", CYAN))
+            print(colour("\t(s) Show all students", CYAN))
+            print(colour("\t(g) Group students by grade", CYAN))
+            print(colour("\t(p) Show pass/fail results", CYAN))
+            print(colour("\t(r) Remove student", CYAN))
+            print(colour("\t(c) Clear database", CYAN))
+            print(colour("\t(x) Exit", CYAN))
+            choice = input(colour("\tPlease choose an option (s/g/p/r/c/x): ", CYAN)).strip().lower()
             if choice == "s":
                 self.show_students_all()
             elif choice == "g":
