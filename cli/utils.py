@@ -37,7 +37,7 @@ def go_back(value = None):
     print(colour("\tReturning to the previous menu.", YELLOW))
     return value
 
-#Terminal clours 
+# Terminal colours 
 RED = 31
 GREEN = 32
 YELLOW = 33

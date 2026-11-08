@@ -57,13 +57,13 @@ The `-m` option runs the applications as modules so their package imports resolv
 - Each enrolment receives a randomly generated subject ID from `001` to `999`. IDs are checked against the student's current enrolments.
 - Each subject receives a random mark from 25 to 100. Its grade is calculated from that mark:
 
-| Mark   | Grade |
-| ------ | ----- |
-| 85–100 | HD    |
-| 75–84  | D     |
-| 65–74  | C     |
-| 50–64  | P     |
-| 0–49   | Z     |
+| Average mark | Grade |
+| ------------ | ----- |
+| 85 or higher | HD    |
+| 75 or higher | D     |
+| 65 or higher | C     |
+| 50 or higher | P     |
+| Below 50     | Z     |
 
 - Enrolment records, including subject IDs, marks, and grades, are saved with the student record.
 - The CLI and GUI show an error when the student has reached the four-subject limit.
@@ -72,7 +72,22 @@ The `-m` option runs the applications as modules so their package imports resolv
 
 The admin menu is available without a separate admin registration or login. Administrators can list all students, group students by their average mark grade, partition students into PASS/FAIL groups, remove a student by ID, or clear all student records.
 
-PASS is determined by an average mark of 50 or higher. Students with no enrolled subjects are listed separately in the grade and pass/fail views.
+Grade is determined by the average mark:
+
+| Average mark | Grade |
+| ------------ | ----- |
+| 85 or higher | HD    |
+| 75 or higher | D     |
+| 65 or higher | C     |
+| 50 or higher | P     |
+| Below 50     | Z     |
+
+PASS/FAIL is determined by the average mark:
+
+| Average mark | Result |
+| ------------ | ------ |
+| 50 or higher | PASS   |
+| Below 50     | FAIL   |
 
 ## System menus
 

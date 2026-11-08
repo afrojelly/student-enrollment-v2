@@ -7,15 +7,14 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            #print("\nWelcome to the Admin System. Please choose an option:")
-            #print(" \t(s) Show all students")
-            #print(" \t(g) Group students by grade")
-            #print(" \t(p) Show pass/fail results")
-            #print(" \t(r) Remove student")
-            #print(" \t(c) Clear database")
-            #print(" \t(x) Exit")
-
-            choice = input(colour("\tAdmin System (c/g/p/r/s/x): ", CYAN)).strip().lower()
+            print(colour("\tAdmin System", CYAN))
+            print(colour("\t(s) Show all students", CYAN))
+            print(colour("\t(g) Group students by grade", CYAN))
+            print(colour("\t(p) Show pass/fail results", CYAN))
+            print(colour("\t(r) Remove student", CYAN))
+            print(colour("\t(c) Clear database", CYAN))
+            print(colour("\t(x) Exit", CYAN))
+            choice = input(colour("\tPlease choose an option (s/g/p/r/c/x): ", CYAN)).strip().lower()
             if choice == "s":
                 self.show_students_all()
             elif choice == "g":
@@ -27,7 +26,6 @@ class AdminSystem:
             elif choice == "c":
                 self.clear_students()
             elif choice == "x":
-                # print("Exiting the Admin System.")
                 break
             else:
                 print(colour("\tInvalid. Please try again.", RED))
@@ -38,7 +36,7 @@ class AdminSystem:
         print(colour("\tStudent List", YELLOW))
 
         if not students:
-            print(colour("\t\t< Nothing to Display >", RED))
+            print("\t\t< Nothing to Display >")
             return
         
 
@@ -76,11 +74,11 @@ class AdminSystem:
                 continue
 
             student_details = ", ".join(
-                f"{student.name} :: ({student.student_id}) --> "
+                f"\n\t\t{student.name} :: ({student.student_id}) --> "
                 f"GRADE: {grade} - MARK: {average_mark:.2f}"
                 for student, average_mark in grade_students
             )
-            print(f"\t{grade} --> [{student_details}]")
+            print(f"\t{grade} --> [{student_details}\n\t]")
 
     def partition_students_by_pass_fail(self):
         students = self.database.load_students()
@@ -109,18 +107,26 @@ class AdminSystem:
                 fail_group.append(result)
 
         students_pass = ", ".join(
-            f"{student.name} :: ({student.student_id}) --> "
+            f"\n\t\t{student.name} :: ({student.student_id}) --> "
             f"GRADE: {grade} - MARK: {average_mark:.2f}"
             for student, grade, average_mark in pass_group
         )
-        print(f"\tPASS --> [{students_pass}]")
 
         students_fail = ", ".join(
-            f"{student.name} :: ({student.student_id}) --> "
+            f"\n\t\t{student.name} :: ({student.student_id}) --> "
             f"GRADE: {grade} - MARK: {average_mark:.2f}"
             for student, grade, average_mark in fail_group
         )
-        print(f"\tFAIL --> [{students_fail}]")
+
+        if pass_group:
+            print(f"\tPASS --> [{students_pass}\n\t]")
+        else:
+            print("\tPASS --> []")
+
+        if fail_group:
+            print(f"\tFAIL --> [{students_fail}\n\t]")
+        else:
+            print("\tFAIL --> []")
 
     def remove_student(self):
         input_id = input("\tRemove by ID: ").strip()
@@ -148,7 +154,7 @@ class AdminSystem:
         input_value = input(colour("\tAre you sure you want to clear the database (Y)ES/(N)O: ", RED)).strip().upper()
         if input_value == "Y":
             self.database.clear_students()
-            print(colour("\tStudent data cleared", GREEN))
+            print(colour("\tStudent data cleared", YELLOW))
         elif input_value == "N":
             return
 
