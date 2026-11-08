@@ -5,20 +5,7 @@ from cli.student import Student
 from cli.utils import validate_email, validate_password, go_back
 
 def register_student(students, database):
-    print(colour("\n\tStudent Registration.", CYAN))
-
-    # name input and validation
-    while True:
-        name = input("\tName (x to cancel): ").strip()
-
-        if not name:
-            print(colour("\tName cannot be empty, try again.", RED))
-            continue
-
-        if name.lower() == "x":
-            return go_back(students)
-
-        break
+    print(colour("\n\tStudent Sign Up", CYAN))
 
     # email input and validation
     while True:
@@ -61,6 +48,21 @@ def register_student(students, database):
                 "\n\tPlease try again.", RED)
             )
             continue
+
+        break
+
+    print(colour("\tEmail and password formats acceptable", YELLOW))
+
+    # name input and validation
+    while True:
+        name = input("\tName (x to cancel): ").strip()
+
+        if not name:
+            print(colour("\tName cannot be empty, try again.", RED))
+            continue
+
+        if name.lower() == "x":
+            return go_back(students)
 
         break
 
