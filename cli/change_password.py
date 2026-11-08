@@ -2,10 +2,10 @@ from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli.utils import validate_password, go_back
 
 def change_password(student, students, database):
-    print(colour("\nChange password (enter x at any prompt to cancel).", YELLOW))
+    print(colour("\n\tChange password (x to cancel)", CYAN))
 
     while True:
-        current_password = input(colour("\tValidate Current password  (x to cancel): ", CYAN)).strip()
+        current_password = input("\tValidate Current password  (x to cancel): ").strip()
         
         if current_password.lower() == "x":
             return go_back()
@@ -16,7 +16,7 @@ def change_password(student, students, database):
         print(colour("\tCurrent password is incorrect. Please try again.", RED))
 
     while True:
-        new_password = input(colour("\tNew password (x to cancel): ",CYAN)).strip()
+        new_password = input("\tNew password (x to cancel): ").strip()
         
         if new_password.lower() == "x":
             return go_back()
@@ -29,7 +29,7 @@ def change_password(student, students, database):
             )
             continue
 
-        confirm_password = input(colour("\tConfirm new password (x to cancel): ", CYAN)).strip()
+        confirm_password = input("\tConfirm new password (x to cancel): ").strip()
         if confirm_password.lower() == "x":
             return go_back()
 

@@ -10,7 +10,7 @@ class StudentSystem:
 
     def student_system(self):
         while True: 
-            print(colour("\n\tStudent System.", YELLOW))
+            print(colour("\n\tStudent System", CYAN))
             print(colour(" \t(l) login", CYAN))
             print(colour(" \t(r) register", CYAN))
             print(colour(" \t(x) exit", CYAN))

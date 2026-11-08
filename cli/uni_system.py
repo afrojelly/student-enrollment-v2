@@ -14,7 +14,7 @@ class UniApp:
     
     def university_system(self):
         while True:
-            print(colour("\n\tUniversity System", YELLOW))
+            print(colour("\n\tUniversity System", CYAN))
             print(colour(" \t(A) Admin", CYAN))
             print(colour(" \t(S) Student", CYAN))
             print(colour(" \t(X) Exit", CYAN))

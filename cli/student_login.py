@@ -9,7 +9,7 @@ def login_student(students):
     )
 
     while True:
-        email = input("\tRegistered email (x to cancel): ").strip().lower()
+        email = input("\tEmail (x to cancel): ").strip().lower()
         if email == "x":
             return go_back()
 
