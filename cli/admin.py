@@ -7,14 +7,6 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            #print("\nWelcome to the Admin System. Please choose an option:")
-            #print(" \t(s) Show all students")
-            #print(" \t(g) Group students by grade")
-            #print(" \t(p) Show pass/fail results")
-            #print(" \t(r) Remove student")
-            #print(" \t(c) Clear database")
-            #print(" \t(x) Exit")
-
             choice = input(colour("\tAdmin System (c/g/p/r/s/x): ", CYAN)).strip().lower()
             if choice == "s":
                 self.show_students_all()
@@ -27,7 +19,6 @@ class AdminSystem:
             elif choice == "c":
                 self.clear_students()
             elif choice == "x":
-                # print("Exiting the Admin System.")
                 break
             else:
                 print(colour("\tInvalid. Please try again.", RED))
@@ -38,7 +29,7 @@ class AdminSystem:
         print(colour("\tStudent List", YELLOW))
 
         if not students:
-            print(colour("\t\t< Nothing to Display >", RED))
+            print("\t\t< Nothing to Display >")
             return
         
 
@@ -148,7 +139,7 @@ class AdminSystem:
         input_value = input(colour("\tAre you sure you want to clear the database (Y)ES/(N)O: ", RED)).strip().upper()
         if input_value == "Y":
             self.database.clear_students()
-            print(colour("\tStudent data cleared", GREEN))
+            print(colour("\tStudent data cleared", YELLOW))
         elif input_value == "N":
             return
 
