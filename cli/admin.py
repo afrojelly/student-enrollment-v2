@@ -139,7 +139,7 @@ class AdminSystem:
             return
 
         if self.database.delete_student(student.student_id):
-            print(colour(f"\tRemoving student {student.student_id} Account", GREEN))
+            print(colour(f"\tRemoving Student {student.student_id} Account", GREEN))
         else:
             print(colour(f"\tFailed to remove student {student.student_id}", RED))
 
