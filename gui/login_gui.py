@@ -11,7 +11,7 @@ class LoginGUI:
         self.app = app  # Store the app object on this LoginGUI instance.
 
     def clear_placeholder(self, event, entry, placeholder, is_password=False):
-        if entry.get() == placeholder:
+        if entry.get().strip() == placeholder:
             entry.delete(0, tk.END)
             entry.config(fg=self.app.bg_color)
 
@@ -19,7 +19,7 @@ class LoginGUI:
                 entry.config(show="*")
 
     def show_placeholder(self, event, entry, placeholder, is_password=False):
-        if entry.get() == "":
+        if entry.get().strip() == "":
             if is_password:
                 entry.config(show="")
 
@@ -135,7 +135,7 @@ class LoginGUI:
 
     def login_student(self):
         email = self.email_entry.get().strip().lower()
-        password = self.password_entry.get()
+        password = self.password_entry.get().strip()
 
         if email == self.email_placeholder:
             email = ""
