@@ -23,12 +23,17 @@ def login_student(students):
 
         student = find_student_by_credentials(students, email, password)
 
+        # if student is None:
+        #     print(
+        #         colour("\tLogin failed. Please check your email and password. \n"
+        #         "\tPlease try again", RED)
+        #     )
+        #     continue
         if student is None:
             print(
-                colour("\tLogin failed. Please check your email and password. \n"
-                "\tPlease try again", RED)
+                colour("\tStudent does not exist.", RED)
             )
-            continue
+            return go_back()
         
         print(
             colour(f"\tLogin successful! Welcome, {student.name} (ID: {student.student_id})!", YELLOW)

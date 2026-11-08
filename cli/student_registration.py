@@ -76,12 +76,8 @@ def register_student(students, database):
 
     database.save_student(students)
 
-    print(
-        colour("\tRegistration successful!\n"
-        "\tPlease login with your email and password.", GREEN)
-    )
-    print(colour(f"\tYour student ID is: {student.student_id}", YELLOW))
-
+    print(colour(f"\tRegistration successful! {student.name} ({student.student_id})", GREEN))
+    print(colour("\tPlease sign in with your email and password.", YELLOW))
     return students # return the updated list
 
 # Auto-student ID generation
