@@ -5,7 +5,7 @@ from cli.student import Student
 from cli.utils import validate_email, validate_password, go_back
 
 def register_student(students, database):
-    print(colour("\nStudent Registration.", CYAN))
+    print(colour("\n\tStudent Registration.", YELLOW))
 
     # name input and validation
     while True:

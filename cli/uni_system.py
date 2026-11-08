@@ -14,11 +14,11 @@ class UniApp:
     
     def university_system(self):
         while True:
-            print(colour("\nWelcome to the University System. please choose a following option", CYAN))
+            print(colour("\n\tUniversity System.s", YELLOW))
             print(colour(" \t(A) Admin", CYAN))
             print(colour(" \t(S) Student", CYAN))
             print(colour(" \t(X) Exit", CYAN))
-            choice = input(colour(" \tEnter your choice (A-S-X): ", CYAN)).upper()
+            choice = input(colour(" \tPlease choose an option (A/S/X): ", CYAN)).upper()
 
             if choice == 'A': 
                 self.admin_system.admin_system()

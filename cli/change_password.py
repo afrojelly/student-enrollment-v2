@@ -2,7 +2,7 @@ from cli.utils import colour, RED, GREEN, YELLOW, CYAN
 from cli.utils import validate_password, go_back
 
 def change_password(student, students, database):
-    print(colour("\nChange password (enter x at any prompt to cancel).", CYAN))
+    print(colour("\n\tChange password (x to cancel).", CYAN))
 
     while True:
         current_password = input("\tValidate Current password  (x to cancel): ").strip()

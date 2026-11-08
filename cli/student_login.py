@@ -4,7 +4,7 @@ from cli.utils import validate_password, validate_email, go_back
 
 def login_student(students):
     print(
-        colour("\nStudent Login.\n"
+        colour("\n\tStudent Login.\n"
         "\tEnter your registered email and password", CYAN)
     )
 
