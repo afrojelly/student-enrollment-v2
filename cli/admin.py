@@ -74,11 +74,11 @@ class AdminSystem:
                 continue
 
             student_details = ", ".join(
-                f"{student.name} :: ({student.student_id}) --> "
+                f"\n\t\t{student.name} :: ({student.student_id}) --> "
                 f"GRADE: {grade} - MARK: {average_mark:.2f}"
                 for student, average_mark in grade_students
             )
-            print(f"\t{grade} --> [{student_details}]")
+            print(f"\t{grade} --> [{student_details}\n\t]")
 
     def partition_students_by_pass_fail(self):
         students = self.database.load_students()
@@ -107,18 +107,26 @@ class AdminSystem:
                 fail_group.append(result)
 
         students_pass = ", ".join(
-            f"{student.name} :: ({student.student_id}) --> "
+            f"\n\t\t{student.name} :: ({student.student_id}) --> "
             f"GRADE: {grade} - MARK: {average_mark:.2f}"
             for student, grade, average_mark in pass_group
         )
-        print(f"\tPASS --> [{students_pass}]")
 
         students_fail = ", ".join(
-            f"{student.name} :: ({student.student_id}) --> "
+            f"\n\t\t{student.name} :: ({student.student_id}) --> "
             f"GRADE: {grade} - MARK: {average_mark:.2f}"
             for student, grade, average_mark in fail_group
         )
-        print(f"\tFAIL --> [{students_fail}]")
+
+        if pass_group:
+            print(f"\tPASS --> [{students_pass}\n\t]")
+        else:
+            print("\tPASS --> []")
+
+        if fail_group:
+            print(f"\tFAIL --> [{students_fail}\n\t]")
+        else:
+            print("\tFAIL --> []")
 
     def remove_student(self):
         input_id = input("\tRemove by ID: ").strip()
