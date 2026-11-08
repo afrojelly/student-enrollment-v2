@@ -134,7 +134,7 @@ class LoginGUI:
         )
 
     def login_student(self):
-        email = self.email_entry.get().strip()
+        email = self.email_entry.get().strip().lower()
         password = self.password_entry.get()
 
         if email == self.email_placeholder:
