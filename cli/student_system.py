@@ -10,22 +10,25 @@ class StudentSystem:
 
     def student_system(self):
         while True: 
-            print(colour("\n\tStudent System", CYAN))
-            print(colour(" \t(l) login", CYAN))
-            print(colour(" \t(r) register", CYAN))
-            print(colour(" \t(x) exit", CYAN))
+            print(colour("\tStudent System", CYAN))
+            print(colour("\t(l)ogin", CYAN))
+            print(colour("\t(r)egister", CYAN))
+            print(colour("\t(x)", CYAN))
 
             choice = input(colour("\tPlease choose an option (l/r/x): ", CYAN)).lower()
 
-            if choice == 'l':
-                self.login_student()
-            elif choice == 'r':
-                self.register_student()
-            elif choice == 'x':
-                print(colour("\tExiting the Student System.", YELLOW))
-                break
-            else:
-                print(colour("\tInvalid. Please try again.", RED))
+            try:
+                if choice == 'l':
+                    self.login_student()
+                elif choice == 'r':
+                    self.register_student()
+                elif choice == 'x':
+                    print(colour("\tExiting the Student System.", YELLOW))
+                    break
+                else:
+                    print(colour("\tInvalid. Please try again.", RED))
+            except OSError as error:
+                print(colour(str(error), RED))
     
     #Student system functionality.
     def register_student(self):

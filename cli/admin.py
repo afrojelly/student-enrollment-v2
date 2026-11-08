@@ -7,28 +7,31 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            print(colour("\n\tAdmin System", CYAN))
-            print(colour("\t(s) Show all students", CYAN))
-            print(colour("\t(g) Group students by grade", CYAN))
-            print(colour("\t(p) Show pass/fail results", CYAN))
-            print(colour("\t(r) Remove student", CYAN))
-            print(colour("\t(c) Clear database", CYAN))
-            print(colour("\t(x) Exit", CYAN))
+            print(colour("\tAdmin System", CYAN))
+            print(colour("\t(s)how all students", CYAN))
+            print(colour("\t(g)roup students by grade", CYAN))
+            print(colour("\t(p)artition students bypass/fail", CYAN))
+            print(colour("\t(r)emove student", CYAN))
+            print(colour("\t(c)lear database", CYAN))
+            print(colour("\t(x)", CYAN))
             choice = input(colour("\tPlease choose an option (s/g/p/r/c/x): ", CYAN)).strip().lower()
-            if choice == "s":
-                self.show_students_all()
-            elif choice == "g":
-                self.group_students_by_grade()
-            elif choice == "p":
-                self.partition_students_by_pass_fail()
-            elif choice == "r":
-                self.remove_student()
-            elif choice == "c":
-                self.clear_students()
-            elif choice == "x":
-                break
-            else:
-                print(colour("\tInvalid. Please try again.", RED))
+            try:
+                if choice == "s":
+                    self.show_students_all()
+                elif choice == "g":
+                    self.group_students_by_grade()
+                elif choice == "p":
+                    self.partition_students_by_pass_fail()
+                elif choice == "r":
+                    self.remove_student()
+                elif choice == "c":
+                    self.clear_students()
+                elif choice == "x":
+                    break
+                else:
+                    print(colour("\tInvalid. Please try again.", RED))
+            except OSError as error:
+                print(colour(str(error), RED))
 
     def show_students_all(self):
         students = self.database.load_students()
@@ -85,10 +88,6 @@ class AdminSystem:
 
         print(colour("\tPASS/FAIL Partition", YELLOW))
 
-        if not students:
-            print("\t\t< Nothing to Display >")
-            return
-
         pass_group = []
         fail_group = []
 
@@ -118,15 +117,15 @@ class AdminSystem:
             for student, grade, average_mark in fail_group
         )
 
-        if pass_group:
-            print(f"\tPASS --> [{students_pass}\n\t]")
-        else:
-            print("\tPASS --> []")
-
         if fail_group:
             print(f"\tFAIL --> [{students_fail}\n\t]")
         else:
             print("\tFAIL --> []")
+
+        if pass_group:
+            print(f"\tPASS --> [{students_pass}\n\t]")
+        else:
+            print("\tPASS --> []")
 
     def remove_student(self):
         input_id = input("\tRemove by ID: ").strip()

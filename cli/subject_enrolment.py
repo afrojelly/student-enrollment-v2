@@ -6,32 +6,35 @@ MAX_SUBJECTS = 4
 
 def subject_enrolment_system(student, students, database):
     while True:
-        print(colour(f"\n\tSubject Enrolment, {student.name}", CYAN))
-        print(colour(" \t(c) change password", CYAN))
-        print(colour(" \t(e) enrol in a subject", CYAN))
-        print(colour(" \t(s) show enrolled subjects", CYAN))
-        print(colour(" \t(r) remove a subject", CYAN))
-        print(colour(" \t(x) exit", CYAN))
-        choice = input(colour(" \tPlease choose a following option (c/e/r/s/x): ", CYAN)).lower()
+        print(colour(f"\tSubject Enrolment, {student.name}", CYAN))
+        print(colour("\t(c)hange password", CYAN))
+        print(colour("\t(e)nrol in a subject", CYAN))
+        print(colour("\t(s)how enrolled subjects", CYAN))
+        print(colour("\t(r)emove a subject", CYAN))
+        print(colour("\t(x)", CYAN))
+        choice = input(colour("\tPlease choose a following option (c/e/r/s/x): ", CYAN)).lower()
 
-        if choice == 'e':
-            enrol_subject(student, students, database)
+        try:
+            if choice == 'e':
+                enrol_subject(student, students, database)
 
-        elif choice == 's':
-            view_enrolment(student)
+            elif choice == 's':
+                view_enrolment(student)
 
-        elif choice == 'r':
-            remove_subject(student, students, database)
+            elif choice == 'r':
+                remove_subject(student, students, database)
 
-        elif choice == 'c':
-            change_password(student, students, database)
+            elif choice == 'c':
+                change_password(student, students, database)
 
-        elif choice == 'x':
-            print(colour("\tExiting the Subject Enrolment System.", YELLOW))
-            break
+            elif choice == 'x':
+                print(colour("\tExiting the Subject Enrolment System", YELLOW))
+                break
 
-        else:
-            print(colour("\tInvalid. Please try again.", RED))
+            else:
+                print(colour("\tInvalid. Please try again", RED))
+        except OSError as error:
+            print(colour(str(error), RED))
 
 # Max subject check
 def check_enrolment_limit(student):
@@ -62,11 +65,11 @@ def enrol_subject(student, students, database):
     subject = add_subject(student, students, database)
 
     if subject is None:
-        print(colour("\tStudents are allowed to enrol in 4 subjects only.", RED))
+        print(colour("\tStudents are allowed to enrol in 4 subjects only", RED))
         return
 
     print(colour(f"\tEnrolling in Subject-{subject.subject_id}", GREEN))
-    print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
+    print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects", GREEN))
 
 def remove_subject(student, students, database):
     if not student.subjects:
@@ -77,16 +80,16 @@ def remove_subject(student, students, database):
 
     if delete_subject(student, students, database, subject_id):
         print(colour(f"\tDropping Subject-{subject_id}", GREEN))
-        print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects.", GREEN))
+        print(colour(f"\tYou are now enrolled in {len(student.subjects)} out of {MAX_SUBJECTS} subjects", GREEN))
     else:
-        print(colour(f"\tSubject-{subject_id} is not in your enrolment list.", RED))
+        print(colour(f"\tSubject-{subject_id} is not in your enrolment list", RED))
 
 # View enrolment
 def view_enrolment(student):
     print(colour(f"\tShowing {len(student.subjects)} subjects", YELLOW))
 
     if not student.subjects:
-        print(colour("\tNo subjects enrolled yet.", YELLOW))
+        print(colour("\tNo subjects enrolled yet", YELLOW))
         return
 
     for subject in student.subjects:
