@@ -106,7 +106,7 @@ class ChangePasswordGUI:
 
         self.password_hint = tk.Label(
             self.root,
-            text="Uppercase first | At least 5 letters | At least 3 digits",
+            text="Uppercase first | More than 5 letters | At least 3 digits",
             **self.app.hint_style
         )
         self.password_hint.pack(pady=(0, 10))
@@ -162,7 +162,7 @@ class ChangePasswordGUI:
             messagebox.showerror(
                 "Invalid Password",
                 "Password must start with an uppercase letter,\n"
-                "contain at least 5 letters and at least 3 digits."
+                "contain at more than 5 letters and at least 3 digits."
             )
         elif result == "mismatch":
             messagebox.showerror(
