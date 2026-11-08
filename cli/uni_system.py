@@ -25,7 +25,7 @@ class UniApp:
             elif choice == 'S':
                 self.student_system.student_system()
             elif choice == 'X':
-                print(colour("\tExiting the UniApp. Goodbye!", YELLOW))
+                print(colour("\tThank you. Goodbye!", YELLOW))
                 break
             else:
                 print(colour("\tInvalid. Please try again.", RED))
