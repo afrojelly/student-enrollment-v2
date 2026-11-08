@@ -3,28 +3,52 @@
         "name": "Robyn You",
         "email": "robyn.you@university.com",
         "password": "Robynyou123",
-        "studentId": "660639",
-        "subjects": []
+        "student_id": "660639",
+        "subjects": [
+            {
+                "id": "727",
+                "mark": 77,
+                "grade": "D"
+            },
+            {
+                "id": "684",
+                "mark": 42,
+                "grade": "Z"
+            },
+            {
+                "id": "465",
+                "mark": 30,
+                "grade": "Z"
+            },
+            {
+                "id": "106",
+                "mark": 49,
+                "grade": "Z"
+            }
+        ],
+        "average_mark": 49.5
     },
     {
         "name": "Hyejin Han",
         "email": "hyejin.han@university.com",
         "password": "Hyejin123",
-        "studentId": "057372",
-        "subjects": []
+        "student_id": "057372",
+        "subjects": [],
+        "average_mark": null
     },
     {
         "name": "Robyn You",
         "email": "hyeonji.you@university.com",
         "password": "PAssword123",
-        "studentId": "447553",
-        "subjects": []
+        "student_id": "447553",
+        "subjects": [],
+        "average_mark": null
     },
     {
         "name": "robyn",
         "email": "hello.sydney@university.com",
         "password": "Sydney123",
-        "studentId": "179132",
+        "student_id": "179132",
         "subjects": [
             {
                 "id": "453",
@@ -41,6 +65,7 @@
                 "mark": 60,
                 "grade": "P"
             }
-        ]
+        ],
+        "average_mark": 72.33333333333333
     }
 ]

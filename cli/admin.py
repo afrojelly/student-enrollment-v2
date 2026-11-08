@@ -61,7 +61,7 @@ class AdminSystem:
         }
 
         for student in students:
-            average_mark = self._get_average_mark(student.subjects)
+            average_mark = student.average_mark
 
             if average_mark is None:
                 continue
@@ -93,7 +93,7 @@ class AdminSystem:
         fail_group = []
 
         for student in students:
-            average_mark = self._get_average_mark(student.subjects)
+            average_mark = student.average_mark
 
             if average_mark is None:
                 continue
@@ -157,10 +157,3 @@ class AdminSystem:
             print(colour("\tStudent data cleared", YELLOW))
         elif input_value == "N":
             return
-
-    def _get_average_mark(self, subjects):
-        if len(subjects) == 0:
-            return None
-
-        total = sum(subject["mark"] for subject in subjects)
-        return total / len(subjects)
