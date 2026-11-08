@@ -7,7 +7,7 @@ class AdminSystem:
 
     def admin_system(self):
         while True:
-            print(colour("\tAdmin System", YELLOW))
+            print(colour("\tAdmin System", CYAN))
             print(colour("\t(s) Show all students", CYAN))
             print(colour("\t(g) Group students by grade", CYAN))
             print(colour("\t(p) Show pass/fail results", CYAN))
