@@ -42,5 +42,12 @@
                 "grade": "P"
             }
         ]
+    },
+    {
+        "name": "UTS",
+        "email": "uts.sydney@university.com",
+        "password": "UTSsydney123",
+        "studentId": "501324",
+        "subjects": []
     }
 ]

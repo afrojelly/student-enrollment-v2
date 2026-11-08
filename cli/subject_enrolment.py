@@ -6,7 +6,8 @@ MAX_SUBJECTS = 4
 
 def subject_enrolment_system(student, students, database):
     while True:
-        print(colour(f"\nWelcome to the Subject Enrolment, {student.name}. Please choose a following option: ", CYAN))
+        #print(colour(f"\nSubject Enrolment, {student.name}. Please choose an option: ", CYAN))
+        print(colour("\nsubject Enrolment system.", CYAN), colour(f"{student.name}.",YELLOW), colour("Please choose an option: ", CYAN))
         print(colour(" \t(e) enrol in a subject", CYAN))
         print(colour(" \t(s) show enrolled subjects", CYAN))
         print(colour(" \t(r) remove a subject", CYAN))

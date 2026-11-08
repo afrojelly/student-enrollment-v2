@@ -31,8 +31,8 @@ def login_student(students):
             continue
         
         print(
-            colour(f"\tLogin successful! Welcome {student.name} "
-            f"(ID: {student.student_id})!", GREEN)
+            colour(f"\tLogin successful! Welcome ",GREEN ), 
+            colour(f"{student.name} (ID: {student.student_id})!", YELLOW)
         )
         return student
 
